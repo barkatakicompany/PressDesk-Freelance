@@ -1,0 +1,96 @@
+.nav-bar-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.nav-bar-date-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+  -webkit-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
+  -moz-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
+  box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
+}
+
+.date-area {
+  padding: 0;
+  margin: 0;
+  background-color: #e92525;
+}
+
+.nav-bar-brand-wrapper {
+  padding: 0 !important;
+  margin: 2px 0 0 0 !important;
+  display: flex;
+  height: auto;
+}
+
+.navbar-ads {
+  background-color: #e92525;
+  color: #ffffff;
+  width: 40%;
+  height: 70px;
+}
+
+.navbar-brand {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 2.3rem !important;
+}
+
+.date-area p {
+  padding: 0.5rem;
+  margin: 0;
+  color: #ffffff;
+}
+
+.font-awesome-icons {
+  margin: 0 10px;
+  color: rgb(87, 86, 86);
+  font-size: medium;
+}
+
+.site-navigations-wrapper {
+  padding: 0 !important;
+  margin: 0 !important;
+  -webkit-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
+  -moz-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
+  box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
+}
+
+.site-navigations-content {
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1b1b1b;
+}
+
+.site-navigations-content ul {
+  margin-block-start: 0;
+  display: flex;
+  list-style-type: none;
+  padding: 8px 0 !important;
+  margin: 0;
+}
+
+.site-navigations-content ul li a {
+  padding: 0 15px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.site-nav-link-active {
+  color: #ffffff !important;
+  background-color: #e92525 !important;
+  padding: 18px !important;
+  font-size: 1.4rem !important;
+}
+
+.site-nav-link:hover {
+  color: #e92525;
+  /* background-color: #E92525; */
+  -webkit-transition: all 80ms ease-in;
+  -ms-transition: all 80ms ease-in;
+  -moz-transition: all 80ms ease-in;
+  transition: all 80ms ease-in;
+}
