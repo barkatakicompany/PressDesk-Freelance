@@ -1,0 +1,9 @@
+.ads-wrapper {
+    height: 10% !important;
+}
+
+.ads {
+    background-color: #e92525;
+    color: #ffffff;
+    height: 15vh !important;
+}

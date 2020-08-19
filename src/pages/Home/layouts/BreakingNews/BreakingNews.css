@@ -1,0 +1,27 @@
+.row {
+  /* margin: 0 !important; */
+}
+
+.breaking-news-wrapper {
+  margin: 0 !important;
+}
+
+.breaking-news {
+  padding: 10px 20px;
+  background-color: #1b1b1b;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  width: max-content;
+}
+
+.breaking-news-link {
+  padding: 7px 12px;
+  font-size: 1.1rem;
+}
+
+.breaking-news-advertisement {
+  background-color: #e92525;
+  color: #ffffff;
+  height: 100%;
+}

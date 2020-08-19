@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "title": "Home",
+      "path": "/"
+    },
+    {
+      "title": "Today's",
+      "path": "/todays"
+    },
+    {
+      "title": "Assam",
+      "path": "/assam"
+    },
+    {
+      "title": "National",
+      "path": "/national"
+    },
+    {
+      "title": "International",
+      "path": "/internnational"
+    },
+    {
+      "title": "Sports",
+      "path": "/sports"
+    },
+    {
+      "title": "Employment",
+      "path": "/employment"
+    },
+    {
+      "title": "COVID",
+      "path": "/covid"
+    },
+    {
+      "title": "Tech",
+      "path": "/technology"
+    }
+  ]
+}

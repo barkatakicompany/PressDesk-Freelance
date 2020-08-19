@@ -1,0 +1,14 @@
+.trending-now-content {
+    margin: 20px 30px !important;
+}
+
+.trending-now-box {
+    background-color: #1b1b1b;
+    color: #ffffff;
+    padding: 10px 0 !important;;
+}
+
+.trending-now-news {
+    font-size: 1.2rem;
+    font-weight: 400;
+}

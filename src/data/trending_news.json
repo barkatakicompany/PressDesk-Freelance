@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "title": "Telephone service begins between UAE and Israel amid deal",
+      "postedOn": "2020/08/19 03:20 pm"
+    },
+    {
+      "id": "2",
+      "title": "This was posted on 3:22 pm",
+      "postedOn": "2020/08/19 03:22 pm"
+    }
+    ,
+    {
+      "id": "3",
+      "title": "This was posted on 3:24 pm",
+      "postedOn": "2020/08/19 03:24 pm"
+    },
+    {
+      "id": "4",
+      "title": "This was posted on 3:52 am",
+      "postedOn": "2020/08/20 03:52 am"
+    },
+    {
+      "id": "5",
+      "title": "This was posted on 4:16 pm",
+      "postedOn": "2020/08/19 04:16 pm"
+    }
+  ]
+}
