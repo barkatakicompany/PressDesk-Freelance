@@ -1,9 +1,38 @@
 .ads-wrapper {
-    height: 10% !important;
+  height: 10% !important;
 }
 
 .ads {
-    background-color: #e92525;
-    color: #ffffff;
-    height: 15vh !important;
+  background-color: #e92525;
+  color: #ffffff;
+  height: 15vh !important;
+}
+
+.news-tag {
+  padding: 10px 20px;
+  background-color: #1b1b1b;
+  color: white;
+  font-weight: 500;
+  font-size: 1.2rem;
+  width: max-content;
+}
+
+.news-tag-link {
+  padding: 7px 12px;
+  font-size: 1.1rem;
+}
+
+.card-body {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+
+.card {
+  margin: 0 15px 0 0;
+  border: none;
+}
+
+.card-horizontal {
+  padding: 10px;
+  border-bottom: solid black 1px;
 }

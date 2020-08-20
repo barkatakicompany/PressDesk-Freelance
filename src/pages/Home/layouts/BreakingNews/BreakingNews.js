@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import { Row, Col } from "react-bootstrap"
-import { Link } from "react-router-dom";
 
 import "./BreakingNews.css";
+
+import SingleCard from "../../components/NewsCards/SingleCard.js";
+import StackedCardsVerical from "../../components/NewsCards/StackedCardsVertical.js";
 
 const BreakingNews = (props) => {
   const [breakingNews, setBreakingNews] = useState([]);
@@ -34,18 +35,15 @@ const BreakingNews = (props) => {
     return new Date(b.postedOn) - new Date(a.postedOn);
   });
 
-  // console.log(breakingNews);
-  console.log(topFourbreakingNews);
-
   return (
     <div>
       <div className="row">
         <div className="col-md-8">
           <div className="row">
             <div className="col">
-              <div className="breaking-news">Breaking News</div>
+              <div className="news-tag">Breaking News</div>
             </div>
-            <div className="col d-flex justify-content-end breaking-news-link">
+            <div className="col d-flex justify-content-end news-tag-link">
               View More
             </div>
           </div>
@@ -54,29 +52,9 @@ const BreakingNews = (props) => {
       </div>
 
       <div className="card-group">
-        <div className="card">
-          <img
-            src={topBreakingNews.imageURL}
-            className="card-img-top"
-            alt="..."
-          />
-          <div className="card-body">
-            <h2 className="card-title">{topBreakingNews.title}</h2>
-          </div>
-        </div>
+        <SingleCard topNews={topBreakingNews} />
         <div className="card d-flex align-items-center">
-          {topFourbreakingNews.map((news) => (
-            <div className="row no-gutters">
-              <div className="col-md-4">
-                <img src={news.imageURL} className="card-img" alt="..." />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <h4 className="card-title">{news.title}</h4>
-                </div>
-              </div>
-            </div>
-          ))}
+          <StackedCardsVerical topFourNews={topFourbreakingNews} />
         </div>
 
         <div className="card">
@@ -87,14 +65,4 @@ const BreakingNews = (props) => {
   );
 };
 
-{
-  /* <div className="col-md-3 breaking-news-advertisement">Advertisement</div> */
-}
 export default BreakingNews;
-
-{
-  /* <div className="row breaking-news-wrapper d-flex justify-content-between">
-        <div className="breaking-news">Breaking News</div>
-        <div className="breaking-news">View More</div>
-    </div> */
-}

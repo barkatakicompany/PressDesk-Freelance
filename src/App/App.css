@@ -4,6 +4,11 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.page-component{
+    background-color: #cecdcd40;
+    min-height: 100vh;
+}
+
 .row {
     /* margin: 0 !important; */
 }

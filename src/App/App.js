@@ -18,23 +18,14 @@ import {
 
 
 function App(props) {
-  // const [navLinks, setNavLinks] = useState([]);
-
-  // // setNavLinks(categories.data)
-  // useEffect(() => {
-  //   const navLinks = categories.data
-  //   setNavLinks(navLinks)
-  // }, [categories])
-
-  // console.log(navLinks)
 
   const navLinks = categories.data
 
   return (
     <Router>
-      <div className="App">
+      <div className="App page-component">
         <Navigation siteNavigations={navLinks} />
-        <Switch>
+        <Switch className="page-component">
           <Route path="/:page" component={PageRenderer} />
           <Route path="/" component={PageRenderer} />
           <Route component={() => 404} />
