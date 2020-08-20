@@ -38,13 +38,6 @@ const NationalNews = (props) => {
           </div>
         ))}
       </div>
-      <div className="row row-cols-1 row-cols-md-3">  
-        {nationalNews.map((news) => (
-          <div className="col mb-4 card-content">
-            <SingleCard news={news} />
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

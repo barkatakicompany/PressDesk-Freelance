@@ -56,7 +56,7 @@ const BreakingNews = (props) => {
           <StackedCardsVerical topFourNews={topFourbreakingNews} />
         </div>
           <div className="card col-md-3" style={{padding: "0"}}>
-            <div className="breaking-news-advertisement">Advertisement</div>
+            <div className="news-advertisement">Advertisement</div>
           </div>
       </div>
     </div>

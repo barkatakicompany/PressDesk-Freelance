@@ -41,3 +41,17 @@
   padding: 10px;
   border-bottom: solid black 1px;
 }
+
+.covid-dash{
+  margin: 15px 0 !important;
+  padding: 0 !important;
+  background-color: #140235;
+  color: white;
+  height: 8rem;
+}
+
+.news-advertisement {
+  background-color: #e92525;
+  color: #ffffff;
+  height: 100%;
+}

@@ -9,7 +9,11 @@ const InternationalNews = (props) => {
 
   useEffect(() => {
     const internationalNews = props.internationalNews.data;
-    const topInternationalNews = [internationalNews[0], internationalNews[1]];
+    const topInternationalNews = [
+      internationalNews[0],
+      internationalNews[1],
+      internationalNews[2],
+    ];
 
     setInternationalNews(internationalNews);
     setTopInternationalNews(topInternationalNews);
@@ -20,34 +24,24 @@ const InternationalNews = (props) => {
   return (
     <div>
       <div className="row">
-        <div className="col-md-8">
+        <div className="col-md-12">
           <div className="row">
             <div className="col">
-              <div className="news-tag">International News</div>
+              <div className="news-tag">International</div>
             </div>
             <div className="col d-flex justify-content-end news-tag-link">
               View More
             </div>
           </div>
         </div>
-        <div className="col-md-4"></div>
       </div>
 
-      <div className="card-group">
-        <div className="card">
-          {topInternationalNews.map((news) => (
-            <div className="row row-cols-1" style={{ margin: "0" }}>
-              <SingleCard news={news} size={"12rem"} />
-            </div>
-          ))}
-        </div>
-        <div className="card justify-content-md-around">
-          <StackedCardsVerical topFourNews={internationalNews} />
-        </div>
-
-        <div className="card col-md-3" style={{ padding: "0" }}>
-          <div className="breaking-news-advertisement">Advertisement</div>
-        </div>
+      <div className="row row-cols-1 row-cols-md-4">  
+        {internationalNews.map((news) => (
+          <div className="col mb-4 card-content">
+            <SingleCard news={news} />
+          </div>
+        ))}
       </div>
     </div>
   );
