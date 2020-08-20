@@ -23,7 +23,6 @@ const BreakingNews = (props) => {
       breakingNews[1],
       breakingNews[2],
       breakingNews[3],
-      breakingNews[4],
     ];
     const topBreakingNews = breakingNews[0];
     setBreakingNews(breakingNews);
@@ -52,14 +51,13 @@ const BreakingNews = (props) => {
       </div>
 
       <div className="card-group">
-        <SingleCard topNews={topBreakingNews} />
-        <div className="card d-flex align-items-center">
+        <SingleCard news={topBreakingNews} />
+        <div className="card justify-content-md-around">
           <StackedCardsVerical topFourNews={topFourbreakingNews} />
         </div>
-
-        <div className="card">
-          <div className="breaking-news-advertisement">Advertisement</div>
-        </div>
+          <div className="card col-md-3" style={{padding: "0"}}>
+            <div className="breaking-news-advertisement">Advertisement</div>
+          </div>
       </div>
     </div>
   );

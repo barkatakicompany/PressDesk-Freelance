@@ -72,6 +72,10 @@ const Assam = (props) => {
     setAssamNewsPriorityFourTop(assamNewsPriorityFourTop);
   }, [assamNews]);
 
+  assamNews.sort(function (a, b) {
+    return new Date(b.postedOn) - new Date(a.postedOn);
+  });
+
   console.log("assamNewsPriorityThreeTwo");
   console.log(assamNewsPriorityThreeTwo);
 
@@ -95,12 +99,12 @@ const Assam = (props) => {
           topNews={topNews}
           topListNews={assamNewsPriorityFourTop}
         />
-        <div className="card d-flex align-items-center">
+        <div className="card justify-content-md-around">
           <StackedCardsVerical topFourNews={assamNewsPriorityTwoTopFour} />
         </div>
-        <div className="card">
+        <div className="card col-md-3 justify-content-md-around" style={{ padding: "0" }}>
           {assamNewsPriorityThreeTwo.map((news) => (
-            <div className="row row-cols-1" style={{margin: "0"}}>
+            <div className="row row-cols-1" style={{ margin: "0" }}>
               <OverlayCard news={news} />
             </div>
           ))}

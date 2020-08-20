@@ -9,7 +9,6 @@ const SingleCardList = (props) => {
       <img src={topNews.imageURL} className="card-img-top" alt="..." />
       <div className="card-body" style={{height: "max-content"}}>
         <h2 className="card-title">{topNews.title}</h2>
-        <p className="card-text">aaa</p>
       </div>
       <ul className="list-group list-group-flush">
         {topListNews.map((news, index) => (

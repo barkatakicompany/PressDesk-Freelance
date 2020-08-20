@@ -4,10 +4,15 @@ import { Row, Col } from "react-bootstrap";
 import trendingPost from "../../data/trending_news.json";
 import breakingNews from "../../data/breaking_news.json";
 import assamNews from "../../data/assam_news.json";
+import nationalNews from "../../data/national_news.json"
+import internationalNews from "../../data/international_news.json"
+
 
 import Trending from "./components/Trending";
 import BreakingNews from "./layouts/BreakingNews"
 import AssamNews from "./layouts/AssamNews"
+import NationalNews from "./layouts/NationalNews"
+import InternationalNews from "./layouts/InternationalNews"
 import Example from "./layouts/Example"
 
 import "./home.css";
@@ -32,6 +37,8 @@ export default class Home extends Component {
         <Row className="ads-wrapper" style={{margin: "20px 0px"}}>
           <Col md={{ span: 8, offset: 2 }} className="text-center ads">Advertisement</Col>
         </Row>
+        <NationalNews nationalNews={nationalNews}/>
+        <InternationalNews internationalNews={internationalNews}/>
         {/* <Example /> */}
       </div>
     );

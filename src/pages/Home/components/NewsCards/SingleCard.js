@@ -1,13 +1,18 @@
 import React from "react";
 
 const SingleCard = (props) => {
-  const topNews = props.topNews;
+  const news = props.news;
 
   return (
-    <div className="card">
-      <img src={topNews.imageURL} className="card-img-top" alt="..." />
+    <div className="card h-100">
+      <img
+        src={news.imageURL}
+        className="card-img-top"
+        alt="..."
+        style={{height: props.size}}
+      />
       <div className="card-body">
-        <h2 className="card-title">{topNews.title}</h2>
+        <h2 className="card-title">{news.title}</h2>
       </div>
     </div>
   );
