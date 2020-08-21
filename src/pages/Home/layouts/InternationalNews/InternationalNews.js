@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import SingleCard from "../../components/NewsCards/SingleCard.js";
-import StackedCardsVerical from "../../components/NewsCards/StackedCardsVertical.js";
+import SingleCard from "../../../../components/NewsCards/SingleCard.js";
 
 const InternationalNews = (props) => {
   const [internationalNews, setInternationalNews] = useState([]);
@@ -19,7 +18,6 @@ const InternationalNews = (props) => {
     setTopInternationalNews(topInternationalNews);
   }, [internationalNews]);
 
-  console.log(internationalNews);
 
   return (
     <div>

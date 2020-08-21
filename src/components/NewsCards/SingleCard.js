@@ -5,14 +5,14 @@ const SingleCard = (props) => {
 
   return (
     <div className="card h-100">
-      <img
-        src={news.imageURL}
-        className="card-img-top"
-        alt="..."
-        style={{height: props.size}}
-      />
+        <img
+          src={news.imageURL}
+          className="card-img-top"
+          alt="..."
+          style={{ height: props.size }}
+        />
       <div className="card-body">
-        <h2 className="card-title">{news.title}</h2>
+        <h3 className="card-title">{news.title}</h3>
       </div>
     </div>
   );

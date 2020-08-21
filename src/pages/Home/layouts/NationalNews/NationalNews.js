@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import SingleCard from "../../components/NewsCards/SingleCard";
+import SingleCard from "../../../../components/NewsCards/SingleCard";
 
 const NationalNews = (props) => {
   const [nationalNews, setNationalNews] = useState([]);
@@ -15,7 +15,6 @@ const NationalNews = (props) => {
     return new Date(b.postedOn) - new Date(a.postedOn);
   });
 
-  console.log(nationalNews);
   return (
     <div>
       <div className="row">

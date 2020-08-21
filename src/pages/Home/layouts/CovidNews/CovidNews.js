@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import SingleCard from "../../components/NewsCards/SingleCard.js";
-import StackedCardsVerical from "../../components/NewsCards/StackedCardsVertical.js";
+import SingleCard from "../../../../components/NewsCards/SingleCard.js";
+import StackedCardsVerical from "../../../../components/NewsCards/StackedCardsVertical.js";
 
 const CovidNews = (props) => {
   const [CovidNews, setCovidNews] = useState([]);
@@ -14,8 +14,6 @@ const CovidNews = (props) => {
     setCovidNews(CovidNews);
     setTopCovidNews(topCovidNews);
   }, [CovidNews]);
-
-  console.log(CovidNews);
 
   return (
     <div>

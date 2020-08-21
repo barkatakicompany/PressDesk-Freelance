@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import SingleCardList from "../../components/NewsCards/SingleCardList.js";
-import StackedCardsVerical from "../../components/NewsCards/StackedCardsVertical.js";
-import OverlayCard from "../../components/NewsCards/OverlayCard.js";
+import SingleCardList from "../../../../components/NewsCards/SingleCardList.js";
+import StackedCardsVerical from "../../../../components/NewsCards/StackedCardsVertical.js";
+import OverlayCard from "../../../../components/NewsCards/OverlayCard.js";
 
 const Assam = (props) => {
   const [assamNews, setAssamNews] = useState([]);
@@ -44,10 +44,10 @@ const Assam = (props) => {
 
     const topNews = assamNewsPriorityOne[0];
     const assamNewsPriorityTwoTopFour = [
+      assamNewsPriorityTwo[0],
       assamNewsPriorityTwo[1],
       assamNewsPriorityTwo[2],
       assamNewsPriorityTwo[3],
-      assamNewsPriorityTwo[4],
     ];
 
     const assamNewsPriorityFourTop = [
@@ -75,9 +75,6 @@ const Assam = (props) => {
   assamNews.sort(function (a, b) {
     return new Date(b.postedOn) - new Date(a.postedOn);
   });
-
-  console.log("assamNewsPriorityThreeTwo");
-  console.log(assamNewsPriorityThreeTwo);
 
   return (
     <div>

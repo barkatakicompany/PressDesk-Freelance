@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import SingleCardList from "../../components/NewsCards/SingleCardList.js";
-import StackedCardsVerical from "../../components/NewsCards/StackedCardsVertical.js";
-import OverlayCard from "../../components/NewsCards/OverlayCard.js";
+import SingleCardList from "../../../../components/NewsCards/SingleCardList.js";
+import StackedCardsVerical from "../../../../components/NewsCards/StackedCardsVertical.js";
+import OverlayCard from "../../../../components/NewsCards/OverlayCard.js";
 
 const Tech = (props) => {
   const [TechNews, setTechNews] = useState([]);
@@ -75,9 +75,6 @@ const Tech = (props) => {
   TechNews.sort(function (a, b) {
     return new Date(b.postedOn) - new Date(a.postedOn);
   });
-
-  console.log("TechNewsPriorityThreeTwo");
-  console.log(TechNewsPriorityThreeTwo);
 
   return (
     <div>
