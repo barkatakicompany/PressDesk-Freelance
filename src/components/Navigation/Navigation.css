@@ -51,13 +51,13 @@
 
 .site-navigations-wrapper {
   padding: 0 !important;
-  margin: 0 !important;
   -webkit-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
   -moz-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
   box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3); 
 }
 
 .site-navigations-content {
+  /* padding: 0 !important; */
   font-weight: 500;
   display: flex;
   justify-content: space-between;
@@ -73,8 +73,8 @@
 }
 
 .site-navigations-content ul li a {
-  padding: 0 15px;
-  font-size: 1.3rem;
+  padding: 0 10px;
+  font-size: 1.2rem;
   text-decoration: none;
   color: #ffffff;
 }
@@ -82,8 +82,8 @@
 .site-nav-link-active {
   color: #ffffff !important;
   background-color: #e92525 !important;
-  padding: 18px !important;
-  font-size: 1.4rem !important;
+  padding: 18px 10px !important;
+  font-size: 1.1rem !important;
 }
 
 .site-nav-link:hover {

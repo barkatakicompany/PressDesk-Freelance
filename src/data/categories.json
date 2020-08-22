@@ -6,31 +6,38 @@
     },
     {
       "title": "Assam",
-      "path": "/assam"
+      "path": "/assam",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     },
     {
       "title": "National",
-      "path": "/national"
+      "path": "/national",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     },
     {
       "title": "International",
-      "path": "/internnational"
+      "path": "/internnational",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     },
     {
       "title": "Sports",
-      "path": "/sports"
+      "path": "/sports",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     },
     {
       "title": "Employment",
-      "path": "/employment"
+      "path": "/employment",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     },
     {
       "title": "COVID",
-      "path": "/covid"
+      "path": "/covid",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     },
     {
       "title": "Tech",
-      "path": "/technology"
+      "path": "/technology",
+      "subcategories": ["subcat1", "subcat2", "subcat3", "subcat4"]
     }
   ]
 }

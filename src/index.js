@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App.js';
 import * as serviceWorker from './serviceWorker';
 
+// import './assets/scss/base.scss'
+import './assets/scss/base.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
+import '@quasar/extras/ionicons-v4';
 
 ReactDOM.render(
   <React.StrictMode>
