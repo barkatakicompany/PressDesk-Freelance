@@ -50,7 +50,7 @@ export default function SubTopicsNews() {
         <Breadcrumb.Item active>{subTopicName}</Breadcrumb.Item>
       </Breadcrumb>
       {isLoaded ? (
-        <div className="row row-cols-1 row-cols-md-4 mt-4">
+        <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 mt-4">
             {newsBySuptopic.map((news, index) => (
               <div key={index} className="col mb-3 card-content">
                 <a href={`/${topicId}/${subTopicId}/${news._id}`}>

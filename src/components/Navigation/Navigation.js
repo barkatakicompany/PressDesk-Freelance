@@ -23,15 +23,15 @@ export default function Navigation({ topics }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto topics-container">
+            <ul className="navbar-nav topics-container">
               <li className="nav-item">
                 <Link to="/" className="nav-link topic">
                   Home
                 </Link>
               </li>
-              <li className="nav-item d-flex justify-space-between align-items-center">
-                {topics.map(({ name, _id, subTopics }) => (
-                  <span key={_id} className="topic-link">
+              {topics.map(({ name, _id, subTopics }) => (
+                <span key={_id} className="topic-link">
+                  <li className="nav-item">
                     <Link
                       to={{
                         pathname: `/${_id}`,
@@ -40,7 +40,9 @@ export default function Navigation({ topics }) {
                     >
                       {name}
                     </Link>
-                    {/* {subTopics !== []
+                  </li>
+
+                  {/* {subTopics !== []
                       ? subTopics.map(({ name, _id, topic }) => (
                           <div className="nav-item dropdown">
                             <a
@@ -66,9 +68,8 @@ export default function Navigation({ topics }) {
                           </div>
                         ))
                       : null} */}
-                  </span>
-                ))}
-              </li>
+                </span>
+              ))}
             </ul>
           </div>
         </div>

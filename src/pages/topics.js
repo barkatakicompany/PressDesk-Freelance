@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import { SingleCard, SingleNews, ListNews } from ".";
+import { NavLink } from "react-router-dom";
+import { SingleCard, SingleNews, ListNews } from "../components/shared";
+
+import "./styles.scss";
 
 var settings = {
   dots: true,
@@ -39,7 +42,7 @@ var settings = {
   ],
 };
 
-export default function SubTopics({ subTopicId, topicId }) {
+export default function Topics({ subTopicName, subTopicId, topicId }) {
   const [error, setError] = useState(null);
   const [isNewsLoaded, setIsNewsLoaded] = useState(false);
   const [newsBySuptopic, setNewsBySuptopic] = useState([]);
@@ -77,31 +80,54 @@ export default function SubTopics({ subTopicId, topicId }) {
 
   if (newsBySuptopic[0] !== undefined) firstNews = newsBySuptopic[0];
   var listNews = newsBySuptopic.slice(1, 6);
+  var carouselNews = newsBySuptopic.slice(6, 11);
 
-  return isNewsLoaded ? (
+  // console.log(newsBySuptopic)
+
+  var isSubtopicEmpty = false
+  if (!(newsBySuptopic.length > 0)) {
+    isSubtopicEmpty = true;
+  }
+
+  return (isNewsLoaded && !isSubtopicEmpty) ? (
     <div>
+      <div className="d-flex justify-content-between align-items-end">
+        <h4>{subTopicName}</h4>
+        <NavLink
+          exact
+          to={`/${topicId}/${subTopicId}`}
+          className="btn btn-outline-danger"
+        >
+          View All
+        </NavLink>
+      </div>
       <div className="row">
-        <div className="col-md-7">
-          <SingleNews news={firstNews} subTopicId={subTopicId} topicId={topicId}/>
-        </div>
-        <div className="col-md-5">
-          <ListNews listNews={listNews} header={false} subTopicId={subTopicId} topicId={topicId}/>
+        <div className="card-deck">
+          <div className="card col-md-7 col-sm-1 single-news-card">
+            <SingleNews
+              news={firstNews}
+              subTopicId={subTopicId}
+              topicId={topicId}
+            />
+          </div>
+          <div className="card col-md-5">
+            <ListNews
+              listNews={listNews}
+              header={false}
+              subTopicId={subTopicId}
+              topicId={topicId}
+            />
+          </div>
         </div>
       </div>
-      <div className="row row-cols-1">
-        <Slider {...settings}>
-          {newsBySuptopic.slice(0, 12).map((news, index) => (
-            <div key={index} className="col mb-4 card-content">
-              <a href={`/${topicId}/${subTopicId}/${news._id}`}>
-                <SingleCard
-                  news={news}
-                  subTopicId={subTopicId}
-                  topicId={topicId}
-                />
-              </a>
-            </div>
-          ))}
-        </Slider>
+      <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 mt-4">
+        {carouselNews.map((news, index) => (
+          <div key={index} className="col mb-3 card-content">
+            <a href={`/${topicId}/${subTopicId}/${news._id}`}>
+              <SingleCard news={news} subTopicId={subTopicId} />
+            </a>
+          </div>
+        ))}
       </div>
     </div>
   ) : null;

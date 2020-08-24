@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
-import { NavLink } from "react-router-dom";
-import { SubTopics } from "../components/shared";
+// import { NavLink } from "react-router-dom";
+import { Topics } from "./";
 
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 
@@ -44,7 +44,7 @@ export default function Page() {
       </Breadcrumb>
       {subTopics.map(({ name, _id, topic }) => (
         <div key={_id}>
-          <div className="d-flex justify-content-between align-items-end">
+          {/* <div className="d-flex justify-content-between align-items-end">
             <h4>{name}</h4>
             <NavLink
               exact
@@ -53,9 +53,9 @@ export default function Page() {
             >
               View All
             </NavLink>
-          </div>
+          </div> */}
           <div>
-            <SubTopics subTopicId={_id} topicId={topic} subTopics={subTopics} />
+            <Topics subTopicName={name} subTopicId={_id} topicId={topic} />
           </div>
         </div>
       ))}

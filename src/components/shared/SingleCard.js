@@ -6,7 +6,7 @@ export default function SingleCard({ news }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsImage, setNewsImage] = useState("");
-  // const [createdAt, setCreatedAt] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
 
   useEffect(() => {
     fetch(`http://3.133.84.12:8004/api/news/photo/${news._id}`)
@@ -15,7 +15,7 @@ export default function SingleCard({ news }) {
         (result) => {
           setIsLoaded(true);
           setNewsImage(result);
-          // setCreatedAt(news.createdAt)
+          setCreatedAt(news.createdAt)
         },
         (error) => {
           setError(error);
@@ -24,7 +24,7 @@ export default function SingleCard({ news }) {
       );
   }, [news._id]);
 
-  // var time = new Date(createdAt);
+  var time = new Date(createdAt);
   const months = [
     "January",
     "February",
@@ -40,16 +40,11 @@ export default function SingleCard({ news }) {
     "December",
   ];
 
-  // const date =
-  //   time.getDate() + " " + months[time.getMonth()] + ", " + time.getFullYear();
-
-  // console.log(newsImage);
-
-  // console.log('news', news)
+  const date =
+    time.getDate() + " " + months[time.getMonth()] + ", " + time.getFullYear();
 
   return (
-    // <div>aa</div>
-    <div className="card single-card h-100 shadow">
+    <div className="single-card h-100 shadow">
       <div className="overflow">
         {isLoaded ? (
           <img
@@ -61,7 +56,7 @@ export default function SingleCard({ news }) {
       </div>
       <div className="card-body single-card-body text-dark">
         <div className="body-text-small d-flex justify-content-between">
-          {/* <span>{date}</span> */}
+          <span>{date}</span>
         </div>
         <h4 className="card-title">{news.heading}</h4>
       </div>

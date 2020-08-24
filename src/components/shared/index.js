@@ -4,7 +4,6 @@ import PostMasonary from "./post-masonary";
 import SingleCard from "./SingleCard";
 import SingleNews from "./SingleNews";
 import ListNews from "./list-news.js";
-import SubTopics from "./subtopics-all.js";
 import HorizontalCard from "./horizontal-card.js";
 
 export {
@@ -14,6 +13,5 @@ export {
   SingleCard,
   SingleNews,
   ListNews,
-  SubTopics,
   HorizontalCard
 };

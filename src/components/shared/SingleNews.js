@@ -24,7 +24,7 @@ export default function SingleNews({ news, subTopicId, topicId }) {
 
   return (
     <div>
-      <div className="card single-card h-100 shadow">
+      <div className="single-card shadow">
         <div className="overflow">
           {isLoaded ? (
             <img src={newsImage} className="card-img-top" alt="..." />

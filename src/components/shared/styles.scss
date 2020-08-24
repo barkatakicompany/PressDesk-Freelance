@@ -25,3 +25,8 @@
 .news-heading {
   font-weight: 500;
 }
+
+.img-hover:hover {
+  transform: scale(1.03);
+  transition: transform 0.2s ease;
+}

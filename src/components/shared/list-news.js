@@ -5,7 +5,7 @@ import "./styles.scss"
 
 export default function ListNews({ listNews, header, subTopicId, topicId }) {
   return (
-    <div className="card">
+    <div className="">
       {header ? <div className="card-header">Featured</div> : null}
       <ul className="list-group list-group-flush">
         {listNews.map((news, index) => (
