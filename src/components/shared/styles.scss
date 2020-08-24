@@ -1,0 +1,27 @@
+.news-list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.image-wrapper {
+  padding: 0 !important;
+}
+
+.img-thumbnail {
+  border: none !important;
+}
+
+.news-wrapper {
+  padding: 10px !important;
+  a:hover {
+    p {
+      // font-weight: 600;
+      text-decoration: underline;
+      transition: ease;
+    }
+  }
+}
+
+.news-heading {
+  font-weight: 500;
+}

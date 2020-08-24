@@ -1,112 +1,78 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./Navigation.scss";
 
-import { Navbar } from "react-bootstrap";
-
-import "./Navigation.css";
-
-export default function Navigation({ siteNavigationsObjects }) {
-  const [date, setDate] = useState(null);
-
-  useEffect(() => {
-    const today = new Date();
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const date =
-      today.getDate() +
-      " " +
-      months[today.getMonth()] +
-      ", " +
-      today.getFullYear();
-
-    setDate(date);
-  }, [date]);
-
+export default function Navigation({ topics }) {
   return (
-    <div className="nav-bar-wrapper">
-      <Navbar bg="light" expand="lg" className="nav-bar-date-wrapper">
-        <div className="container space-between">
-          <div className="date-area">
-            <p>{date}</p>
-          </div>
-          <div className="social-media-links">
-            <a href="#instagram">
-              <FontAwesomeIcon
-                icon={["fab", "instagram"]}
-                className="font-awesome-icons"
-              />
-            </a>
-            <a href="#facebook">
-              <FontAwesomeIcon
-                icon={["fab", "facebook"]}
-                className="font-awesome-icons"
-              />
-            </a>
-            <a href="#twitter">
-              <FontAwesomeIcon
-                icon={["fab", "twitter"]}
-                className="font-awesome-icons"
-              />
-            </a>
-            <a href="#youtube">
-              <FontAwesomeIcon
-                icon={["fab", "youtube"]}
-                className="font-awesome-icons"
-              />
-            </a>
-          </div>
-        </div>
-      </Navbar>
-      <Navbar bg="light" expand="lg" className="nav-bar-brand-wrapper">
+    <div className="navigation">
+      <nav className="navbar navbar-expand-lg navbar-light bg-transparent nav-container">
         <div className="container">
-          <Navbar.Brand href="/" className="navbar-brand">
+          <a className="navbar-brand site-name" href="/">
             PressDesk<span style={{ color: "#e92525" }}>.</span>in
-          </Navbar.Brand>
-          <div className="navbar-ads text-center">Advertisement</div>
-        </div>
-      </Navbar>
-      <Navbar bg="light" expand="lg" className="site-navigations-wrapper">
-        <div className="container site-navigations-content">
-          <ul className="site-navigation-list">
-            <li>
-              <NavLink
-                exact
-                to="/"
-                className="site-nav-link"
-                activeClassName="site-nav-link-active"
-              >
-                Home
-              </NavLink>
-            </li>
-            {siteNavigationsObjects.map((link, index) => (
-              <li key={index}>
-                <NavLink
-                  exact
-                  to={`/${link._id}`}
-                  className="site-nav-link"
-                  activeClassName="site-nav-link-active"
-                >
-                  {link.name}
-                </NavLink>
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto topics-container">
+              <li className="nav-item">
+                <Link to="/" className="nav-link topic">
+                  Home
+                </Link>
               </li>
-            ))}
-          </ul>
+              <li className="nav-item d-flex justify-space-between align-items-center">
+                {topics.map(({ name, _id, subTopics }) => (
+                  <span key={_id} className="topic-link">
+                    <Link
+                      to={{
+                        pathname: `/${_id}`,
+                      }}
+                      className="nav-link topic"
+                    >
+                      {name}
+                    </Link>
+                    {/* {subTopics !== []
+                      ? subTopics.map(({ name, _id, topic }) => (
+                          <div className="nav-item dropdown">
+                            <a
+                              className="nav-link dropdown-toggle"
+                              href="#"
+                              id="navbarDropdown"
+                              role="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            ></a>
+                            <div
+                              className="dropdown-menu"
+                              aria-labelledby="navbarDropdown"
+                            >
+                              <Link
+                                to={`/${topic}/${_id}`}
+                                className="nav-link topic"
+                              >
+                                {name}
+                              </Link>
+                            </div>
+                          </div>
+                        ))
+                      : null} */}
+                  </span>
+                ))}
+              </li>
+            </ul>
+          </div>
         </div>
-      </Navbar>
+      </nav>
     </div>
   );
 }

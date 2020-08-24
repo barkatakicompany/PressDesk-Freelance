@@ -5,10 +5,6 @@
 }
 
 .page-component{
-    background-color: #8a878734;
+    /* background: linear-gradient(#e5e5e5, #ffff, #e5e5e5); */
     min-height: 100vh;
-}
-
-.row {
-    /* margin: 0 !important; */
 }

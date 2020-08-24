@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
-import { Navbar } from "react-bootstrap";
-import {
-  NavLink,
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { SubTopics } from "../components/shared";
 
-import { SubTopics } from "./";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-export default function Page({ match }) {
+export default function Page() {
   const {
     params: { topicId },
   } = useRouteMatch();
@@ -18,6 +13,7 @@ export default function Page({ match }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [subTopics, setSubTopics] = useState([]);
+  const [topicName, setTopicName] = useState("");
 
   useEffect(() => {
     fetch(`http://3.133.84.12:8004/api/subtopics/${topicId}`)
@@ -32,36 +28,39 @@ export default function Page({ match }) {
           setIsLoaded(false);
         }
       );
-  }, [topicId]);
+    fetch(`http://3.133.84.12:8004/api/topic/${topicId}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setTopicName(result.name);
+      });
+  }, [topicId, isLoaded]);
 
-  return (
+  return !error ? (
     <div className="container">
       <br />
-      <Router>
-          {isLoaded ? (
-            <Navbar bg="light" expand="lg" className="site-navigations-wrapper">
-              <div className="container site-navigations-content">
-                <ul className="site-navigation-list">
-                  {subTopics.map(({ name, _id }) => (
-                    <li key={_id}>
-                      <NavLink
-                        exact
-                        to={`${match.url}/${_id}`}
-                        className="site-nav-link"
-                        activeClassName="site-nav-link-active"
-                      >
-                        {name}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Navbar>
-          ) : null}
-        <Switch>
-          <Route path={`${match.path}/:subTopicId`} component={SubTopics} />
-        </Switch>
-      </Router>
+      <Breadcrumb bg="transparent">
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item active>{topicName}</Breadcrumb.Item>
+      </Breadcrumb>
+      {subTopics.map(({ name, _id, topic }) => (
+        <div key={_id}>
+          <div className="d-flex justify-content-between align-items-end">
+            <h4>{name}</h4>
+            <NavLink
+              exact
+              to={`/${topic}/${_id}`}
+              className="btn btn-outline-danger"
+            >
+              View All
+            </NavLink>
+          </div>
+          <div>
+            <SubTopics subTopicId={_id} topicId={topic} subTopics={subTopics} />
+          </div>
+        </div>
+      ))}
     </div>
+  ) : (
+    <div>404</div>
   );
 }

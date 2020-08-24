@@ -1,0 +1,19 @@
+.news-editor-wrapper {
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.news-editor {
+  color: #e92525;
+}
+
+.news-link {
+  color: hsl(0, 0%, 11%) !important;
+}
+
+a:hover {
+  // color: rgb(92, 88, 88) !important;
+  h5 {
+    font-weight: 600;
+    transition: ease;
+  }
+}

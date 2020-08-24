@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  // Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import "./components/shared/FontAwesomeIcons.js";
-
-import Navigation from "./components/Navigation/Navigation";
-import { Home, Page } from "./pages";
+import Navigation from "../components/Navigation/Navigation";
+import { Home, Page, SubTopicsNews, News } from "../pages";
 
 function App() {
   const [error, setError] = useState(null);
@@ -32,19 +25,19 @@ function App() {
       );
   }, []);
 
-  console.log(error);
-
   return (
     <Router>
       <div className="App page-component">
-        {isLoaded ? (
-          <Navigation siteNavigationsObjects={topics} />
-        ) : (
-          <div>404</div>
-        )}
+        {isLoaded ? <Navigation topics={topics} /> : <div></div>}
         <Switch className="page-component">
+          <Route exact path={`/:topicId/:subTopicId/:newsId`} component={News} />
+          <Route
+            exact
+            path={`/:topicId/:subTopicId`}
+            component={SubTopicsNews}
+          />
           <Route path={`/:topicId`} component={Page} />
-          <Route exact path={`/`} component={Home} />
+          <Route exact path={`/`} component={() => <Home topics={topics} />} />
           <Route component={() => 404} />
         </Switch>
       </div>

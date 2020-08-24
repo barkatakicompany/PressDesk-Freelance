@@ -1,0 +1,59 @@
+.navigation {
+  background-color: white;
+}
+
+.top-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .date-area {
+    padding: 10px;
+    background-color: #e92525;
+    color: white;
+    width: max-content;
+  }
+  .social-media-links {
+    padding: 10px;
+    width: max-content;
+    a {
+      color: rgb(87, 86, 86);
+      font-size: large;
+      padding: 0 10px;
+    }
+  }
+}
+
+.nav-container {
+  display: flex !important;
+  padding: 0 30px !important;
+
+  -webkit-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3);
+  -moz-box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3);
+  box-shadow: 0 10px 6px -6px rgba(129, 129, 129, 0.3);
+
+  .site-name {
+    font-family: "Playfair Display", serif !important;
+    font-weight: 700 !important;
+    font-size: 2.1rem !important;
+  }
+  .topics-container {
+    a {
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding-bottom: 0 !important;
+    }
+    .subtopic {
+      font-weight: 400;
+      font-size: 1rem;
+    }
+  }
+}
+
+.topic-link {
+  display: flex;
+  flex-direction: row;
+  padding: 0 5px;
+  .nav-link {
+    padding-right: 5px !important;
+  }
+}

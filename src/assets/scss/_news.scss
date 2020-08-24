@@ -1,0 +1,27 @@
+.news-container {
+  .news-heading {
+    font-weight: 700;
+  }
+  .news-img {
+    height: 40rem;
+    background-color: red;
+  }
+  border: rgba(0, 0, 0, 0.212) solid 1px;
+  padding: 10px;
+  .news-time-wrapper {
+    font-size: 0.9rem;
+  }
+  .news-editor {
+    color: $accent-color;
+  }
+}
+
+.news-text {
+  font-family: "Playfair Display" ;
+  font-size: 1.2rem;
+}
+
+.row {
+  
+  padding: 15px;
+}

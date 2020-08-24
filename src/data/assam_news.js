@@ -1,10 +1,8 @@
-import moment from "moment";
-
 export default [
   {
     id: "1",
     title: "মুছলমানক বচাই আক্ৰমণ কৰিব পৰাকৈ নিৰ্মাণ কৰিছে পাৰমাণৱিক বোমা",
-    date: moment().format('MMMM DD, YYYY'),
+    date: " ",
     image:
       "https://images.news18.com/assam/uploads/2020/08/pak-rail.jpg?impolicy=website",
     desc:
@@ -15,7 +13,7 @@ export default [
   {
     id: "1",
     title: "মুছলমানক বচাই আক্ৰমণ কৰিব পৰাকৈ নিৰ্মাণ কৰিছে পাৰমাণৱিক বোমা",
-    date: moment().format('MMMM DD, YYYY'),
+    date: " ",
     image:
       "https://images.news18.com/assam/uploads/2020/08/pak-rail.jpg?impolicy=website",
     desc:
@@ -26,7 +24,7 @@ export default [
   {
     id: "1",
     title: "মুছলমানক বচাই আক্ৰমণ কৰিব পৰাকৈ নিৰ্মাণ কৰিছে পাৰমাণৱিক বোমা",
-    date: moment().format('MMMM DD, YYYY'),
+    date: " ",
     image:
       "https://images.news18.com/assam/uploads/2020/08/pak-rail.jpg?impolicy=website",
     desc:
@@ -37,7 +35,7 @@ export default [
   {
     id: "1",
     title: "মুছলমানক বচাই আক্ৰমণ কৰিব পৰাকৈ নিৰ্মাণ কৰিছে পাৰমাণৱিক বোমা",
-    date: moment().format('MMMM DD, YYYY'),
+    date: " ",
     image:
       "https://images.news18.com/assam/uploads/2020/08/pak-rail.jpg?impolicy=website",
     desc:
@@ -48,7 +46,7 @@ export default [
   {
     id: "1",
     title: "মুছলমানক বচাই আক্ৰমণ কৰিব পৰাকৈ নিৰ্মাণ কৰিছে পাৰমাণৱিক বোমা",
-    date: moment().format('MMMM DD, YYYY'),
+    date: " ",
     image:
       "https://images.news18.com/assam/uploads/2020/08/pak-rail.jpg?impolicy=website",
     desc:
