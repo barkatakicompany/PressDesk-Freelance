@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import "./styles.scss";
+// import "./styles.scss";
 
-export default function HorizontalCard({ news, subTopicId, topicId }) {
+export default function HorizontalCard({
+  news,
+  subTopicId,
+  topicId,
+  topicName,
+}) {
   // console.log("news", news);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,8 +28,8 @@ export default function HorizontalCard({ news, subTopicId, topicId }) {
       );
   }, [news._id]);
 
-  return (
-    <div>
+  return !error ? (
+    <div className="horizontal-card">
       <div className="row news-list">
         <div className="col-md-4 image-wrapper">
           {isLoaded ? (
@@ -35,14 +41,17 @@ export default function HorizontalCard({ news, subTopicId, topicId }) {
           ) : null}
         </div>
         <div className="col-md-8 news-wrapper d-flex align-items-center">
-          <a
+          <Link
+            to={{
+              pathname: `/${topicId}/${subTopicId}/${news._id}`,
+              topicName: topicName,
+            }}
             className="news-link"
-            href={`/${topicId}/${subTopicId}/${news._id}`}
           >
             <p className="news-heading">{news.heading}</p>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }

@@ -1,48 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
-import { SingleCard, SingleNews, ListNews } from "../components/shared";
+import { SingleNews, ListNews } from "../components/shared";
 
-import "./styles.scss";
-
-var settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-  autoplay: true,
-  autoplaySpeed: 3000,
-  initialSlide: 0,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true,
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 2,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
-};
-
-export default function Topics({ subTopicName, subTopicId, topicId }) {
+export default function Topics({
+  subTopicName,
+  subTopicId,
+  topicId,
+  topicName,
+}) {
   const [error, setError] = useState(null);
   const [isNewsLoaded, setIsNewsLoaded] = useState(false);
   const [newsBySuptopic, setNewsBySuptopic] = useState([]);
@@ -64,7 +29,7 @@ export default function Topics({ subTopicName, subTopicId, topicId }) {
   };
 
   useEffect(() => {
-    fetch(`http://3.133.84.12:8004/api//newsbysubtopic/${subTopicId}`)
+    fetch(`http://3.133.84.12:8004/api//newsbysubtopic/${subTopicId}/?limit=6`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -80,17 +45,13 @@ export default function Topics({ subTopicName, subTopicId, topicId }) {
 
   if (newsBySuptopic[0] !== undefined) firstNews = newsBySuptopic[0];
   var listNews = newsBySuptopic.slice(1, 6);
-  var carouselNews = newsBySuptopic.slice(6, 11);
 
-  // console.log(newsBySuptopic)
-
-  var isSubtopicEmpty = false
+  var isSubtopicEmpty = false;
   if (!(newsBySuptopic.length > 0)) {
     isSubtopicEmpty = true;
   }
-
-  return (isNewsLoaded && !isSubtopicEmpty) ? (
-    <div>
+  return isNewsLoaded && !isSubtopicEmpty  && !error ? (
+    <>
       <div className="d-flex justify-content-between align-items-end">
         <h4>{subTopicName}</h4>
         <NavLink
@@ -103,11 +64,12 @@ export default function Topics({ subTopicName, subTopicId, topicId }) {
       </div>
       <div className="row">
         <div className="card-deck">
-          <div className="card col-md-7 col-sm-1 single-news-card">
+          <div className="col-md-7 col-sm-1 mr-3 single-news-card">
             <SingleNews
               news={firstNews}
               subTopicId={subTopicId}
               topicId={topicId}
+              topicName={topicName}
             />
           </div>
           <div className="card col-md-5">
@@ -116,19 +78,26 @@ export default function Topics({ subTopicName, subTopicId, topicId }) {
               header={false}
               subTopicId={subTopicId}
               topicId={topicId}
+              topicName={topicName}
             />
           </div>
         </div>
       </div>
-      <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 mt-4">
+      {/* <div className="row row-cols-1 row-cols-xl-4 row-cols-md-3 row-cols-sm-2 mt-4">
         {carouselNews.map((news, index) => (
           <div key={index} className="col mb-3 card-content">
-            <a href={`/${topicId}/${subTopicId}/${news._id}`}>
-              <SingleCard news={news} subTopicId={subTopicId} />
-            </a>
+            <SingleNews
+              news={news}
+              subTopicId={subTopicId}
+              topicId={topicId}
+              topicName={topicName}
+            />
           </div>
         ))}
+      </div> */}
+      <div className="container my-3 d-flex justify-content-center">
+        <div className="advertisement-long-1-2 text-center text-white">Ads</div>
       </div>
-    </div>
+    </>
   ) : null;
 }

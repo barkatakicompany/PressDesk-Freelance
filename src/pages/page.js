@@ -3,9 +3,7 @@ import { useRouteMatch } from "react-router";
 // import { NavLink } from "react-router-dom";
 import { Topics } from "./";
 
-import Breadcrumb from "react-bootstrap/Breadcrumb";
-
-export default function Page() {
+export default function Page({ location }) {
   const {
     params: { topicId },
   } = useRouteMatch();
@@ -16,6 +14,15 @@ export default function Page() {
   const [topicName, setTopicName] = useState("");
 
   useEffect(() => {
+    if (location.navProps) {
+      var { topicName } = location.navProps;
+      setTopicName(topicName);
+    } else
+      fetch(`http://3.133.84.12:8004/api/topic/${topicId}`)
+        .then((res) => res.json())
+        .then((result) => {
+          setTopicName(result.name);
+        });
     fetch(`http://3.133.84.12:8004/api/subtopics/${topicId}`)
       .then((res) => res.json())
       .then(
@@ -28,37 +35,38 @@ export default function Page() {
           setIsLoaded(false);
         }
       );
-    fetch(`http://3.133.84.12:8004/api/topic/${topicId}`)
-      .then((res) => res.json())
-      .then((result) => {
-        setTopicName(result.name);
-      });
-  }, [topicId, isLoaded]);
+  }, [topicId, isLoaded, location.navProps]);
 
   return !error ? (
-    <div className="container">
+    <div className="container-fluid">
       <br />
-      <Breadcrumb bg="transparent">
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item active>{topicName}</Breadcrumb.Item>
-      </Breadcrumb>
-      {subTopics.map(({ name, _id, topic }) => (
-        <div key={_id}>
-          {/* <div className="d-flex justify-content-between align-items-end">
-            <h4>{name}</h4>
-            <NavLink
-              exact
-              to={`/${topic}/${_id}`}
-              className="btn btn-outline-danger"
-            >
-              View All
-            </NavLink>
-          </div> */}
-          <div>
-            <Topics subTopicName={name} subTopicId={_id} topicId={topic} />
+
+      <nav aria-label="breadcrumb" className="mx-md-5 px-md-5">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <a href="/">Home</a>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {topicName}
+          </li>
+        </ol>
+      </nav>
+      {isLoaded ? (
+        <div className="advertisement-large-1 text-center text-white">Ads</div>
+      ) : null}
+
+      <div className="row mx-md-5 px-md-5">
+        {subTopics.map(({ name, _id, topic }) => (
+          <div key={_id}>
+            <Topics
+              topicName={topicName}
+              subTopicName={name}
+              subTopicId={_id}
+              topicId={topic}
+            />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   ) : (
     <div>404</div>

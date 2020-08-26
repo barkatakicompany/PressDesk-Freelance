@@ -42,7 +42,7 @@ import React from "react";
 // mergeStyles(breaking_news, breakingNewsConfig);
 // mergeStyles(national_news, nationalNewsConfig);
 
-export default function Home({ topics }) {
+export default function Home() {
   // const [news, setNews] = useState([]);
 
   // useEffect(() => {
@@ -78,7 +78,7 @@ export default function Home({ topics }) {
   // }, [_id]);
 
   return (
-    <section className="container home">
+    <section className="container-fluid home">
       <div
         style={{
           backgroundColor: "rgba(255, 59, 48)",

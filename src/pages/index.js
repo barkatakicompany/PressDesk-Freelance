@@ -4,6 +4,8 @@ import Topics from './topics.js';
 import SubTopicsNews from './subtopics-news.js';
 import News from './news.js';
 
+import "./styles.scss"
+
 export {
   Home,
   Page,

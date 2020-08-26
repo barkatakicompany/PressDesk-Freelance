@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import "./single-news.scss";
+// import "./styles.scss";
 
-export default function SingleNews({ news, subTopicId, topicId }) {
+export default function SingleNews({ news, subTopicId, topicId, topicName }) {
   // console.log(news);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,21 +23,27 @@ export default function SingleNews({ news, subTopicId, topicId }) {
       );
   }, [news._id]);
 
-  return (
-    <div>
-      <div className="single-card shadow">
-        <div className="overflow">
-          {isLoaded ? (
-            <img src={newsImage} className="card-img-top" alt="..." />
-          ) : null}
-        </div>
-        <div className="card-body single-card-body text-dark">
-          <p className="news-editor-wrapper">By <span className="news-editor">{news.editor}</span></p>
-          <a className="news-link" href={`/${topicId}/${subTopicId}/${news._id}`}>
-            <h5 className="card-title">{news.heading}</h5>
-          </a>
-        </div>
+  return !error ? (
+    <div className="single-card h-100 shadow">
+      <div className="overflow">
+        {isLoaded ? (
+          <img src={newsImage} className="card-img-top" alt="..." />
+        ) : null}
+      </div>
+      <div className="card-body single-card-body text-dark">
+        <p className="news-editor-wrapper">
+          By <span className="news-editor">{news.editor}</span>
+        </p>
+        <Link
+          to={{
+            pathname: `/${topicId}/${subTopicId}/${news._id}`,
+            topicName: topicName,
+          }}
+          className="news-link"
+        >
+          <h5 className="card-title">{news.heading}</h5>
+        </Link>
       </div>
     </div>
-  );
+  ) : null;
 }

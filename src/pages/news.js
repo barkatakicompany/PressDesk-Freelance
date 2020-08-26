@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
-import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { ShareWidget } from "../components";
 
-export default function News() {
+export default function News(props) {
   const {
     params: { topicId, subTopicId, newsId },
   } = useRouteMatch();
@@ -11,6 +11,8 @@ export default function News() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsImage, setNewsImage] = useState("");
   const [subTopicName, setSubTopicName] = useState("");
+  const [topicName, setTopicName] = useState("");
+
   const [news, setNews] = useState({
     subTopic: [
       {
@@ -38,6 +40,15 @@ export default function News() {
   });
 
   useEffect(() => {
+    if (props.location.navProps) {
+      var { topicName } = props.location.navProps;
+      setTopicName(topicName);
+    } else
+      fetch(`http://3.133.84.12:8004/api/topic/${topicId}`)
+        .then((res) => res.json())
+        .then((result) => {
+          setTopicName(result.name);
+        });
     fetch(`http://3.133.84.12:8004/api/news/${newsId}`)
       .then((res) => res.json())
       .then(
@@ -47,9 +58,6 @@ export default function News() {
           const { subTopic } = result;
           const { name } = subTopic[0];
           setSubTopicName(name);
-          setUpdatedAt(result.updatedAt);
-          setEditor(result.editor);
-          console.log('result', result)
         },
         (error) => {
           setError(error);
@@ -67,27 +75,34 @@ export default function News() {
             setError(error);
           }
         );
-  }, [newsId, isLoaded]);
+  }, [newsId, isLoaded, props.location.navProps, topicId]);
 
-  // console.log('newsId', newsId)
+  var updatedAtDate = new Date(news.updatedAt);
 
-  const [updatedAt, setUpdatedAt] = useState(news.updatedAt);
-  const [editor, setEditor] = useState(news.editor);
-  var updatedAtDate = new Date(updatedAt);
+  // console.log(props.match);
 
   return !error ? (
-    <div className="container">
+    <div className="container-fluid">
       <br />
-      <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href={`/${topicId}/${subTopicId}`}>
-          {subTopicName}
-        </Breadcrumb.Item>
-        <Breadcrumb.Item active>News</Breadcrumb.Item>
-      </Breadcrumb>
-      <div>Ads</div>
-      <div className="row">
-        <div className="col-md-9 news-container">
+      <nav aria-label="breadcrumb" className="mx-md-5">
+        <ol className="breadcrumb mx-md-5">
+          <li className="breadcrumb-item">
+            <a href="/">Home</a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href={`/${topicId}`}>{topicName}</a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href={`/${topicId}/${subTopicId}`}>{subTopicName}</a>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {news.heading}
+          </li>
+        </ol>
+      </nav>
+      <div className="advertisement-large-1 text-center text-white">Ads</div>
+      <div className="row mx-md-5 px-md-5">
+        <div className="col-md-8 news-container">
           <p className="news-time-wrapper">
             Last Updated:{" "}
             <span className="news-updated-time">
@@ -96,25 +111,23 @@ export default function News() {
           </p>
           <h1 className="news-heading">{news.heading}</h1>
           <p className="news-desc news-text">{news.shortDsc}</p>
-          <p>
-            Written By <span className="news-editor">{editor}</span>
+          <p className="">
+            Written By <span className="news-editor">{news.editor}</span>
           </p>
-          {/* <img src={newsImage} className="news-img" alt="..." /> */}
-          <hr/> 
-          <figure className="figure">
-            <img
-              src={newsImage}
-              className="figure-img img-fluid rounded"
-              alt="...."
-            />
-          </figure>
+          <div className="">
+            <ShareWidget url={props.match.url} />
+          </div>
+          <hr />
+          <img src={newsImage} className="img-fluid rounded w-100" alt="...." />
           <p className="news-body news-text">{news.body}</p>
         </div>
-        <div className="col-md-3 ads-wrapper text-center">
-          <div className="row">ads</div>
-          <div className="row">ads</div>
+        <div className="col-md ads-wrapper ml-3">
+          <div className="row mb-3 advertisement-long-2-2 text-center">ads</div>
+          <div className="row advertisement-long-2-2 text-center">ads</div>
         </div>
       </div>
     </div>
-  ) : <div>404</div>;
+  ) : (
+    <div>404</div>
+  );
 }
