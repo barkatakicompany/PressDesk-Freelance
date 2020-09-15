@@ -160,6 +160,53 @@
 }
 /* End Footer Styles */
 
+/* Container */
+
+.my-container {
+  width: 100%;
+  padding: 0 15px 0 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1600px) {
+  .my-container {
+    max-width: 1600px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .my-container {
+    max-width: 1900px;
+  }
+}
+
+@media (min-width: 768px) {
+  .my-container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .my-container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .my-container {
+    width: 1180px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .my-container {
+    width: 1300px;
+  }
+}
+
+/* Text Styles */
+
 
 .heading-text {
   font-family: "Playfair Display";

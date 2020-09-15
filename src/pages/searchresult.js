@@ -11,7 +11,6 @@ export default function SearchResult({ location }) {
 
   useEffect(() => {
     if (searchKeyword[0] === "?tag") {
-      // http://3.133.84.12:8004/api/getnewsbytagtext?search=scheme
       fetch(`http://3.133.84.12:8004/api/getnewsbytagtext?search=${keyword}`)
         .then((res) => res.json())
         .then((result) => {
