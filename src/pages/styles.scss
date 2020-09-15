@@ -1,4 +1,4 @@
-.single-news-card{
+.single-news-card {
   padding: 0 !important;
 }
 
@@ -7,26 +7,110 @@
   color: red !important;
 }
 
-.advertisement-large-1 {
+/* Page Styles */
+.btn-outline-danger {
+  color: #e92525 !important;
+  border-color: #e92525 !important;
+}
+
+.btn-outline-danger:hover {
+  color: white !important;
+  background-color: #e92525 !important;
+}
+
+/* Sub-Topics Styles */
+.card-content {
+  padding: 15px !important;
+}
+
+/* News Styles */
+
+.news-container {
+  .news-heading {
+    font-weight: 700;
+  }
+
+  .news-img {
+    height: 40rem;
+    background-color: red;
+  }
+
+  border: rgba(0, 0, 0, 0.212) solid 1px;
+  padding: 10px;
+
+  .news-time-wrapper {
+    font-size: 0.9rem;
+  }
+
+  .news-editor {
+    color: #e92525;
+  }
+}
+
+.news-text {
+  font-family: "Playfair Display";
+  font-size: 1.2rem;
+}
+
+.row {
+  padding: 15px;
+}
+
+.news-body {
+  // background-color: red !important;
+  width: 100% !important;
+
+  // display: block;
+  iframe {
+    width: 100% !important;
+  }
+}
+
+
+#content {
+  display: flex;
+  ;
+}
+
+.my-container {
   width: 100%;
-  height: 20rem;
-  background-color: red;
+  padding: 0 15px 0 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.advertisement-long-2-2 {
-  width: 100%;
-  height: 25rem !important;
-  background-color: red;
+@media (min-width: 1600px) {
+  .my-container {
+    max-width: 1600px;
+  }
 }
 
-.advertisement-square-1 {
-  width: 50vw;
-  height: 60vh;
-  background-color: red;
+@media (min-width: 1900px) {
+  .my-container {
+    max-width: 1900px;
+  }
 }
 
-.advertisement-long-1-2 {
-  width: 70vw;
-  height: 25vh;
-  background-color: red;
+@media (min-width: 768px) {
+  .my-container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .my-container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .my-container {
+    width: 1180px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .my-container {
+    width: 1300px;
+  }
 }

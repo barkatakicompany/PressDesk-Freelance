@@ -8,3 +8,7 @@
     /* background: linear-gradient(#eeeeee, #ffff, #eeeeee); */
     min-height: 100vh;
 }
+
+a {
+    text-decoration: none !important;
+}

@@ -1,17 +1,104 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import { ShareWidget } from "../components";
+import { AdsType0, AdsType1, SingleNews, ListNews } from "../components/shared";
+
+const MoreSubTopicNews = ({
+  currentNewsId,
+  subTopicId,
+  topicId,
+  topicName,
+  subTopicName,
+}) => {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [newsBySuptopic, setNewsBySuptopic] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://3.133.84.12:8004/api//newsbysubtopic/${subTopicId}`)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setNewsBySuptopic(result);
+        },
+        (error) => {
+          setError(error);
+          setIsLoaded(false);
+        }
+      );
+  }, [topicId, subTopicId, isLoaded]);
+
+  var moreNews = [];
+  for (var news of newsBySuptopic) {
+    if (news._id !== currentNewsId) moreNews.push(news);
+  }
+  return (
+    <>
+      <br />
+      <h4 className="px-4 mt-4">More News</h4>
+      <div className="row row-cols-1 row-cols-xl-3 row-cols-md-2 row-cols-sm-2">
+        {moreNews.slice(0, 3).map((news, index) => (
+          <div key={index} className="col mb-3 card-content">
+            <SingleNews
+              news={news}
+              subTopicId={subTopicId}
+              topicId={topicId}
+              topicName={topicName}
+              subTopicName={subTopicName}
+            />
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+const RelatedNews = ({
+  newsTags,
+  subTopicId,
+  topicId,
+  topicName,
+  subTopicName,
+}) => {
+  const [listNews, setListNews] = useState([]);
+  console.log(newsTags);
+  const tag0 = newsTags[0];
+  const tag1 = newsTags[1];
+
+  var listNewsByTag = [];
+  useEffect(() => {
+    var listNews = [];
+    fetch(`http://3.133.84.12:8004/api/getnewsbytagtext?search=${tag0}`)
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(tag0);
+        setListNews(result);
+      });
+  }, [tag0]);
+
+  return (
+    <ListNews
+      listNews={listNews.slice(0, 5)}
+      header="Related News"
+      subTopicId={subTopicId}
+      topicId={topicId}
+      topicName={topicName}
+      subTopicName={subTopicName}
+    />
+  );
+};
 
 export default function News(props) {
   const {
-    params: { topicId, subTopicId, newsId },
+    params: { topicName, subTopicName, newsId },
   } = useRouteMatch();
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [newsImage, setNewsImage] = useState("");
-  const [subTopicName, setSubTopicName] = useState("");
-  const [topicName, setTopicName] = useState("");
+  const [subTopicId, setSubTopicId] = useState("");
+  const [topicId, setTopicId] = useState("");
 
   const [news, setNews] = useState({
     subTopic: [
@@ -40,24 +127,22 @@ export default function News(props) {
   });
 
   useEffect(() => {
-    if (props.location.navProps) {
-      var { topicName } = props.location.navProps;
-      setTopicName(topicName);
-    } else
-      fetch(`http://3.133.84.12:8004/api/topic/${topicId}`)
-        .then((res) => res.json())
-        .then((result) => {
-          setTopicName(result.name);
-        });
+    if (props.location.newsProps) {
+      var { tId, stId } = props.location.newsProps;
+      setTopicId(tId);
+      setSubTopicId(stId);
+      sessionStorage.setItem("topicId", tId);
+      sessionStorage.setItem("subTopicId", stId);
+    } else {
+      setTopicId(sessionStorage.getItem("topicId"));
+      setSubTopicId(sessionStorage.getItem("subTopicId"));
+    }
     fetch(`http://3.133.84.12:8004/api/news/${newsId}`)
       .then((res) => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setNews(result);
-          const { subTopic } = result;
-          const { name } = subTopic[0];
-          setSubTopicName(name);
         },
         (error) => {
           setError(error);
@@ -75,13 +160,11 @@ export default function News(props) {
             setError(error);
           }
         );
-  }, [newsId, isLoaded, props.location.navProps, topicId]);
+  }, [newsId, isLoaded, props.location.newsProps]);
 
   var updatedAtDate = new Date(news.updatedAt);
 
-  // console.log(props.match);
-
-  return !error ? (
+  return !error && isLoaded ? (
     <div className="container-fluid">
       <br />
       <nav aria-label="breadcrumb" className="mx-md-5">
@@ -90,44 +173,73 @@ export default function News(props) {
             <a href="/">Home</a>
           </li>
           <li className="breadcrumb-item">
-            <a href={`/${topicId}`}>{topicName}</a>
+            <a href={`/${topicName}/${topicId}`}>{topicName}</a>
           </li>
           <li className="breadcrumb-item">
-            <a href={`/${topicId}/${subTopicId}`}>{subTopicName}</a>
+            <a href={`/${topicName}/${topicId}/${subTopicName}/${subTopicId}`}>
+              {subTopicName}
+            </a>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             {news.heading}
           </li>
         </ol>
       </nav>
-      <div className="advertisement-large-1 text-center text-white">Ads</div>
-      <div className="row mx-md-5 px-md-5">
-        <div className="col-md-8 news-container">
-          <p className="news-time-wrapper">
-            Last Updated:{" "}
-            <span className="news-updated-time">
-              {updatedAtDate.toString()}
-            </span>
-          </p>
-          <h1 className="news-heading">{news.heading}</h1>
-          <p className="news-desc news-text">{news.shortDsc}</p>
-          <p className="">
-            Written By <span className="news-editor">{news.editor}</span>
-          </p>
-          <div className="">
-            <ShareWidget url={props.match.url} />
-          </div>
-          <hr />
-          <img src={newsImage} className="img-fluid rounded w-100" alt="...." />
-          <p className="news-body news-text">{news.body}</p>
-        </div>
-        <div className="col-md ads-wrapper ml-3">
-          <div className="row mb-3 advertisement-long-2-2 text-center">ads</div>
-          <div className="row advertisement-long-2-2 text-center">ads</div>
-        </div>
+      <br />
+      <AdsType0 />
+      <br />
+      <div className="row mx-md-5 px-md-5" id="content">
+        <section className="col-md-7 col-sm-12" id="left">
+          <article className="news-container">
+            <p className="news-time-wrapper">
+              Last Updated:{" "}
+              <span className="news-updated-time">
+                {updatedAtDate.toString()}
+              </span>
+            </p>
+            <h1 className="news-heading">{news.heading}</h1>
+            <p className="news-desc news-text">{news.shortDsc}</p>
+            <p className="">
+              Written By <span className="news-editor">{news.editor}</span>
+            </p>
+            <div className="">
+              <ShareWidget url={props.match.url} />
+            </div>
+            <hr />
+            <img
+              src={newsImage}
+              className="img-fluid rounded w-100 mb-5"
+              alt="...."
+            />
+            <div
+              className="news-body news-text"
+              dangerouslySetInnerHTML={{
+                __html: news.body,
+              }}
+            ></div>
+          </article>
+          <br />
+          <AdsType1 />
+          <MoreSubTopicNews
+            currentNewsId={newsId}
+            subTopicId={subTopicId}
+            topicId={topicId}
+            topicName={topicName}
+            subTopicName={subTopicName}
+          />
+        </section>
+
+        <aside className="col-md-5 col-sm-12" id="right">
+          <AdsType1 />
+          <RelatedNews
+            newsTags={news.tags}
+            {...{ subTopicId, topicId, topicName, subTopicName }}
+          />
+          <AdsType1 />
+        </aside>
       </div>
+      <AdsType0 />
+      <br />
     </div>
-  ) : (
-    <div>404</div>
-  );
+  ) : null;
 }

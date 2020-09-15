@@ -29,11 +29,10 @@ export default function Navigation() {
 
   return isLoaded && !error ? (
     <div className="navigation">
-      <nav className="top-nav navbar navbar-expand-lg navbar-dark bg-transparent pl-4">
+      <nav className="top-nav navbar navbar-expand-lg navbar-dark bg-transparent my-container">
         <a className="navbar-brand site-name" href="/">
           PressDesk<span style={{ color: "#e92525" }}>.</span>in
         </a>
-        <div className="date-area">{date}</div>
         <button
           className="navbar-toggler"
           type="button"
@@ -45,9 +44,10 @@ export default function Navigation() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        {/* <div className="date-area">{date}</div> */}
       </nav>
       <nav className="navbar navbar-expand-lg navbar-dark bg-transparent nav-container">
-        <div className="container-fluid mx-md-5 px-md-5">
+        <div className="my-container">
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto topics-container">
               <span>
@@ -62,46 +62,53 @@ export default function Navigation() {
                   </NavLink>
                 </li>
               </span>
-              {topics.map((topic, i) => (
-                <span key={i} className="my-dropdown">
-                  <li className="nav-item my-dropbtn">
-                    <NavLink
-                      to={{
-                        pathname: `/${topic._id}`,
-                        navProps: {
-                          topicName: topic.name,
-                        },
-                      }}
-                      className="nav-link topic"
-                      activeClassName="topic-active"
-                    >
-                      {topic.name}
-                    </NavLink>
-                  </li>
-                  {topic.subTopics !== undefined &&
-                  topic.subTopics[0] !== undefined ? (
-                    <div className="dropdown-content pt-1 pb-1">
-                      {topic.subTopics.map((suptopic, i) => (
-                        <div key={i}>
-                          <NavLink
-                            to={{
-                              pathname: `/${topic._id}/${suptopic._id}`,
-                            }}
-                            className="nav-link sub-topic"
-                          >
-                            {suptopic.name}
-                          </NavLink>
-                        </div>
-                      ))}
-                    </div>
-                  ) : null}
-                </span>
-              ))}
+              {topics.map((topic, i) =>
+                topic.name !== "Breaking News" ? (
+                  <span key={i} className="my-dropdown">
+                    <li className="nav-item my-dropbtn">
+                      <NavLink
+                        to={{
+                          pathname: `/${topic.name}/${topic._id}`,
+                          navProps: {
+                            id: topic._id,
+                          },
+                        }}
+                        className="nav-link topic"
+                        activeClassName="topic-active"
+                      >
+                        {topic.name}
+                      </NavLink>
+                    </li>
+                    {topic.subTopics !== undefined &&
+                    topic.subTopics[0] !== undefined ? (
+                      <div className="dropdown-content pt-1 pb-1">
+                        {topic.subTopics.map((subtopic, i) => (
+                          <div key={i}>
+                            <NavLink
+                              to={{
+                                pathname: `/${topic.name}/${topic._id}/${subtopic.name}/${subtopic._id}`,
+                              }}
+                              className="nav-link sub-topic"
+                            >
+                              {subtopic.name}
+                            </NavLink>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </span>
+                ) : null
+              )}
             </ul>
-            <form className="form-inline my-2 my-lg-0 search-wrapper">
+            <form
+              className="form-inline my-2 my-lg-0 search-wrapper"
+              action="/search-result/"
+              method="GET"
+            >
               <input
                 className="mr-sm-2 search-input"
                 id="search-input"
+                name="search"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
