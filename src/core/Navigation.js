@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import {getTopics} from "./helper/coreapicalls.js"
+import { getTopics } from "./helper/coreapicalls.js";
 
 export default function Navigation() {
   const [topics, setTopics] = useState([]);
 
   getTopics().then((data) => {
-    setTopics(data)
-  })
-
+    setTopics(data);
+  });
 
   return (
     <div className="navigation">
