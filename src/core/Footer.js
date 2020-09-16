@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { getTopics } from "./helper/coreapicalls.js";
@@ -6,9 +6,11 @@ import { getTopics } from "./helper/coreapicalls.js";
 export default function Footer() {
   const [topics, setTopics] = useState([]);
 
-  getTopics().then((data) => {
-    setTopics(data);
-  });
+  useEffect(() => {
+    getTopics().then((data) => {
+      setTopics(data);
+    });
+  }, []);
 
   return (
     <div className="container-fluid mt-3 py-4 footer">

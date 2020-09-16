@@ -5,8 +5,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import "./styles.scss";
 
-import { getTopics, searchNewsByText } from "./helper/coreapicalls.js";
-
 const Base = () => {
   return (
     <div>

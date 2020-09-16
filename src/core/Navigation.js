@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { getTopics } from "./helper/coreapicalls.js";
@@ -6,10 +6,14 @@ import { getTopics } from "./helper/coreapicalls.js";
 export default function Navigation() {
   const [topics, setTopics] = useState([]);
 
-  getTopics().then((data) => {
-    setTopics(data);
-  });
-
+  useEffect(() => {
+    loadTopics();
+  }, []);
+  const loadTopics = () => {
+    getTopics().then((data) => {
+      setTopics(data);
+    });
+  };
   return (
     <div className="navigation">
       <nav className="top-nav navbar navbar-expand-lg navbar-dark bg-transparent my-container">

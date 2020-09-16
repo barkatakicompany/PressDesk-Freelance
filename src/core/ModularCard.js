@@ -14,7 +14,7 @@ const ModularCard = ({
   useEffect(() => {
     loadDefaultNews();
   }, []);
-
+  const news1 = news.shift();
   const loadNews = (e, id) => {
     e.preventDefault();
     getNewsBySubTopics(id, 4).then((res) => {
@@ -31,7 +31,7 @@ const ModularCard = ({
       if (res.error) {
         //todo
       } else {
-        setNews(res);
+        setNews(res.slice(0, 6));
       }
     });
   };
@@ -120,7 +120,7 @@ const ModularCard = ({
     return (
       news[0] && (
         <div className="row m-0 p-0">
-          <div className="col-6 m-0 p-0 pr-1">
+          <div className="col-md-6 m-0 p-0 pr-1">
             <div className="col m-0 p-0">
               <img
                 src={`${API}/news/photo/${news[0]._id}`}
@@ -149,11 +149,14 @@ const ModularCard = ({
               <p>{news[0].shortDsc}</p>
             </div>
           </div>
-          <div className="col-6 m-0 p-0 pl-1">
+          <div className="col-md-6 m-0 p-0 pl-1">
             {news.map((n, i) => {
+              if (i === 0) {
+                return "";
+              }
               return (
                 <div key={i} className="">
-                  <div className=" bg-dark">
+                  <div className="">
                     <div className="row m-0 p-0 align-items-center">
                       <div className="col m-0 p-0 ">
                         <div className="embed-responsive embed-responsive-1by1">
@@ -201,7 +204,7 @@ const ModularCard = ({
       <div className="col-sm-9 border border-grey p-4 m-0">
         <div className="row justify-content-between align-items-center m-0 p-0">
           <h4 className="pl-2">{topic.name}</h4>
-          <ul className="nav">
+          <ul className="nav row justify-content-center m-0 p-0">
             {topic.subTopics &&
               topic.subTopics.map((st, i) => {
                 return (
