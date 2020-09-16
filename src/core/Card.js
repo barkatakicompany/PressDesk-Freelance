@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useRouteMatch } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import {
   getNewsByTopics,
   searchNews,
   newsImageHelper,
+  getNews,
 } from "./helper/coreapicalls.js";
 import { Advertisement } from "./";
 
@@ -60,11 +61,13 @@ const SingleNews = ({ news, showTags = false }) => {
               By <span className="news-editor">{news.editor}</span>
             </p>
           ) : null}
-          <Link to="#">
+          <NavLink exact 
+          to={`/news/${news._id}`}
+          >
             <p className="card-title m-0 p-0 pt-1 blue-link-text">
               {news.heading}
             </p>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </div>
@@ -182,7 +185,63 @@ const ModeTwoCard = ({ ...props }) => {
   return <div>aa</div>;
 };
 
-const ModeThreeCard = (topicId, topicName) => {};
+const ModeThreeCard = (topicId, topicName) => {
+  const {
+    params: { newsId },
+  } = useRouteMatch();
+
+  const [news, setNews] = useState({});
+  const [newsImage, setNewsImage] = useState('')
+
+  getNews(newsId).then(setNews);
+  newsImageHelper(newsId).then(setNewsImage)
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  return (
+    <>
+      <Advertisement type={0} speed={5000} />
+      <div className="row mx-md-5 px-md-5" id="content">
+        <section className="col-md-7 col-sm-12" id="left">
+          <article className="news-container">
+            <p className="news-time-wrapper">
+              Last Updated:{" "}
+              <span className="news-updated-time">
+              {new Date(news.updatedAt).toLocaleDateString("en-US", options)}
+              </span>
+            </p>
+            <h1 className="news-heading">{news.heading}</h1>
+            <p className="news-desc news-text">{news.shortDsc}</p>
+            <p className="">
+              Written By <span className="news-editor">{news.editor}</span>
+            </p>
+            <div className="">
+              {/* <ShareWidget url={props.match.url} /> */}
+            </div>
+            <hr />
+            <img
+              src={newsImage}
+              className="img-fluid rounded w-100 mb-5"
+              alt="...."
+            />
+            <div
+              className="news-body news-text"
+              dangerouslySetInnerHTML={{
+                __html: news.body,
+              }}
+            ></div>
+          </article>
+          <br />
+        </section>
+      </div>
+    </>
+  );
+};
 
 export default function Card({ mode }) {
   const {
@@ -194,6 +253,6 @@ export default function Card({ mode }) {
   // mode 2: SubTopics Page
   if (mode == 2)
     return ModeTwoCard({ topicName, topicId, subTopicName, subTopicId });
-  // Mode 3:
+  // Mode 3: News Page
   if (mode == 3) return ModeThreeCard(topicId, topicName);
 }

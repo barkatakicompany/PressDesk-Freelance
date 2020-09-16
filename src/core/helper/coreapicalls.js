@@ -9,7 +9,6 @@ export const getTopics = () => {
 };
 
 // News API
-
 export const getNewsByTopics = (topicId) => {
   return fetch(`${API}/getnewsByTopic/${topicId}`)
     .then((res) => {
@@ -24,6 +23,14 @@ export const newsImageHelper = (id) => {
   return fetch(`${API}/news/photo/${id}`)
     .then((res) => {
       return res.url;
+    })
+    .catch((err) => console.log(err));
+};
+
+export const getNews = (newsId) => {
+  return fetch(`${API}/news/${newsId}`)
+    .then((res) => {
+      return res;
     })
     .catch((err) => console.log(err));
 };
