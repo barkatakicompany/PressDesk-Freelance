@@ -13,17 +13,19 @@ const Routes = () => {
           path={`/:topicName/:subTopicName/news/:newsId`}
           component={News}
         />
-        <Route
-          exact
-          path={`/:topicName/:topicId/:subTopicName/:subTopicId`}
-          component={SubTopics}
-        />
+        
         <Route exact path={`/:topicName/:topicId`} component={Page} /> */}
       <Route
         exact
         path={"/:topicName/:topicId"}
         component={() => <Card mode={1} />}
       />
+      <Route
+        exact
+        path={`/:topicName/:topicId/:subTopicName/:subTopicId`}
+        component={() => <Card mode={2} />}
+      />
+      <Route exact path={`/news/:newsId`} component={() => <Card mode={3} />} />
       <Route exact path={`/`} component={() => <Home />} />
 
       <Route component={() => 404} />

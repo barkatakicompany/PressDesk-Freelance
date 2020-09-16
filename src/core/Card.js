@@ -75,18 +75,32 @@ const HorizontalNews = ({ news }) => {
   const [newsImage, setNewsImage] = useState("");
   newsImageHelper(news._id).then(setNewsImage);
 
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   return (
     <div className="horizontal-card">
       <div className="row">
-        <div className="col-4 card-img">
-          <img src={newsImage} className="img-thumbnail border-0" alt="..."/>
+        <div className="col image-wrapper">
+          <img src={newsImage} className="img-thumbnail border-0" alt="..." />
         </div>
-        <div>
+        <div className="col-9">
           <Link to="#">
-            <p className="blue-link-text" style={{ fontSize: "1.3rem" }}>
+            <p className="blue-link-text mb-1" style={{ fontSize: "1.4rem" }}>
               {news.heading}
             </p>
           </Link>
+          <span>
+            <small>{news.editor}</small>
+            {" | "}
+            <small>
+              {new Date(news.createdAt).toLocaleDateString("en-US", options)}
+            </small>
+          </span>
           <p>{news.shortDsc}</p>
         </div>
       </div>
@@ -118,10 +132,42 @@ const ModeOneCard = (topicId, topicName) => {
           ))}
         </div>
         <div className="col">
-          {/* <div><HorizontalNews /></div> */}
           {newsList.map((news, index) => (
             <HorizontalNews news={news} key={index} />
           ))}
+          <div className="d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    1
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    2
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    3
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
         <div className="col-md-3 vertical-line">
           <Advertisement type={1} speed={7000} />
@@ -131,19 +177,23 @@ const ModeOneCard = (topicId, topicName) => {
   );
 };
 
-const ModeTwoCard = (topicId, topicName) => {};
+const ModeTwoCard = ({ ...props }) => {
+  console.log(props);
+  return <div>aa</div>;
+};
 
 const ModeThreeCard = (topicId, topicName) => {};
 
 export default function Card({ mode }) {
   const {
-    params: { topicName, topicId },
+    params: { topicName, topicId, subTopicName, subTopicId },
   } = useRouteMatch();
 
   // mode 1: Topics Page
   if (mode === 1) return ModeOneCard(topicId, topicName);
   // mode 2: SubTopics Page
-  if (mode == 2) return ModeTwoCard(topicId, topicName);
+  if (mode == 2)
+    return ModeTwoCard({ topicName, topicId, subTopicName, subTopicId });
   // Mode 3:
   if (mode == 3) return ModeThreeCard(topicId, topicName);
 }
