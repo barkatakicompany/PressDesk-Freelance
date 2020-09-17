@@ -6,7 +6,7 @@ const Base = ({ children }) => {
   return (
     <div>
       <Navigation />
-      {children}
+      <div className="my-container page-component">{children}</div>
       <Footer />
     </div>
   );
