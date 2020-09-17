@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API } from "../backend";
-import { getNewsBySubTopics, getNewsByTopics } from "./helper/coreapicalls";
+import { getNewsBySubTopics, getNewsByTopics } from "../helper/coreapicalls";
 
-const ModularCard = ({
-  mode = "home",
-  design = Math.floor(Math.random() * Math.floor(4)),
-  // design = 2,
-  topic,
-}) => {
+const ModularCard = ({ mode = "home", design = 0, topic }) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { getTopics } from "./helper/coreapicalls.js";
+import { getTopics } from "../helper/coreapicalls.js";
 
-export default function Footer() {
+const Footer = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
@@ -74,4 +74,5 @@ export default function Footer() {
       </div>
     </div>
   );
-}
+};
+export default Footer;

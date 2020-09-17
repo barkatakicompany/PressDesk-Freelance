@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import { API } from "../backend.js";
 
-import { getAds, adsImageHelper } from "./helper/coreapicalls.js";
+import { getAds, adsImageHelper } from "../helper/coreapicalls.js";
 
 const Ads = ({ ad }) => {
   const [adImage, setAdIamge] = useState("");
