@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
+import { API } from "../backend.js";
 
-import { getAds, adsImageHelper } from "./helper/coreapicalls.js";
+import { getAds, adsImageHelper } from "../helper/coreapicalls.js";
 
 const Ads = ({ ad }) => {
   const [adImage, setAdIamge] = useState("");
@@ -14,7 +15,11 @@ const Ads = ({ ad }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img class="d-block w-100" src={adImage} alt="Advertisement" />
+        <img
+          class="d-block w-100"
+          src={`${API}/getadvimage/${ad._id}`}
+          alt="Advertisement"
+        />
       </a>
     </div>
   );

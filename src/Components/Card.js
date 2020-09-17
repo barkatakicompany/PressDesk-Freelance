@@ -7,7 +7,7 @@ import {
   searchNews,
   newsImageHelper,
   getNews,
-} from "./helper/coreapicalls.js";
+} from "../helper/coreapicalls.js";
 import { Advertisement } from "./";
 
 const tagColors = {
@@ -61,9 +61,7 @@ const SingleNews = ({ news, showTags = false }) => {
               By <span className="news-editor">{news.editor}</span>
             </p>
           ) : null}
-          <NavLink exact 
-          to={`/news/${news._id}`}
-          >
+          <NavLink exact to={`/news/${news._id}`}>
             <p className="card-title m-0 p-0 pt-1 blue-link-text">
               {news.heading}
             </p>
@@ -203,10 +201,17 @@ const ModeThreeCard = (topicId, topicName) => {
   } = useRouteMatch();
 
   const [news, setNews] = useState({});
+<<<<<<< HEAD:src/core/Card.js
   // const [newsImage, setNewsImage] = useState('')
 
   getNews(newsId).then(setNews);
   // newsImageHelper(newsId).then(setNewsImage)
+=======
+  const [newsImage, setNewsImage] = useState("");
+
+  getNews(newsId).then(setNews);
+  newsImageHelper(newsId).then(setNewsImage);
+>>>>>>> 3b4f7c4948cc35fc05197135ffa4eac1f5325b43:src/Components/Card.js
 
   const options = {
     weekday: "long",
@@ -224,7 +229,7 @@ const ModeThreeCard = (topicId, topicName) => {
             <p className="news-time-wrapper">
               Last Updated:{" "}
               <span className="news-updated-time">
-              {new Date(news.updatedAt).toLocaleDateString("en-US", options)}
+                {new Date(news.updatedAt).toLocaleDateString("en-US", options)}
               </span>
             </p>
             <h1 className="news-heading">{news.heading}</h1>
