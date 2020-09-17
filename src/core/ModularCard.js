@@ -51,7 +51,7 @@ const ModularCard = ({
               </div>
               <div className="col-9 p-4 m-0">
                 <Link to={`/news/${n._id}`}>
-                  <h5 className="" style={{ fontSize: "1.4rem" }}>
+                  <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                     {n.heading}
                   </h5>
                 </Link>
@@ -92,7 +92,7 @@ const ModularCard = ({
               </div>
               <div className="col p-0 m-0">
                 <Link to={`/news/${n._id}`}>
-                  <h5 className="" style={{ fontSize: "1.4rem" }}>
+                  <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                     {n.heading}
                   </h5>
                 </Link>
@@ -131,7 +131,7 @@ const ModularCard = ({
             </div>
             <div className="col p-0 m-0">
               <Link to={`/news/${news[0]._id}`}>
-                <h5 className="" style={{ fontSize: "1.4rem" }}>
+                <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                   {news[0].heading}
                 </h5>
               </Link>
@@ -171,7 +171,7 @@ const ModularCard = ({
                       </div>
                       <div className="col-9 p-2 m-0">
                         <Link to={`/news/${n._id}`}>
-                          <h5 className="" style={{ fontSize: "1.4rem" }}>
+                          <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                             {n.heading}
                           </h5>
                         </Link>
@@ -216,7 +216,7 @@ const ModularCard = ({
               </div>
               <div className="col p-0 m-0">
                 <Link to={`/news/${n._id}`}>
-                  <h5 className="" style={{ fontSize: "1.4rem" }}>
+                  <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                     {n.heading}
                   </h5>
                 </Link>
@@ -251,7 +251,7 @@ const ModularCard = ({
                   </div>
                   <div className="col-9 p-4 m-0">
                     <Link to={`/news/${n._id}`}>
-                      <h5 className="" style={{ fontSize: "1.4rem" }}>
+                      <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                         {n.heading}
                       </h5>
                     </Link>

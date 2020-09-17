@@ -29,11 +29,7 @@ export const getNewsBySubTopics = (id, limit) => {
 };
 
 export const newsImageHelper = (id) => {
-  return fetch(`${API}/news/photo/${id}`)
-    .then((res) => {
-      return res.url;
-    })
-    .catch((err) => console.log(err));
+  return `${API}/news/photo/${id}`
 };
 
 export const getNews = (newsId) => {
