@@ -26,7 +26,7 @@ const Home = () => {
               <div className="p-3 m-0" key={i}>
                 <ModularCard
                   mode="home"
-                  topic={t}
+                  data={t}
                   design={Math.floor(Math.random() * Math.floor(4))}
                 ></ModularCard>
               </div>

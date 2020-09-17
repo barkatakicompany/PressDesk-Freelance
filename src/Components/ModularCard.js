@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { API } from "../backend";
 import { getNewsBySubTopics, getNewsByTopics } from "../helper/coreapicalls";
 
-const ModularCard = ({ mode = "home", design = 0, topic }) => {
+const ModularCard = ({ mode, design, data }) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     loadDefaultNews();
   }, []);
-  const news1 = news.shift();
   const loadNews = (e, id) => {
     e.preventDefault();
     getNewsBySubTopics(id, 4).then((res) => {
@@ -22,54 +21,58 @@ const ModularCard = ({ mode = "home", design = 0, topic }) => {
     });
   };
   const loadDefaultNews = () => {
-    getNewsByTopics(topic._id).then((res) => {
-      if (res.error) {
-        //todo
-      } else {
-        setNews(res.slice(0, 6));
-      }
-    });
+    mode === "home" &&
+      getNewsByTopics(data._id).then((res) => {
+        if (res.error) {
+          //todo
+        } else {
+          setNews(res.slice(0, 6));
+        }
+      });
   };
 
   const loadNewsComp0 = () => {
-    return news.map((n, i) => {
-      return (
-        <div key={i} className="">
-          <div className="">
-            <div className="row m-0 p-0">
-              <div className="col m-0 p-0">
-                <img
-                  src={`${API}/news/photo/${n._id}`}
-                  className="h-100 w-100"
-                  alt="..."
-                />
+    return (
+      news &&
+      news.map((n, i) => {
+        return (
+          <div key={i} className="">
+            <div className="">
+              <div className="row m-0 p-0">
+                <div className="col m-0 p-0">
+                  <img
+                    src={`${API}/news/photo/${n._id}`}
+                    className="h-100 w-100"
+                    alt="..."
+                  />
+                </div>
+                <div className="col-9 p-4 m-0">
+                  <Link to={`/news/${n._id}`}>
+                    <h5 className="" style={{ fontSize: "1.4rem" }}>
+                      {n.heading}
+                    </h5>
+                  </Link>
+                  <span>
+                    <small>{n.editor}</small>
+                    {" | "}
+                    <small>
+                      {new Date(n.createdAt).toLocaleDateString("en-US", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </small>
+                  </span>
+                  <p>{n.shortDsc}</p>
+                </div>
               </div>
-              <div className="col-9 p-4 m-0">
-                <Link to={`/news/${n._id}`}>
-                  <h5 className="" style={{ fontSize: "1.4rem" }}>
-                    {n.heading}
-                  </h5>
-                </Link>
-                <span>
-                  <small>{n.editor}</small>
-                  {" | "}
-                  <small>
-                    {new Date(n.createdAt).toLocaleDateString("en-US", {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </small>
-                </span>
-                <p>{n.shortDsc}</p>
-              </div>
+              <hr />
             </div>
-            <hr />
           </div>
-        </div>
-      );
-    });
+        );
+      })
+    );
   };
 
   const loadNewsComp1 = () => {
@@ -305,6 +308,54 @@ const ModularCard = ({ mode = "home", design = 0, topic }) => {
     );
   };
 
-  return <div>{mode === "home" && loadHomeCardComp(topic)}</div>;
+  const loadHorizontalCardComp = (data) => {
+    return (
+      data &&
+      data.map((n, i) => {
+        return (
+          <div key={i} className="">
+            <div className="">
+              <div className="row m-0 p-0">
+                <div className="col m-0 p-0">
+                  <img
+                    src={`${API}/news/photo/${n._id}`}
+                    className="h-100 w-100"
+                    alt="..."
+                  />
+                </div>
+                <div className="col-9 p-4 m-0">
+                  <Link to={`/news/${n._id}`}>
+                    <h5 className="" style={{ fontSize: "1.4rem" }}>
+                      {n.heading}
+                    </h5>
+                  </Link>
+                  <span>
+                    <small>{n.editor}</small>
+                    {" | "}
+                    <small>
+                      {new Date(n.createdAt).toLocaleDateString("en-US", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </small>
+                  </span>
+                  <p>{n.shortDsc}</p>
+                </div>
+              </div>
+              <hr />
+            </div>
+          </div>
+        );
+      })
+    );
+  };
+  return (
+    <div>
+      {mode === "home" && loadHomeCardComp(data)}
+      {(mode === "topic" || mode === "stopic") && loadHorizontalCardComp(data)}
+    </div>
+  );
 };
 export default ModularCard;
