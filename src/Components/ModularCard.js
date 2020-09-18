@@ -40,15 +40,20 @@ const ModularCard = ({ mode, design, data }) => {
             <div className="">
               <div className="row m-0 p-0">
                 <div className="col m-0 p-0">
-                  <img
-                    src={`${API}/news/photo/${n._id}`}
-                    className="h-100 w-100"
-                    alt="..."
-                  />
+                  <div className="embed-responsive embed-responsive-1by1">
+                    <img
+                      src={`${API}/news/photo/${n._id}`}
+                      className="embed-responsive-item"
+                      alt="..."
+                    />
+                  </div>
                 </div>
-                <div className="col-9 p-4 m-0">
+                <div className="col-9 p-2 m-0">
                   <Link to={`/news/${n._id}`}>
-                    <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
+                    <h5
+                      className="blue-link-text"
+                      style={{ fontSize: "1.4rem" }}
+                    >
                       {n.heading}
                     </h5>
                   </Link>
@@ -64,7 +69,12 @@ const ModularCard = ({ mode, design, data }) => {
                       })}
                     </small>
                   </span>
-                  <p>{n.shortDsc}</p>
+                  <p>
+                    {n.shortDsc.slice(0, 90)}
+                    <Link to={`/news/${n._id}`}>
+                      {n.shortDsc.length > 90 ? "....." : null}
+                    </Link>
+                  </p>
                 </div>
               </div>
               <hr />
@@ -80,33 +90,46 @@ const ModularCard = ({ mode, design, data }) => {
       <div className="row m-0 p-0">
         {news.map((n, i) => {
           return (
-            <div className="col-md-6 m-0 p-2" key={i}>
-              <div className="col m-0 p-0">
-                <img
-                  src={`${API}/news/photo/${n._id}`}
-                  className="h-100 w-100"
-                  alt="..."
-                />
-              </div>
-              <div className="col p-0 m-0">
-                <Link to={`/news/${n._id}`}>
-                  <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
-                    {n.heading}
-                  </h5>
-                </Link>
-                <span>
-                  <small>{n.editor}</small>
-                  {" | "}
-                  <small>
-                    {new Date(n.createdAt).toLocaleDateString("en-US", {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </small>
-                </span>
-                <p>{n.shortDsc}</p>
+            <div className="col-6 p-2">
+              <div className="card h-70 border-0">
+                <div className="embed-responsive embed-responsive-1by1">
+                  <img
+                    src={`${API}/news/photo/${n._id}`}
+                    className="embed-responsive-item"
+                    alt="..."
+                  />
+                </div>
+                <div className="card-body p-0 m-0 h-100">
+                  {" "}
+                  <>
+                    <Link to={`/news/${n._id}`}>
+                      <h5
+                        className="blue-link-text"
+                        style={{ fontSize: "1.4rem" }}
+                      >
+                        {n.heading}
+                      </h5>
+                    </Link>
+                    <span>
+                      <small>{n.editor}</small>
+                      {" | "}
+                      <small>
+                        {new Date(n.createdAt).toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </small>
+                    </span>
+                    <p>
+                      {n.shortDsc.slice(0, 90)}
+                      <Link to={`/news/${n._id}`}>
+                        {n.shortDsc.length > 90 ? "....." : null}
+                      </Link>
+                    </p>
+                  </>
+                </div>
               </div>
             </div>
           );
@@ -119,7 +142,7 @@ const ModularCard = ({ mode, design, data }) => {
     return (
       news[0] && (
         <div className="row m-0 p-0">
-          <div className="col-md-6 m-0 p-0 pr-1">
+          <div className="col-md-5 m-0 p-0 pr-3">
             <div className="col m-0 p-0">
               <img
                 src={`${API}/news/photo/${news[0]._id}`}
@@ -145,10 +168,16 @@ const ModularCard = ({ mode, design, data }) => {
                   })}
                 </small>
               </span>
-              <p>{news[0].shortDsc}</p>
+              {/* <p>{news[0].shortDsc}</p> */}
+              <p>
+                {news[0].shortDsc.slice(0, 90)}
+                <Link to={`/news/${news[0]._id}`}>
+                  <span style={{fontSize: "1.4rem"}} className="blue-link-text">{news[0].shortDsc.length > 90 ? "...." : null}</span>
+                </Link>
+              </p>
             </div>
           </div>
-          <div className="col-md-6 m-0 p-0 pl-1">
+          <div className="col-md-7 m-0 p-0 pl-1">
             {news.map((n, i) => {
               if (i === 0) {
                 return "";
@@ -169,7 +198,10 @@ const ModularCard = ({ mode, design, data }) => {
                       </div>
                       <div className="col-9 p-2 m-0">
                         <Link to={`/news/${n._id}`}>
-                          <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
+                          <h5
+                            className="blue-link-text"
+                            style={{ fontSize: "1.4rem" }}
+                          >
                             {n.heading}
                           </h5>
                         </Link>
@@ -185,7 +217,12 @@ const ModularCard = ({ mode, design, data }) => {
                             })}
                           </small>
                         </span>
-                        <p>{n.shortDsc}</p>
+                        <p>
+                          {n.shortDsc.slice(0, 90)}
+                          <Link to={`/news/${n._id}`}>
+                            {n.shortDsc.length > 90 ? "....." : null}
+                          </Link>
+                        </p>
                       </div>
                     </div>
                     <hr />
@@ -206,11 +243,14 @@ const ModularCard = ({ mode, design, data }) => {
           return (
             <div className="col-md-6 m-0 p-2" key={i}>
               <div className="col m-0 p-0">
-                <img
-                  src={`${API}/news/photo/${n._id}`}
-                  className="h-100 w-100"
-                  alt="..."
-                />
+                <div className="embed-responsive embed-responsive-1by1">
+                  <img
+                    src={`${API}/news/photo/${n._id}`}
+                    className="embed-responsive-item"
+                    // style={{ width: "100%", height: "" }}
+                    alt="..."
+                  />
+                </div>
               </div>
               <div className="col p-0 m-0">
                 <Link to={`/news/${n._id}`}>
@@ -230,7 +270,12 @@ const ModularCard = ({ mode, design, data }) => {
                     })}
                   </small>
                 </span>
-                <p>{n.shortDsc}</p>
+                <p>
+                  {n.shortDsc.slice(0, 90)}
+                  <Link to={`/news/${n._id}`}>
+                    {n.shortDsc.length > 90 ? "....." : null}
+                  </Link>
+                </p>
               </div>
             </div>
           );
@@ -240,16 +285,22 @@ const ModularCard = ({ mode, design, data }) => {
             <div key={i} className="col-md-6 m-0 p-2">
               <div className="">
                 <div className="row m-0 p-0">
-                  <div className="col m-0 p-0">
-                    <img
-                      src={`${API}/news/photo/${n._id}`}
-                      className="h-100 w-100"
-                      alt="..."
-                    />
+                  <div className="col m-0 p-0 d-flex align-items-center">
+                    <div className="embed-responsive embed-responsive-1by1">
+                      <img
+                        src={`${API}/news/photo/${n._id}`}
+                        className="embed-responsive-item"
+                        // style={{ width: "100%", height: "" }}
+                        alt="..."
+                      />
+                    </div>
                   </div>
                   <div className="col-9 p-4 m-0">
                     <Link to={`/news/${n._id}`}>
-                      <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
+                      <h5
+                        className="blue-link-text"
+                        style={{ fontSize: "1.4rem" }}
+                      >
                         {n.heading}
                       </h5>
                     </Link>
@@ -265,7 +316,12 @@ const ModularCard = ({ mode, design, data }) => {
                         })}
                       </small>
                     </span>
-                    <p>{n.shortDsc}</p>
+                    <p>
+                      {n.shortDsc.slice(0, 90)}
+                      <Link to={`/news/${n._id}`}>
+                        {n.shortDsc.length > 90 ? "....." : null}
+                      </Link>
+                    </p>
                   </div>
                 </div>
                 <hr />
@@ -321,11 +377,15 @@ const ModularCard = ({ mode, design, data }) => {
                     src={`${API}/news/photo/${n._id}`}
                     className="h-100 w-100"
                     alt="..."
+                    style={{ objectFit: "scale-down" }}
                   />
                 </div>
                 <div className="col-9 p-4 m-0">
                   <Link to={`/news/${n._id}`}>
-                    <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
+                    <h5
+                      className="blue-link-text"
+                      style={{ fontSize: "1.4rem" }}
+                    >
                       {n.heading}
                     </h5>
                   </Link>

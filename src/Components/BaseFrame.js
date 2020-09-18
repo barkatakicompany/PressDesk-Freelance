@@ -12,7 +12,7 @@ export default function BaseFrame({ children }) {
   }, []);
 
   const loadTrendingNews = () => {
-    searchNews({ keyword: "news", type: "tags" }).then((res) => {
+    searchNews({ keyword: "trending", type: "tags" }).then((res) => {
       if (res.error) {
         // todo
       } else {
@@ -25,6 +25,7 @@ export default function BaseFrame({ children }) {
     <div>
       <div className="">
         <Advertisement type={0} speed={7000} />
+        <hr />
       </div>
       <div className="row m-0 p-0">
         <div className="col-md-2">
@@ -56,8 +57,9 @@ export default function BaseFrame({ children }) {
           ))}
         </div>
         <div className="col-md">{children}</div>
-        <div className="col-md-2">
-          <Advertisement type={0} speed={5000} />
+        <div className="col-md-3">
+          <Advertisement type={1} speed={5000} />
+          <Advertisement type={4} speed={3500} />
         </div>
       </div>
     </div>

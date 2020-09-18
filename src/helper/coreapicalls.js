@@ -20,9 +20,6 @@ export const getNewsByTopics = (topicId) => {
 export const getNewsBySubTopics = (id, limit) => {
   return fetch(`${API}/newsbysubtopic/${id}?${limit ? "limit=" + limit : ""}`)
     .then((res) => {
-      console.log(
-        `${API}/getnewsByTopic/${id}?${limit ? "limit=" + limit : ""}`
-      );
       return res.json();
     })
     .catch((err) => console.log(err));
