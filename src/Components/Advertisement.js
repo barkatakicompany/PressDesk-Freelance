@@ -3,11 +3,11 @@ import Slider from "react-slick";
 
 import { getAds } from "../helper/coreapicalls";
 
-import {API} from "../backend"
+import { API } from "../backend";
 
 export default function Advertisement({ type, speed }) {
-  console.log(type);
   const [ads, setAds] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     loadAds();
@@ -17,13 +17,14 @@ export default function Advertisement({ type, speed }) {
     getAds(type).then((res) => {
       if (res.error) {
         // todo
+        console.log(res.error)
+        setIsLoaded(false);
       } else {
         setAds(res);
+        setIsLoaded(true);
       }
     });
   };
-
-  console.log(ads);
 
   const settings = {
     dots: false,
@@ -36,7 +37,7 @@ export default function Advertisement({ type, speed }) {
     cssEase: "linear",
   };
 
-  return (
+  return isLoaded ? (
     <>
       <br />
       <Slider {...settings}>
@@ -57,5 +58,5 @@ export default function Advertisement({ type, speed }) {
         ))}
       </Slider>
     </>
-  );
+  ) : null;
 }
