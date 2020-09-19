@@ -71,8 +71,12 @@ const ModularCard = ({ mode, design, data }) => {
                   </span>
                   <p>
                     {n.shortDsc.slice(0, 90)}
-                    <Link to={`/news/${n._id}`}>
-                      {n.shortDsc.length > 90 ? "....." : null}
+                    <Link
+                      to={`/news/${n._id}`}
+                      className="blue-link-text"
+                      style={{ fontSize: "1.5rem" }}
+                    >
+                      {n.shortDsc.length > 90 ? "...." : null}
                     </Link>
                   </p>
                 </div>
@@ -124,8 +128,12 @@ const ModularCard = ({ mode, design, data }) => {
                     </span>
                     <p>
                       {n.shortDsc.slice(0, 90)}
-                      <Link to={`/news/${n._id}`}>
-                        {n.shortDsc.length > 90 ? "....." : null}
+                      <Link
+                        to={`/news/${n._id}`}
+                        className="blue-link-text"
+                        style={{ fontSize: "1.5rem" }}
+                      >
+                        {n.shortDsc.length > 90 ? "...." : null}
                       </Link>
                     </p>
                   </>
@@ -142,44 +150,54 @@ const ModularCard = ({ mode, design, data }) => {
     return (
       news[0] && (
         <div className="row m-0 p-0">
-          <div className="col-md-5 m-0 p-0 pr-3">
-            <div className="col m-0 p-0">
-              <img
-                src={`${API}/news/photo/${news[0]._id}`}
-                className="h-100 w-100"
-                alt="..."
-              />
-            </div>
-            <div className="col p-0 m-0">
-              <Link to={`/news/${news[0]._id}`}>
-                <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
-                  {news[0].heading}
-                </h5>
-              </Link>
-              <span>
-                <small>{news[0].editor}</small>
-                {" | "}
-                <small>
-                  {new Date(news[0].createdAt).toLocaleDateString("en-US", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </small>
-              </span>
-              {/* <p>{news[0].shortDsc}</p> */}
-              <p>
-                {news[0].shortDsc.slice(0, 90)}
-                <Link to={`/news/${news[0]._id}`}>
-                  <span style={{fontSize: "1.4rem"}} className="blue-link-text">{news[0].shortDsc.length > 90 ? "...." : null}</span>
-                </Link>
-              </p>
-            </div>
+          <div className="col-md-5 m-0 p-0 pr-3 pt-2">
+            {news.slice(0, 2).map((n, i) => (
+              <div key={i}>
+                <div className="col m-0 p-0">
+                  <img
+                    src={`${API}/news/photo/${n._id}`}
+                    className="h-100 w-100"
+                    alt="..."
+                  />
+                </div>
+                <div className="col p-0 m-0">
+                  <Link to={`/news/${n._id}`}>
+                    <h5
+                      className="blue-link-text"
+                      style={{ fontSize: "1.4rem" }}
+                    >
+                      {news[0].heading}
+                    </h5>
+                  </Link>
+                  <span>
+                    <small>{n.editor}</small>
+                    {" | "}
+                    <small>
+                      {new Date(n.createdAt).toLocaleDateString("en-US", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </small>
+                  </span>
+                  <p>
+                    {news[0].shortDsc.slice(0, 90)}
+                    <Link
+                      to={`/news/${n._id}`}
+                      className="blue-link-text"
+                      style={{ fontSize: "1.5rem" }}
+                    >
+                      {n.shortDsc.length > 90 ? "...." : null}
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
           <div className="col-md-7 m-0 p-0 pl-1">
             {news.map((n, i) => {
-              if (i === 0) {
+              if (i === 0 || i === 1) {
                 return "";
               }
               return (
@@ -196,7 +214,7 @@ const ModularCard = ({ mode, design, data }) => {
                           />
                         </div>
                       </div>
-                      <div className="col-9 p-2 m-0">
+                      <div className="col-9 p-2 pt-0 m-0">
                         <Link to={`/news/${n._id}`}>
                           <h5
                             className="blue-link-text"
@@ -219,8 +237,12 @@ const ModularCard = ({ mode, design, data }) => {
                         </span>
                         <p>
                           {n.shortDsc.slice(0, 90)}
-                          <Link to={`/news/${n._id}`}>
-                            {n.shortDsc.length > 90 ? "....." : null}
+                          <Link
+                            to={`/news/${n._id}`}
+                            className="blue-link-text"
+                            style={{ fontSize: "1.5rem" }}
+                          >
+                            {n.shortDsc.length > 90 ? "...." : null}
                           </Link>
                         </p>
                       </div>
@@ -272,8 +294,12 @@ const ModularCard = ({ mode, design, data }) => {
                 </span>
                 <p>
                   {n.shortDsc.slice(0, 90)}
-                  <Link to={`/news/${n._id}`}>
-                    {n.shortDsc.length > 90 ? "....." : null}
+                  <Link
+                    to={`/news/${n._id}`}
+                    className="blue-link-text"
+                    style={{ fontSize: "1.5rem" }}
+                  >
+                    {n.shortDsc.length > 90 ? "...." : null}
                   </Link>
                 </p>
               </div>
@@ -318,8 +344,12 @@ const ModularCard = ({ mode, design, data }) => {
                     </span>
                     <p>
                       {n.shortDsc.slice(0, 90)}
-                      <Link to={`/news/${n._id}`}>
-                        {n.shortDsc.length > 90 ? "....." : null}
+                      <Link
+                        to={`/news/${n._id}`}
+                        className="blue-link-text"
+                        style={{ fontSize: "1.5rem" }}
+                      >
+                        {n.shortDsc.length > 90 ? "...." : null}
                       </Link>
                     </p>
                   </div>
@@ -335,7 +365,7 @@ const ModularCard = ({ mode, design, data }) => {
 
   const loadHomeCardComp = (topic) => {
     return (
-      <div className="col-sm-9 border border-grey p-4 m-0">
+      <div className="col border border-grey p-4 m-0">
         <div className="row justify-content-between align-items-center m-0 p-0">
           <h4 className="pl-2">{topic.name}</h4>
           <ul className="nav row justify-content-center m-0 p-0">
@@ -401,7 +431,16 @@ const ModularCard = ({ mode, design, data }) => {
                       })}
                     </small>
                   </span>
-                  <p>{n.shortDsc}</p>
+                  <p>
+                    {n.shortDsc.slice(0, 90)}
+                    <Link
+                      to={`/news/${n._id}`}
+                      className="blue-link-text"
+                      style={{ fontSize: "1.5rem" }}
+                    >
+                      {n.shortDsc.length > 90 ? "...." : null}
+                    </Link>
+                  </p>
                 </div>
               </div>
               <hr />
