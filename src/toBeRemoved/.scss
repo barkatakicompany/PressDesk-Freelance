@@ -126,88 +126,8 @@
 
 /* End Navigation Styles */
 
-/* Start Footer Styles */
-.footer {
-  min-height: 30vh;
-  background-color: #000000;
-  .footer-heading-text {
-    color: #d10014;
-    font-weight: bold;
-    letter-spacing: 0.3rem;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-  }
-  a {
-    color: white !important;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  .footer-links:hover {
-    color: #d10014 !important;
-    text-decoration: none;
-  }
-  .footer-links{
-    outline: 0;
-    font-size: 1.1rem;
-  }
-  .footer-brand {
-    border-bottom: solid rgba(255, 255, 255, 0.342) 1px;
-  }
-  .copyrights {
-    color: rgba(255, 255, 255, 0.342) !important;
-  }
-}
-/* End Footer Styles */
-
-/* Container */
-
-.my-container {
-  width: 100%;
-  padding: 0 15px 0 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 1600px) {
-  .my-container {
-    max-width: 1600px;
-  }
-}
-
-@media (min-width: 1900px) {
-  .my-container {
-    max-width: 1900px;
-  }
-}
-
-@media (min-width: 768px) {
-  .my-container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 992px) {
-  .my-container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .my-container {
-    width: 1180px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .my-container {
-    width: 1300px;
-  }
-}
 
 /* Text Styles */
-
-
 .heading-text {
   font-family: "Playfair Display";
   // font-weight: 600;

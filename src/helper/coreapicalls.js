@@ -20,22 +20,16 @@ export const getNewsByTopics = (topicId) => {
 export const getNewsBySubTopics = (id, limit) => {
   return fetch(`${API}/newsbysubtopic/${id}?${limit ? "limit=" + limit : ""}`)
     .then((res) => {
-      console.log(
-        `${API}/getnewsByTopic/${id}?${limit ? "limit=" + limit : ""}`
-      );
       return res.json();
     })
     .catch((err) => console.log(err));
 };
 
-export const newsImageHelper = (id) => {
-  return `${API}/news/photo/${id}`
-};
 
-export const getNews = (newsId) => {
-  return fetch(`${API}/news/${newsId}`)
+export const getNews = (newsSlug) => {
+  return fetch(`${API}/getnewsbyslug/?slug=${newsSlug}`)
     .then((res) => {
-      return res;
+      return res.json();
     })
     .catch((err) => console.log(err));
 };

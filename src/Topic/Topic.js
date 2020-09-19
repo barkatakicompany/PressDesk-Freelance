@@ -10,24 +10,32 @@ export default function Topic() {
     params: { topicName, topicId },
   } = useRouteMatch();
   const [news, setNews] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     loadNews();
-  }, []);
+  }, [topicId, topicName]);
 
   const loadNews = () => {
     getNewsByTopics(topicId).then((res) => {
       if (res.error) {
         //todo
+        setIsLoaded(false);
       } else {
         setNews(res);
+        setIsLoaded(true);
       }
     });
   };
   return (
     <Base>
       <BaseFrame>
-        <ModularCard mode="topic" data={news} />
+        {isLoaded ? (
+          <>
+            <h2 className="heading-text">{topicName} News</h2>
+            <ModularCard mode="topic" data={news} />
+          </>
+        ) : null}
       </BaseFrame>
     </Base>
   );
