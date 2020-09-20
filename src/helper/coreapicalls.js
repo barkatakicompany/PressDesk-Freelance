@@ -25,18 +25,11 @@ export const getNewsBySubTopics = (id, limit) => {
     .catch((err) => console.log(err));
 };
 
-export const newsImageHelper = (id) => {
-  return fetch(`${API}/news/photo/${id}`)
-    .then((res) => {
-      return res.url;
-    })
-    .catch((err) => console.log(err));
-};
 
-export const getNews = (newsId) => {
-  return fetch(`${API}/news/${newsId}`)
+export const getNews = (newsSlug) => {
+  return fetch(`${API}/getnewsbyslug/?slug=${newsSlug}`)
     .then((res) => {
-      return res;
+      return res.json();
     })
     .catch((err) => console.log(err));
 };

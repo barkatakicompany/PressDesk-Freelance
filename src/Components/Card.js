@@ -23,16 +23,16 @@ const tagColors = {
 };
 
 const SingleNews = ({ news, showTags = false }) => {
-  console.log(news);
-  const [newsImage, setNewsImage] = useState("");
+  // console.log(news);
+  // const [newsImage, setNewsImage] = useState("");
 
-  newsImageHelper(news._id).then(setNewsImage);
+  // newsImageHelper(news._id).then(setNewsImage);
 
   return (
     <div className="pt-3">
       <div className="overflow card-img">
         <img
-          src={newsImage}
+          src={newsImageHelper(news._id)}
           style={{ objectFit: "cover" }}
           className="card-img-top"
           alt="..."
@@ -73,8 +73,8 @@ const SingleNews = ({ news, showTags = false }) => {
 };
 
 const HorizontalNews = ({ news }) => {
-  const [newsImage, setNewsImage] = useState("");
-  newsImageHelper(news._id).then(setNewsImage);
+  // const [newsImage, setNewsImage] = useState("");
+  // newsImageHelper(news._id).then(setNewsImage);
 
   const options = {
     weekday: "long",
@@ -87,7 +87,7 @@ const HorizontalNews = ({ news }) => {
     <div className="horizontal-card">
       <div className="row">
         <div className="col image-wrapper">
-          <img src={newsImage} className="img-thumbnail border-0" alt="..." />
+          <img src={newsImageHelper(news._id)} className="img-thumbnail border-0" alt="..." />
         </div>
         <div className="col-9">
           <Link to="#">
@@ -111,11 +111,23 @@ const HorizontalNews = ({ news }) => {
 };
 
 const ModeOneCard = (topicId, topicName) => {
-  const [newsList, setNewsList] = useState([]);
+  const [allNewsList, setallNewsList] = useState([]);
+  // const [newsList, setNewsList] = useState([])
+  var newsList = []
   const [trendingNews, setTrendingNews] = useState([]);
+  // const [news]
   getNewsByTopics(topicId).then((data) => {
-    setNewsList(data);
+    setallNewsList(data);
   });
+
+  const loadNews = (pageNo) => {
+    newsList = allNewsList.slice((0*(pageNo-1)),(8*(pageNo)))
+    console.log(newsList)
+  }
+
+  console.log(newsList)
+
+  // setNewsList(allNewsList.slice(0,8))
 
   searchNews({ keyword: "news", type: "tags" }).then(setTrendingNews);
 
@@ -133,37 +145,37 @@ const ModeOneCard = (topicId, topicName) => {
           ))}
         </div>
         <div className="col">
-          {newsList.map((news, index) => (
+          {allNewsList.map((news, index) => (
             <HorizontalNews news={news} key={index} />
           ))}
           <div className="d-flex justify-content-center">
             <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
+              <ul className="pagination">
+                <li className="page-item">
+                  <a className="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                   </a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
+                <li className="page-item">
+                  <a className="page-link" onClick={loadNews(1)}>
                     1
                   </a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
+                <li className="page-item">
+                  <a className="page-link" href="#">
                     2
                   </a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">
+                <li className="page-item">
+                  <a className="page-link" href="#">
                     3
                   </a>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
+                <li className="page-item">
+                  <a className="page-link" href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
+                    <span className="sr-only">Next</span>
                   </a>
                 </li>
               </ul>
@@ -189,10 +201,17 @@ const ModeThreeCard = (topicId, topicName) => {
   } = useRouteMatch();
 
   const [news, setNews] = useState({});
+<<<<<<< HEAD:src/core/Card.js
+  // const [newsImage, setNewsImage] = useState('')
+
+  getNews(newsId).then(setNews);
+  // newsImageHelper(newsId).then(setNewsImage)
+=======
   const [newsImage, setNewsImage] = useState("");
 
   getNews(newsId).then(setNews);
   newsImageHelper(newsId).then(setNewsImage);
+>>>>>>> 3b4f7c4948cc35fc05197135ffa4eac1f5325b43:src/Components/Card.js
 
   const options = {
     weekday: "long",
@@ -223,7 +242,7 @@ const ModeThreeCard = (topicId, topicName) => {
             </div>
             <hr />
             <img
-              src={newsImage}
+              src={newsImageHelper(news._id)}
               className="img-fluid rounded w-100 mb-5"
               alt="...."
             />

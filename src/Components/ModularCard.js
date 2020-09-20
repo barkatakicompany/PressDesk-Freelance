@@ -49,7 +49,7 @@ const ModularCard = ({ mode, design, data }) => {
                   </div>
                 </div>
                 <div className="col-9 p-2 m-0">
-                  <Link to={`/news/${n._id}`}>
+                  <Link to={`/news/${n.slug}`}>
                     <h5
                       className="blue-link-text"
                       style={{ fontSize: "1.4rem" }}
@@ -72,7 +72,7 @@ const ModularCard = ({ mode, design, data }) => {
                   <p>
                     {n.shortDsc.slice(0, 90)}
                     <Link
-                      to={`/news/${n._id}`}
+                      to={`/news/${n.slug}`}
                       className="blue-link-text"
                       style={{ fontSize: "1.5rem" }}
                     >
@@ -106,7 +106,7 @@ const ModularCard = ({ mode, design, data }) => {
                 <div className="card-body p-0 m-0 h-100">
                   {" "}
                   <>
-                    <Link to={`/news/${n._id}`}>
+                    <Link to={`/news/${n.slug}`}>
                       <h5
                         className="blue-link-text"
                         style={{ fontSize: "1.4rem" }}
@@ -129,7 +129,7 @@ const ModularCard = ({ mode, design, data }) => {
                     <p>
                       {n.shortDsc.slice(0, 90)}
                       <Link
-                        to={`/news/${n._id}`}
+                        to={`/news/${n.slug}`}
                         className="blue-link-text"
                         style={{ fontSize: "1.5rem" }}
                       >
@@ -161,7 +161,7 @@ const ModularCard = ({ mode, design, data }) => {
                   />
                 </div>
                 <div className="col p-0 m-0">
-                  <Link to={`/news/${n._id}`}>
+                  <Link to={`/news/${n.slug}`}>
                     <h5
                       className="blue-link-text"
                       style={{ fontSize: "1.4rem" }}
@@ -184,7 +184,7 @@ const ModularCard = ({ mode, design, data }) => {
                   <p>
                     {news[0].shortDsc.slice(0, 90)}
                     <Link
-                      to={`/news/${n._id}`}
+                      to={`/news/${n.slug}`}
                       className="blue-link-text"
                       style={{ fontSize: "1.5rem" }}
                     >
@@ -215,7 +215,7 @@ const ModularCard = ({ mode, design, data }) => {
                         </div>
                       </div>
                       <div className="col-9 p-2 pt-0 m-0">
-                        <Link to={`/news/${n._id}`}>
+                        <Link to={`/news/${n.slug}`}>
                           <h5
                             className="blue-link-text"
                             style={{ fontSize: "1.4rem" }}
@@ -238,7 +238,7 @@ const ModularCard = ({ mode, design, data }) => {
                         {/* <p>
                           {n.shortDsc.slice(0, 90)}
                           <Link
-                            to={`/news/${n._id}`}
+                            to={`/news/${n.slug}`}
                             className="blue-link-text"
                             style={{ fontSize: "1.5rem" }}
                           >
@@ -275,7 +275,7 @@ const ModularCard = ({ mode, design, data }) => {
                 </div>
               </div>
               <div className="col p-0 m-0">
-                <Link to={`/news/${n._id}`}>
+                <Link to={`/news/${n.slug}`}>
                   <h5 className="blue-link-text" style={{ fontSize: "1.4rem" }}>
                     {n.heading}
                   </h5>
@@ -295,7 +295,7 @@ const ModularCard = ({ mode, design, data }) => {
                 <p>
                   {n.shortDsc.slice(0, 90)}
                   <Link
-                    to={`/news/${n._id}`}
+                    to={`/news/${n.slug}`}
                     className="blue-link-text"
                     style={{ fontSize: "1.5rem" }}
                   >
@@ -322,7 +322,7 @@ const ModularCard = ({ mode, design, data }) => {
                     </div>
                   </div>
                   <div className="col-9 p-4 m-0">
-                    <Link to={`/news/${n._id}`}>
+                    <Link to={`/news/${n.slug}`}>
                       <h5
                         className="blue-link-text"
                         style={{ fontSize: "1.4rem" }}
@@ -345,7 +345,7 @@ const ModularCard = ({ mode, design, data }) => {
                     {/* <p>
                       {n.shortDsc.slice(0, 90)}
                       <Link
-                        to={`/news/${n._id}`}
+                        to={`/news/${n.slug}`}
                         className="blue-link-text"
                         style={{ fontSize: "1.5rem" }}
                       >
@@ -411,7 +411,7 @@ const ModularCard = ({ mode, design, data }) => {
                   />
                 </div>
                 <div className="col-9 p-4 m-0">
-                  <Link to={`/news/${n._id}`}>
+                  <Link to={`/news/${n.slug}`}>
                     <h5
                       className="blue-link-text"
                       style={{ fontSize: "1.4rem" }}
@@ -434,7 +434,7 @@ const ModularCard = ({ mode, design, data }) => {
                   <p>
                     {n.shortDsc.slice(0, 90)}
                     <Link
-                      to={`/news/${n._id}`}
+                      to={`/news/${n.slug}`}
                       className="blue-link-text"
                       style={{ fontSize: "1.5rem" }}
                     >

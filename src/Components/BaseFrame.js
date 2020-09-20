@@ -12,7 +12,7 @@ export default function BaseFrame({ children }) {
   }, []);
 
   const loadTrendingNews = () => {
-    searchNews({ keyword: "trending", type: "tags" }).then((res) => {
+    searchNews({ keyword: "State", type: "tags" }).then((res) => {
       if (res.error) {
         // todo
       } else {
@@ -31,7 +31,7 @@ export default function BaseFrame({ children }) {
         <div className="col-md-2">
           <p className="small-heading-text mb-1">Trending News</p>
           <div
-            style={{ borderTop: "solid #d10014 3px", width: "80%" }}
+            style={{ borderTop: "solid #d10014 3px", width: "90%" }}
             className="mb-3"
           ></div>
           {trendingNews.map((news, i) => (
@@ -46,7 +46,7 @@ export default function BaseFrame({ children }) {
               </div>
               <div className="card-body pl-0 pt-1">
                 <div className="text-dark">
-                  <NavLink exact to={`/news/${news._id}`}>
+                  <NavLink exact to={`/news/${news.slug}`}>
                     <p className="card-title m-0 p-0 pt-1 blue-link-text">
                       {news.heading}
                     </p>
@@ -55,6 +55,7 @@ export default function BaseFrame({ children }) {
               </div>
             </div>
           ))}
+          {/* <Advertisement type={4} speed={6000} /> */}
         </div>
         <div className="col-md">{children}</div>
         <div className="col-md-3">
