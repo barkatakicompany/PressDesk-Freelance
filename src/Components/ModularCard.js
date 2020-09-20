@@ -235,7 +235,7 @@ const ModularCard = ({ mode, design, data }) => {
                             })}
                           </small>
                         </span>
-                        <p>
+                        {/* <p>
                           {n.shortDsc.slice(0, 90)}
                           <Link
                             to={`/news/${n._id}`}
@@ -244,7 +244,7 @@ const ModularCard = ({ mode, design, data }) => {
                           >
                             {n.shortDsc.length > 90 ? "...." : null}
                           </Link>
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                     <hr />
@@ -342,7 +342,7 @@ const ModularCard = ({ mode, design, data }) => {
                         })}
                       </small>
                     </span>
-                    <p>
+                    {/* <p>
                       {n.shortDsc.slice(0, 90)}
                       <Link
                         to={`/news/${n._id}`}
@@ -351,7 +351,7 @@ const ModularCard = ({ mode, design, data }) => {
                       >
                         {n.shortDsc.length > 90 ? "...." : null}
                       </Link>
-                    </p>
+                    </p> */}
                   </div>
                 </div>
                 <hr />
