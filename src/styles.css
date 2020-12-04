@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* Container */
-.my-container {
-  width: 100%;
-  /* padding: 0 1px 0 1px; */
-  margin-right: auto;
-  margin-left: auto;
-}
-
 @media (min-width: 1600px) {
   .my-container {
     max-width: 1600px;
@@ -48,11 +40,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-nav {
-  padding: 0 !important;
-}
-
-.black-text {
-  color: black;
-  font-weight: 600;
+.text-selected{
+  color: #F2994A;
 }
