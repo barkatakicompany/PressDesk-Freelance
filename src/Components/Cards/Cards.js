@@ -47,7 +47,7 @@ const SingleCard = (news) => {
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div
           className="w-100 p-2"
-          style={{ backgroundColor: "#fff", opacity: ".7" }}
+          style={{ backgroundColor: "#fff", opacity: ".8" }}
         >
           <p className="card-title text-bold-big m-0">{news.heading}</p>
         </div>

@@ -82,7 +82,7 @@
 }
 
 a {
-  text-decoration: none !important;
-  color: #000000 !important;
+  text-decoration: none;
+  color: #000000;
   outline: none !important;
 }

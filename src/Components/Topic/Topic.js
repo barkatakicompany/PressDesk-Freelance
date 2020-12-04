@@ -10,9 +10,7 @@ export default function Topic() {
     params: { topicName },
   } = useRouteMatch();
   const [news, setNews] = useState([]);
-  const [trendingNews, setTrendingNews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [showSpecifiedNews, setShowSpecifiedNews] = useState(false);
 
   useEffect(() => {
     loadNews();
@@ -52,11 +50,11 @@ export default function Topic() {
     return (
       <>
         <Cards newsList={specifiedNews} horizontal={true} className="card" />
-        {specifiedNews.length > 4 ? (
-          <i className="float-right">
-            <a href="#">more...</a>
-          </i>
-        ) : null}
+        {/* {specifiedNews.length > 4 ? ( */}
+        <i className="float-right p-3">
+          <a href="#" style={{color: "#007bff", fontSize:"1.1rem"}}>more..</a>
+        </i>
+        {/* ) : null} */}
       </>
     );
   };
@@ -68,7 +66,7 @@ export default function Topic() {
       {" "}
       {isLoaded ? (
         <div className="my-container">
-          <div className="row mt-4 card-deck h-100 mb-4">
+          <div className="row mt-4 h-100 mb-4">
             <div className="col-lg-8 col-md-12 col-sm-1 h-100">
               <Cards newsList={news[0]} single={true} />
             </div>
@@ -87,7 +85,7 @@ export default function Topic() {
                 </div>
               </div>
               <div
-                className="row border"
+                className="border shadow"
                 id="specified-news"
                 style={{ display: "block" }}
               >
