@@ -56,7 +56,22 @@
   /* text-decoration: underline 5px #F2994A; */
 }
 
+.text-bold {
+  color: #000000;
+  font-weight: 600;
+}
+
 .text-selected {
   color: #f2994a !important;
   font-weight: 600 !important;
+}
+
+.inline-nav-link {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+a {
+  text-decoration: none !important;
+  color: #000000 !important;
 }
