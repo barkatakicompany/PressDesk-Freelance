@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+.my-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 @media (min-width: 1600px) {
   .my-container {
@@ -37,9 +43,20 @@
 }
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.text-selected{
-  color: #F2994A;
+.nav-link {
+  font-weight: 600 !important;
+}
+
+.nav-link:hover {
+  color: #f2994a !important;
+  font-weight: 600 !important;
+  /* text-decoration: underline 5px #F2994A; */
+}
+
+.text-selected {
+  color: #f2994a !important;
+  font-weight: 600 !important;
 }
