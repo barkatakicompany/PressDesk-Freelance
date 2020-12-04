@@ -12,7 +12,7 @@ export default function Topic() {
   const [news, setNews] = useState([]);
   const [trendingNews, setTrendingNews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [showSpecifiedNews, setShowSpecifiedNews] = useState(false);
+  // const [showSpecifiedNews, setShowSpecifiedNews] = useState(false);
 
   useEffect(() => {
     loadNews();
@@ -43,11 +43,21 @@ export default function Topic() {
   const handleClick = (e) => {
     var tag = String(e.target.innerHTML).toLowerCase();
     var specifiedNews = getSpecifiedNews(news, tag);
-    setShowSpecifiedNews(specifiedNews.length > 0);
 
-    ReactDOM.render(
-      <Cards newsList={specifiedNews} horizontal={false} />,
-      document.getElementById("specified-news")
+    var element = showSpecifiedNews(specifiedNews.slice(0, 4));
+    ReactDOM.render(element, document.getElementById("specified-news"));
+  };
+
+  const showSpecifiedNews = (specifiedNews) => {
+    return (
+      <>
+        <Cards newsList={specifiedNews} horizontal={true} className="card" />
+        {specifiedNews.length > 4 ? (
+          <i className="float-right">
+            <a href="#">more...</a>
+          </i>
+        ) : null}
+      </>
     );
   };
 
@@ -57,19 +67,14 @@ export default function Topic() {
     <Base>
       {" "}
       {isLoaded ? (
-        <>
-          <div className="row mt-3">
-            <div className="col-md-8">
-              <img
-                src={require("../../static/images/news.png")}
-                style={{ width: "70%" }}
-              />
-
-              <h2>{news[0].heading}</h2>
+        <div className="my-container">
+          <div className="row mt-4 card-deck h-100 mb-4">
+            <div className="col-lg-8 col-md-12 col-sm-1 h-100">
+              <Cards newsList={news[0]} single={true} />
             </div>
-            <div className="col">
+            <div className="col-lg-4 col-md-12 col-sm-1 h-100">
               <div className="row">
-                <div className="inline-nav d-inline-flex justify-content-around w-75 pb-3">
+                <div className="inline-nav d-inline-flex justify-content-around w-100 pb-3">
                   <a className="inline-nav-link" onClick={handleClick} href="#">
                     Top
                   </a>
@@ -84,14 +89,18 @@ export default function Topic() {
               <div
                 className="row border"
                 id="specified-news"
-                style={{ display: showSpecifiedNews ? "block" : "none" }}
-              ></div>
+                style={{ display: "block" }}
+              >
+                {showSpecifiedNews(
+                  getSpecifiedNews(news, "trending").slice(0, 4)
+                )}
+              </div>
             </div>
           </div>
-          <div className="row mt-3">
-            <Cards newsList={news} horizontal={true} />
+          <div className="">
+            <Cards newsList={news} horizontal={false} />
           </div>
-        </>
+        </div>
       ) : null}
     </Base>
   );

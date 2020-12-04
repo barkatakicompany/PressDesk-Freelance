@@ -61,6 +61,16 @@
   font-weight: 600;
 }
 
+.text-bold-big {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.text-bold-small {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
 .text-selected {
   color: #f2994a !important;
   font-weight: 600 !important;
@@ -74,4 +84,5 @@
 a {
   text-decoration: none !important;
   color: #000000 !important;
+  outline: none !important;
 }
