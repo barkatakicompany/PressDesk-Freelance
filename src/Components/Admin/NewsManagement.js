@@ -4,7 +4,9 @@ import {
   getNews,
   getNewsByTopic,
   getTopics,
-  uploadFile,addNews,updateNews
+  uploadFile,
+  addNews,
+  updateNews,
 } from "./helper/helper";
 import Base from "../Base";
 
@@ -18,9 +20,9 @@ export default function NewsManagement() {
   const [news, setNews] = useState({
     _id: undefined,
     topic: "",
-    subTopic:  "",
+    subTopic: null,
     tags: [],
-    dateOfNews: "",
+    dateOfNews: new Date().toLocaleString(),
     editor: "",
     heading: "",
     body: "",
@@ -68,7 +70,6 @@ export default function NewsManagement() {
 
   return (
     <Base>
-      {JSON.stringify(news)}
       <div className="row container-fluid m-0 p-0 justify-content-center p-4 align-items-center">
         <div className="border p-4 rounded shadow col-9">
           <h1 className="text-center display-4">News Management</h1>
@@ -89,10 +90,10 @@ export default function NewsManagement() {
                     setNews({
                       ...news,
                       _id: undefined,
-                      topic: "",
-                      subTopic: "",
+                      topic: e.target.value,
+                      subTopic: null,
                       tags: [],
-                      dateOfNews: "",
+                      dateOfNews: new Date(),
                       editor: "",
                       heading: "",
                       body: "",
@@ -171,10 +172,9 @@ export default function NewsManagement() {
                         setNews({
                           ...news,
                           _id: undefined,
-                          topic: "",
-                          subTopic: "",
+                          subTopic: null,
                           tags: [],
-                          dateOfNews: "",
+                          dateOfNews: new Date(),
                           editor: "",
                           heading: "",
                           body: "",
@@ -247,35 +247,68 @@ export default function NewsManagement() {
                 </div>
               </div>
               {/* Resources */}
-              <div className="input-group mb-4">
+              <div className="p-0 mb-4 col">
                 <label>Resources</label>
                 <div
                   className="btn"
                   data-toggle="modal"
                   data-target="#addResModal"
                 >
-                  Add New
+                  <svg
+                    width="1.5rem"
+                    height="1.5rem"
+                    viewBox="0 0 16 16"
+                    className="bi bi-plus border rounded-circle p-1"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                    />
+                  </svg>
                 </div>
-                <div className="row mx-4 ">
+                <div className="mx-4 ">
                   {news.resources &&
                     news.resources.map((t, i) => {
                       return (
                         <div
-                          className="row rounded border align-items-center m-1 p-1 px-2"
+                          className="row align-items-center m-1 p-1 px-2 border-bottom border-light"
                           key={i}
                         >
                           <div
-                            className="p"
+                            className="col-4 p-0 "
                             style={{
                               whiteSpace: "nowrap",
                               overflow: "hidden",
                               textOverflow: "ellipsis",
                             }}
                           >
-                            {t.resId}
+                            {t._id}
                           </div>
                           <div
-                            className="btn text-center p-0 m-0"
+                            className="col-4 p-0 "
+                            style={{
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {t.link}
+                          </div>
+                          <div
+                            className="col-3 p-0 "
+                            style={{
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                            }}
+                          >
+                            {t.resType}
+                          </div>
+                          <div
+                            className="col btn text-center p-0 m-0"
+                            style={{ height: "2rem" }}
                             onClick={() => {
                               var x = news.resources;
                               x.splice(i, 1);
@@ -478,105 +511,6 @@ export default function NewsManagement() {
                       />
                     </div>
                   </div>
-                  {/* files */}
-                  <div className="col m-0 p-0 mb-4">
-                    <div className="input-group">
-                      <label>Files</label>
-                      <div className="input-group">
-                        <div className="custom-file">
-                          <input
-                            type="file"
-                            className="custom-file-input"
-                            accept="image/png,image/gif,image/jpeg"
-                            id="fileInput"
-                            onChange={(e) => {
-                              if (!e.target.files[0]) {
-                                return;
-                              }
-                              if (e.target.files[0].size > 2097152) {
-                                alert("File size cannot be more than 2mb.");
-                                return;
-                              }
-                              document.getElementById("fileStatus").innerText =
-                                "Uploading File...";
-                              document.getElementById("fileLabel").innerText =
-                                e.target.files[0].name;
-                              var formData = new FormData();
-                              formData.set("file", e.target.files[0]);
-                              formData.set("for", "News");
-                              uploadFile(formData).then((res) => {
-                                if (res.error) {
-                                  alert(res.error);
-                                } else {
-                                  document.getElementById(
-                                    "fileStatus"
-                                  ).innerText = "File Uploaded Successfully";
-                                  var x = news.files;
-                                  x.push(res);
-                                  setNews({ ...news, files: x });
-                                }
-                              });
-                            }}
-                          />
-                          <label
-                            className="custom-file-label"
-                            style={{ overflow: "hidden" }}
-                            id="fileLabel"
-                          >
-                            Choose file
-                          </label>
-                        </div>
-                      </div>
-                      <p id="fileStatus"> </p>
-                    </div>
-                    <div className="col">
-                      {news.files &&
-                        news.files.map((img, i) => {
-                          return (
-                            <div
-                              className="row justify-content-center border-bottom align-items-center"
-                              key={i}
-                            >
-                              <div
-                                className="p col-11"
-                                style={{
-                                  whiteSpace: "nowrap",
-                                  overflow: "hidden",
-                                  textOverflow: "ellipsis",
-                                }}
-                              >
-                                {img.name}
-                              </div>
-                              <div
-                                className="btn col-1 text-center p-0 m-0 h-100 w-100"
-                                onClick={() => {
-                                  var x = news.files;
-                                  x.splice(i, 1);
-                                  setNews({
-                                    ...news,
-                                    files: x,
-                                  });
-                                }}
-                              >
-                                <svg
-                                  width="2em"
-                                  height="2em"
-                                  viewBox="0 0 16 16"
-                                  className="bi bi-x  h-100 w-100"
-                                  fill="currentColor"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          );
-                        })}
-                    </div>
-                  </div>
                 </div>
               </div>
               <div
@@ -640,7 +574,35 @@ export default function NewsManagement() {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
               <div className="modal-body">
+                <div className="input-group mb-4">
+                  <div className="input-group">
+                    <select
+                      className="custom-select"
+                      id="resType"
+                      onChange={(e) => {
+                        if (e.target.value == "file") {
+                          document
+                            .getElementById("fileUpload")
+                            .classList.remove("hidden");
+                        } else {
+                          document
+                            .getElementById("fileUpload")
+                            .classList.add("hidden");
+                        }
+                      }}
+                    >
+                      <option disabled selected>
+                        Select Resource Type
+                      </option>
+                      <option value="image">Image</option>
+                      <option value="youtube_video">Youtube Video</option>
+                      <option value="file">File</option>
+                    </select>
+                  </div>
+                </div>
+                {/* link */}
                 <div className="input-group mb-4">
                   <input
                     id="resLink"
@@ -649,13 +611,106 @@ export default function NewsManagement() {
                     placeholder="Resource Link"
                   />
                 </div>
-                <div className="input-group mb-4">
-                  <input
-                    id="resType"
-                    type="text"
-                    className="form-control"
-                    placeholder="Resource Type"
-                  />
+                {/* files */}
+                <div id="fileUpload" className="col m-0 p-0 mb-4">
+                  <div className="input-group">
+                    <label>Files</label>
+                    <div className="input-group">
+                      <div className="custom-file">
+                        <input
+                          type="file"
+                          className="custom-file-input"
+                          accept="image/png,image/gif,image/jpeg"
+                          id="fileInput"
+                          onChange={(e) => {
+                            if (!e.target.files[0]) {
+                              return;
+                            }
+                            if (e.target.files[0].size > 2097152) {
+                              alert("File size cannot be more than 2mb.");
+                              return;
+                            }
+                            document.getElementById("fileStatus").innerText =
+                              "Uploading File...";
+                            document.getElementById("fileLabel").innerText =
+                              e.target.files[0].name;
+                            var formData = new FormData();
+                            formData.set("file", e.target.files[0]);
+                            formData.set("for", "News");
+                            uploadFile(formData).then((res) => {
+                              if (res.error) {
+                                alert(res.error);
+                              } else {
+                                document.getElementById(
+                                  "fileStatus"
+                                ).innerText = "File Uploaded Successfully";
+                                document.getElementById("resLink").value =
+                                  "" +
+                                  window.location.hostname +
+                                  "/api/filesync?fileId=" +
+                                  res._id;
+                              }
+                            });
+                          }}
+                        />
+                        <label
+                          className="custom-file-label"
+                          style={{ overflow: "hidden" }}
+                          id="fileLabel"
+                        >
+                          Choose file
+                        </label>
+                      </div>
+                    </div>
+                    <p id="fileStatus"> </p>
+                  </div>
+                  <div className="col">
+                    {news.files &&
+                      news.files.map((img, i) => {
+                        return (
+                          <div
+                            className="row justify-content-center border-bottom align-items-center"
+                            key={i}
+                          >
+                            <div
+                              className="p col-11"
+                              style={{
+                                whiteSpace: "nowrap",
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                              }}
+                            >
+                              {img.name}
+                            </div>
+                            <div
+                              className="btn col-1 text-center p-0 m-0 h-100 w-100"
+                              onClick={() => {
+                                var x = news.files;
+                                x.splice(i, 1);
+                                setNews({
+                                  ...news,
+                                  files: x,
+                                });
+                              }}
+                            >
+                              <svg
+                                width="2em"
+                                height="2em"
+                                viewBox="0 0 16 16"
+                                className="bi bi-x  h-100 w-100"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
               <div className="modal-footer">
@@ -685,10 +740,9 @@ export default function NewsManagement() {
                       }
                       alert("Resource Added.");
                       document.getElementById("resLink").value = "";
-                      document.getElementById("resType").value = "";
                       var reso = news.resources;
-                      reso.push({ resId: res._id });
-                      setNews({ ...news, resource: reso });
+                      reso.push(res);
+                      setNews({ ...news, resources: reso });
                     });
                   }}
                 >
