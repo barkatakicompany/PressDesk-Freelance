@@ -70,7 +70,6 @@ export default function NewsManagement() {
 
   return (
     <Base>
-      {JSON.stringify(news)}
       <div className="row container-fluid m-0 p-0 justify-content-center p-4 align-items-center">
         <div className="border p-4 rounded shadow col-9">
           <h1 className="text-center display-4">News Management</h1>
