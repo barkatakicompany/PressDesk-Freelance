@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import ReactDOM from "react-dom";
 import Base from "../Base";
-import { getTopicByTopicName } from "../helper/coreapicalls";
+import { getNewsByTopicName } from "../helper/coreapicalls";
 import Cards from "../Cards/Cards";
 
 export default function Topic() {
@@ -17,7 +17,7 @@ export default function Topic() {
   }, [topicName]);
 
   const loadNews = () => {
-    getTopicByTopicName(topicName).then((res) => {
+    getNewsByTopicName(topicName).then((res) => {
       if (res.error || res.length == 0) {
         setIsLoaded(false);
       } else {

@@ -14,7 +14,7 @@ const Menu = ({ history }) => {
     "All girls’ bike rally in Guwahati to mark World AIDS Day 2020 | Sukapha Divas celebrated across the State | RSS chief Mohan Bhagwat in Guwahati, likely to meet Assam Chief Minister | Cinema Halls Begin to Reopen Partially in Guwahati | Gauhati High Court Directs Assam Govt to Take Action Against Sale of Pan Masala";
 
   return (
-    <div className="col p-0 shadow">
+    <div className="col p-0">
       <nav className="navbar navbar-expand-lg border-bottom">
         <Link className="navbar-brand" to="/">
           <img src="/logo.png" alt="LOGO" style={{ width: "11rem" }} />
@@ -132,7 +132,7 @@ const Menu = ({ history }) => {
           )}
         </ul>
       </nav>
-      <marquee className="p-1 border">{marqueeText}</marquee>
+      <marquee className="p-1 shadow">{marqueeText}</marquee>
     </div>
   );
 };

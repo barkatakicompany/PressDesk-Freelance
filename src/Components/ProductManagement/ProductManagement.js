@@ -29,7 +29,7 @@ export default function ProductManagement() {
   }, []);
   const loadTopics = () => {
     getTopics().then((res) => {
-      if (res.status === 0) {
+      if (res.error) {
         alert(res.error);
       } else {
         setTopics(res);
@@ -39,7 +39,7 @@ export default function ProductManagement() {
 
   const loadNewsByTopic = (topicId) => {
     getNewsByTopic(topicId).then((res) => {
-      if (res.status === 0) {
+      if (res.error) {
         alert(res.error);
       } else {
         setAllNews(res);
