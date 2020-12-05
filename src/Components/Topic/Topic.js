@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import ReactDOM from "react-dom";
 import Base from "../Base";
-import { getTopicByTopicName } from "../helper/coreapicalls";
+import { getTopicByTopicName, getCovidCases } from "../helper/coreapicalls";
 import Cards from "../Cards/Cards";
 
 export default function Topic() {
@@ -11,10 +11,22 @@ export default function Topic() {
   } = useRouteMatch();
   const [news, setNews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [covidCases, setCovidCases] = useState({});
 
   useEffect(() => {
     loadNews();
+    loadCovidCases();
   }, [topicName]);
+
+  const loadCovidCases = () => {
+    getCovidCases().then((res) => {
+      if (res.error) {
+        // TODO
+      } else {
+        setCovidCases(res);
+      }
+    });
+  };
 
   const loadNews = () => {
     getTopicByTopicName(topicName).then((res) => {
@@ -52,21 +64,23 @@ export default function Topic() {
         <Cards newsList={specifiedNews} horizontal={true} className="card" />
         {/* {specifiedNews.length > 4 ? ( */}
         <i className="float-right p-3">
-          <a href="#" style={{color: "#007bff", fontSize:"1.1rem"}}>more..</a>
+          <a href="#" style={{ color: "#007bff", fontSize: "1.1rem" }}>
+            more..
+          </a>
         </i>
         {/* ) : null} */}
       </>
     );
   };
 
-  console.log(isLoaded);
+  console.log(covidCases);
 
   return (
     <Base>
       {" "}
       {isLoaded ? (
         <div className="my-container">
-          <div className="row mt-4 h-100 mb-4">
+          <div className="row mt-4 h-100 pb-0">
             <div className="col-lg-8 col-md-12 col-sm-1 h-100">
               <Cards newsList={news[0]} single={true} />
             </div>
@@ -94,6 +108,9 @@ export default function Topic() {
                 )}
               </div>
             </div>
+          </div>
+          <div className="row mb-4">
+                <div>{covidCases.todayDeaths}</div>
           </div>
           <div className="">
             <Cards newsList={news} horizontal={false} />
