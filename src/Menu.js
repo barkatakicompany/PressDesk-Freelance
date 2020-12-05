@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-// import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
+import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
 
 const Menu = ({ history }) => {
   const currentTab = (history, path) => {
@@ -17,7 +17,7 @@ const Menu = ({ history }) => {
     <div className="col p-0 shadow">
       <nav className="navbar navbar-expand-lg border-bottom">
         <Link className="navbar-brand" to="/">
-          <img src="/logo.png" alt="LOGO"   style={{width:"11rem"}}   />
+          <img src="/logo.png" alt="LOGO" style={{ width: "11rem" }} />
         </Link>
         <ul className="nav row m-0 p-0 align-items-center">
           <li className="nav-item">
@@ -100,6 +100,36 @@ const Menu = ({ history }) => {
               Archives
             </Link>
           </li>
+          {isAuthenticated() && (
+            <li className="dropdown nav-link ">
+              <div
+                className="dropdown-toggle nav-link text-dark"
+                data-toggle="dropdown"
+              >
+                Admin
+              </div>
+              <div className="dropdown-menu">
+                <Link
+                  className={
+                    "dropdown-item" + currentTab(history, "/newsManagement")
+                  }
+                  to="/newsManagement"
+                >
+                  News Management
+                </Link>
+                <div
+                  onClick={() => {
+                    signout(() => {
+                      window.location.href = "/";
+                    });
+                  }}
+                  className="nav-link"
+                >
+                  Sign Out
+                </div>
+              </div>
+            </li>
+          )}
         </ul>
       </nav>
       <marquee className="p-1">{marqueeText}</marquee>

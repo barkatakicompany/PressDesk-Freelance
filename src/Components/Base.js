@@ -5,7 +5,7 @@ const Base = ({ children }) => {
   return (
     <div className="m-0 p-0">
       <Menu />
-      <div className="">{children}</div>
+      <div className="pt-3">{children}</div>
     </div>
   );
 };
