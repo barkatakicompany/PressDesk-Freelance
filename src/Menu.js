@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-// import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
+import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
 
 const Menu = ({ history }) => {
   const currentTab = (history, path) => {
@@ -14,110 +14,125 @@ const Menu = ({ history }) => {
     "All girls’ bike rally in Guwahati to mark World AIDS Day 2020 | Sukapha Divas celebrated across the State | RSS chief Mohan Bhagwat in Guwahati, likely to meet Assam Chief Minister | Cinema Halls Begin to Reopen Partially in Guwahati | Gauhati High Court Directs Assam Govt to Take Action Against Sale of Pan Masala";
 
   return (
-    <div className="col p-0 shadow">
-      <nav className="navbar navbar-expand-lg navbar-light my-container">
-          <Link className="navbar-brand" to="/">
-            <img src="/logo.png" alt="LOGO" style={{ width: "11rem" }} />
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Assam")}
-                  to="/Assam"
-                >
-                  Assam
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Northeast")}
-                  to="/Northeast"
-                >
-                  Northeast
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/National")}
-                  to="/National"
-                >
-                  National
-                </Link>
-              </li>
-              <li className="nav-item">
+    <div className="col p-0">
+      <nav className="navbar navbar-expand-lg border-bottom">
+        <Link className="navbar-brand" to="/">
+          <img src="/logo.png" alt="LOGO" style={{ width: "11rem" }} />
+        </Link>
+        <ul className="nav row m-0 p-0 align-items-center">
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Assam")}
+              to="/Assam"
+            >
+              Assam
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Northeast")}
+              to="/Northeast"
+            >
+              Northeast
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/National")}
+              to="/National"
+            >
+              National
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/International")}
+              to="/International"
+            >
+              International
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Opinion")}
+              to="/Opinion"
+            >
+              Opinion
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Business")}
+              to="/Business"
+            >
+              Business/Economy
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Politics")}
+              to="/Politics"
+            >
+              Politics
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Sports")}
+              to="/Sports"
+            >
+              Sports
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Gallery")}
+              to="/Gallery"
+            >
+              Gallery
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className={"navbar-nav" + currentTab(history, "/Archives")}
+              to="/Archives"
+            >
+              Archives
+            </Link>
+          </li>
+          {isAuthenticated() && (
+            <li className="dropdown nav-link ">
+              <div
+                className="dropdown-toggle nav-link text-dark"
+                data-toggle="dropdown"
+              >
+                Admin
+              </div>
+              <div className="dropdown-menu">
                 <Link
                   className={
-                    "navbar-nav" + currentTab(history, "/International")
+                    "dropdown-item" + currentTab(history, "/newsManagement")
                   }
-                  to="/International"
+                  to="/newsManagement"
                 >
-                  International
+                  News Management
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Opinion")}
-                  to="/Opinion"
+                <div
+                  onClick={() => {
+                    signout(() => {
+                      window.location.href = "/";
+                    });
+                  }}
+                  className="nav-link"
                 >
-                  Opinion
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Business")}
-                  to="/Business"
-                >
-                  Business/Economy
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Politics")}
-                  to="/Politics"
-                >
-                  Politics
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Sports")}
-                  to="/Sports"
-                >
-                  Sports
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Gallery")}
-                  to="/Gallery"
-                >
-                  Gallery
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className={"navbar-nav" + currentTab(history, "/Archives")}
-                  to="/Archives"
-                >
-                  Archives
-                </Link>
-              </li>
-            </ul>
-        </div>
+                  Sign Out
+                </div>
+              </div>
+            </li>
+          )}
+        </ul>
       </nav>
-      <marquee className="p-1 border">{marqueeText}</marquee>
+      <marquee className="p-1 shadow">{marqueeText}</marquee>
     </div>
   );
 };

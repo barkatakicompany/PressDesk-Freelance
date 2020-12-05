@@ -1,6 +1,6 @@
 import { API, COVIDAPI } from "../../backend";
 
-export const getTopicByTopicName = (topicName) => {
+export const getNewsByTopicName = (topicName) => {
   return fetch(`${API}/getnewsbytopicname/${topicName}`)
     .then((res) => {
       return res.json();

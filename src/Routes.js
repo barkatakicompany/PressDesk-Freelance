@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NewsManagement from "./Components/Admin/NewsManagement";
 import PrivateRoute from "./Components/Auth/PrivateRoute";
 import SignIn from "./Components/Auth/SignIn";
 import Home from "./Components/Home/Home";
@@ -13,9 +14,9 @@ export default function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/signIn" exact component={SignIn} />
         <PrivateRoute
-          path="/productManagement"
+          path="/newsManagement"
           exact
-          component={ProductManagement}
+          component={NewsManagement}
         />
         <Route path="/:topicName" exact component={Topic} />
       </Switch>

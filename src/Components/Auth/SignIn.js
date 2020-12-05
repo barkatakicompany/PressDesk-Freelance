@@ -27,7 +27,7 @@ const SignIn = () => {
       }
     }
     signin(user).then((res) => {
-      if (res.status === 0) {
+      if (res.error) {
         alert(res.error);
       } else {
         authenticateUser(res, () => {
