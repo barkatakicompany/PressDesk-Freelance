@@ -7,7 +7,7 @@ const Menu = ({ history }) => {
     if (history.location.pathname === path) {
       return " nav-link active text-selected";
     } else {
-      return " nav-link text-dark";
+      return " nav-link";
     }
   };
   const marqueeText =
@@ -15,9 +15,9 @@ const Menu = ({ history }) => {
 
   return (
     <div className="col p-0">
-      <nav className="navbar navbar-expand-lg border-bottom">
-        <Link className="navbar-brand" to="/">
-          <img src="/logo.png" alt="LOGO" style={{ width: "11rem" }} />
+      <nav className="navbar navbar-expand-lg border-bottom my-container">
+        <Link className="navbar-brand mr-5" to="/">
+          <img src={require("./static/images/logo.png")} alt="LOGO" style={{ width: "100px" }} />
         </Link>
         <ul className="nav row m-0 p-0 align-items-center">
           <li className="nav-item">
@@ -102,12 +102,12 @@ const Menu = ({ history }) => {
           </li>
           {isAuthenticated() && (
             <li className="dropdown nav-link ">
-              <div
+              <a
                 className="dropdown-toggle nav-link text-dark"
                 data-toggle="dropdown"
               >
                 Admin
-              </div>
+              </a>
               <div className="dropdown-menu">
                 <Link
                   className={
