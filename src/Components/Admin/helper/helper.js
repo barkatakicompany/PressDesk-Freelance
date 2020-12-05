@@ -83,7 +83,7 @@ export const updateNews = (data) => {
   const { id, token } = isAuthenticated();
 
   return fetch(`${API}/news/${id}`, {
-    method: "POST",
+    method: "PUT",
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,

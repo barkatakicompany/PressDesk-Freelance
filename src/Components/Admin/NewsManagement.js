@@ -18,9 +18,9 @@ export default function NewsManagement() {
   const [news, setNews] = useState({
     _id: undefined,
     topic: "",
-    subTopic:  "",
+    subTopic: null,
     tags: [],
-    dateOfNews: "",
+    dateOfNews: new Date().toLocaleString(),
     editor: "",
     heading: "",
     body: "",
@@ -89,10 +89,10 @@ export default function NewsManagement() {
                     setNews({
                       ...news,
                       _id: undefined,
-                      topic: "",
-                      subTopic: "",
+                      topic: e.target.value,
+                      subTopic: null,
                       tags: [],
-                      dateOfNews: "",
+                      dateOfNews: new Date(),
                       editor: "",
                       heading: "",
                       body: "",
@@ -171,10 +171,9 @@ export default function NewsManagement() {
                         setNews({
                           ...news,
                           _id: undefined,
-                          topic: "",
-                          subTopic: "",
+                          subTopic: null,
                           tags: [],
-                          dateOfNews: "",
+                          dateOfNews: new Date(),
                           editor: "",
                           heading: "",
                           body: "",
@@ -189,7 +188,7 @@ export default function NewsManagement() {
                         });
                       }}
                     >
-                      Add New
+                      Add Newx
                     </div>
                   </div>
                 </div>
@@ -688,7 +687,7 @@ export default function NewsManagement() {
                       document.getElementById("resType").value = "";
                       var reso = news.resources;
                       reso.push({ resId: res._id });
-                      setNews({ ...news, resource: reso });
+                      setNews({ ...news, resources: reso });
                     });
                   }}
                 >
