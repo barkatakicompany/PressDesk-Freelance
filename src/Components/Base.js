@@ -3,7 +3,7 @@ import Menu from "../Menu";
 import "../styles.css";
 const Base = ({ children }) => {
   return (
-    <div className="m-0 p-0">
+    <div className="">
       <Menu />
       <div className="pt-3">{children}</div>
     </div>

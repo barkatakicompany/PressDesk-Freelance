@@ -132,7 +132,7 @@ const Menu = ({ history }) => {
           )}
         </ul>
       </nav>
-      <marquee className="p-1">{marqueeText}</marquee>
+      <marquee className="p-1 border">{marqueeText}</marquee>
     </div>
   );
 };
