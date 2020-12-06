@@ -1,10 +1,11 @@
 import React from "react";
+import { calculateElapsedTime } from "../helper/utilities";
 
 const VerticalCard = (newsList) => {
   return (
-    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (
-        <div className="col mb-2" key={i}>
+        <div className="col mb-3" key={i}>
           <div className="card h-100">
             <img
               src={require("../../static/images/news.png")}
@@ -12,7 +13,13 @@ const VerticalCard = (newsList) => {
               alt="..."
             />
             <div className="card-body p-2">
-              <p className="card-title text-bold-small m-0">{news.heading}</p>
+              <p className="text-muted mb-0 font-weight-bold">
+                {calculateElapsedTime(news.createdAt)}
+                ago
+              </p>
+              <a href="#" className="card-title text-bold-small m-0 truncate-text">
+                {news.heading}
+              </a>
             </div>
           </div>
         </div>
@@ -32,7 +39,9 @@ const HorizontalCard = (newsList) => {
             height="100px"
           />
           <div className="media-body align-self-center">
-            <p className="mt-0 mb-1 text-bold-small">{news.heading}</p>
+            <a href="#" className="mt-0 mb-1 text-bold-small truncate-text">
+              {news.heading}
+            </a>
           </div>
         </li>
       ))}
@@ -45,11 +54,10 @@ const SingleCard = (news) => {
     <div className="card bg-darken-1 text-bold">
       <img src={require("../../static/images/news.png")} className="card-img" />
       <div className="card-img-overlay d-flex align-items-end p-0">
-        <div
-          className="w-100 p-2"
-          style={{ backgroundColor: "#fff", opacity: ".8" }}
-        >
-          <p className="card-title text-bold-big m-0">{news.heading}</p>
+        <div className="w-100 px-3 py-2 gradient-overlay">
+          <a href="#" className="card-title text-white text-bold-big m-0 truncate-text">
+            {news.heading}
+          </a>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { API } from "../../backend";
+import { API, COVIDAPI } from "../../backend";
 
 export const getNewsByTopicName = (topicName) => {
   return fetch(`${API}/getnewsbytopicname/${topicName}`)
@@ -7,3 +7,11 @@ export const getNewsByTopicName = (topicName) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const getCovidCases = () => {
+  return fetch(COVIDAPI)
+  .then((res) => {
+    return res.json();
+  })
+  .catch((err) => console.log(err))
+}

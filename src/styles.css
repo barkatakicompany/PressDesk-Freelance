@@ -53,7 +53,7 @@
 
 .text-bold-big {
   font-weight: 600;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .text-bold-small {
@@ -62,9 +62,17 @@
 }
 
 .text-selected {
-  color: #f2994a !important;
+  color: #d30101 !important;
   font-weight: 600 !important;
 }
+
+.nav-link {
+  font-size: 1.2rem;
+}
+
+/* .nav-link:hover {
+  text-decoration: underline solid 3px #d30101 !important;
+} */
 
 .inline-nav-link {
   font-weight: 600;
@@ -72,7 +80,24 @@
 }
 
 a {
-  text-decoration: none;
-  color: #000000;
+  text-decoration: none !important;
+  color: #000000 !important;
   outline: none !important;
+}
+
+.truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.gradient-overlay {
+  background: rgb(234, 5, 5);
+  background: linear-gradient(
+    60deg,
+    rgba(234, 5, 5, 0.3252100156468838) 0%,
+    rgba(4, 132, 4, 0.5689074946384804) 100%
+  );
 }
