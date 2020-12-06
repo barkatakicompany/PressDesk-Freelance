@@ -12,7 +12,7 @@ export const arrayRemove = (arr, value, list = false) => {
 
 export const sortTime = (arr) => {
   return arr.sort(function (a, b) {
-    return new Date(a.createdAt) - new Date(b.createdAt);
+    return new Date(b.dateOfNews) - new Date(a.dateOfNews); 
   });
 };
 

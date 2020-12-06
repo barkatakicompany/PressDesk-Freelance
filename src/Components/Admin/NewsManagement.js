@@ -361,7 +361,9 @@ export default function NewsManagement() {
                         type="text"
                         className="form-control"
                         placeholder="Date"
-                        value={news.dateOfNews}
+                        value={
+                          new Date(news.dateOfNews).toISOString().split("T")[0]
+                        }
                         onChange={(e) => {
                           setNews({ ...news, dateOfNews: e.target.value });
                         }}
@@ -410,6 +412,18 @@ export default function NewsManagement() {
                         type="text"
                         className="form-control"
                         placeholder="tag"
+                        onKeyPress={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            if (e.target.value.trim() === "") {
+                              return;
+                            }
+                            var x = news.tags;
+                            x.push(e.target.value);
+                            setNews({ ...news, tags: x });
+                            e.target.value = "";
+                          }
+                        }}
                         onBlur={(e) => {
                           e.preventDefault();
                           if (e.target.value.trim() === "") {
@@ -492,9 +506,8 @@ export default function NewsManagement() {
                           allSubTopics.map((c, i) => {
                             var selected =
                               news.subTopic &&
-                              news.subTopic.find((st) => st._id == c._id)
+                              news.subTopic.find((st) => st._id == c._id);
 
-                              
                             return (
                               <option
                                 key={i}
@@ -571,18 +584,23 @@ export default function NewsManagement() {
                   }
                   if (!news.topic) {
                     alert("Please select a topic.");
+                    return;
                   }
                   if (!new Date(news.dateOfNews)) {
                     alert("Please enter a valid date.");
+                    return;
                   }
                   if (!news.editor) {
                     alert("Please enter a valid date.");
+                    return;
                   }
                   if (!news.body) {
                     alert("Please enter a valid date.");
+                    return;
                   }
                   if (news.tags.length === 0) {
                     alert("Please add some tags.");
+                    return;
                   }
                   if (!news._id) {
                     delete news._id;
@@ -634,6 +652,9 @@ export default function NewsManagement() {
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  onClick={(e) => {
+                    document.getElementById("resLink").value = "";
+                  }}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -646,14 +667,14 @@ export default function NewsManagement() {
                       className="custom-select"
                       id="resType"
                       onChange={(e) => {
-                        if (e.target.value == "file") {
+                        if (e.target.value == "image") {
                           document
                             .getElementById("fileUpload")
-                            .classList.remove("hidden");
+                            .classList.remove("d-none");
                         } else {
                           document
                             .getElementById("fileUpload")
-                            .classList.add("hidden");
+                            .classList.add("d-none");
                         }
                       }}
                     >
@@ -662,7 +683,6 @@ export default function NewsManagement() {
                       </option>
                       <option value="image">Image</option>
                       <option value="youtube_video">Youtube Video</option>
-                      <option value="file">File</option>
                     </select>
                   </div>
                 </div>
@@ -676,7 +696,7 @@ export default function NewsManagement() {
                   />
                 </div>
                 {/* files */}
-                <div id="fileUpload" className="col m-0 p-0 mb-4">
+                <div id="fileUpload" className="col m-0 p-0 mb-4 d-none">
                   <div className="input-group">
                     <label>Files</label>
                     <div className="input-group">
@@ -709,10 +729,13 @@ export default function NewsManagement() {
                                   "fileStatus"
                                 ).innerText = "File Uploaded Successfully";
                                 document.getElementById("resLink").value =
-                                  "" +
-                                  window.location.hostname +
-                                  "/api/filesync?fileId=" +
+                                  "http://" +
+                                  window.location.hostname.trim() +
+                                  ":8006/api/filesync?fileId=" +
                                   res._id;
+                                document
+                                  .getElementById("resLink")
+                                  .classList.add("d-none");
                               }
                             });
                           }}
@@ -728,63 +751,17 @@ export default function NewsManagement() {
                     </div>
                     <p id="fileStatus"> </p>
                   </div>
-                  <div className="col">
-                    {news.files &&
-                      news.files.map((img, i) => {
-                        return (
-                          <div
-                            className="row justify-content-center border-bottom align-items-center"
-                            key={i}
-                          >
-                            <div
-                              className="p col-11"
-                              style={{
-                                whiteSpace: "nowrap",
-                                overflow: "hidden",
-                                textOverflow: "ellipsis",
-                              }}
-                            >
-                              {img.name}
-                            </div>
-                            <div
-                              className="btn col-1 text-center p-0 m-0 h-100 w-100"
-                              onClick={() => {
-                                var x = news.files;
-                                x.splice(i, 1);
-                                setNews({
-                                  ...news,
-                                  files: x,
-                                });
-                              }}
-                            >
-                              <svg
-                                width="2em"
-                                height="2em"
-                                viewBox="0 0 16 16"
-                                className="bi bi-x  h-100 w-100"
-                                fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                        );
-                      })}
-                  </div>
                 </div>
               </div>
               <div className="modal-footer">
-                <button
+                {/* <button
+                  id="resModalCLose"
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
                   Close
-                </button>
+                </button> */}
                 <button
                   type="button"
                   className="btn btn-primary"
