@@ -96,3 +96,12 @@ export const updateNews = (data) => {
     })
     .catch((err) => console.log(err));
 };
+export const getSubTopicsByTopicId = (topicId) => {
+  return fetch(`${API}/subtopics/${topicId}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
