@@ -17,7 +17,11 @@ const Menu = ({ history }) => {
     <div className="col p-0">
       <nav className="navbar navbar-expand-lg border-bottom my-container">
         <Link className="navbar-brand mr-5" to="/">
-          <img src={require("./static/images/logo.png")} alt="LOGO" style={{ width: "100px" }} />
+          <img
+            src={require("./static/images/logo.png")}
+            alt="LOGO"
+            style={{ width: "100px" }}
+          />
         </Link>
         <ul className="nav row m-0 p-0 align-items-center">
           <li className="nav-item">
@@ -110,9 +114,7 @@ const Menu = ({ history }) => {
               </a>
               <div className="dropdown-menu">
                 <Link
-                  className={
-                    "dropdown-item" + currentTab(history, "/newsManagement")
-                  }
+                  className={"" + currentTab(history, "/newsManagement")}
                   to="/newsManagement"
                 >
                   News Management

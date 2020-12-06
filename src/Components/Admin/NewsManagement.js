@@ -51,13 +51,11 @@ export default function NewsManagement() {
     });
   };
   const loadSubTopics = (tId) => {
-    alert(JSON.stringify(1));
-    getSubTopicsByTopicId(tId).then((res) => () => {
-      alert(JSON.stringify(res));
+    getSubTopicsByTopicId(tId).then((res) => {
       if (res.error) {
         alert(res.error);
       } else {
-        
+        setAllSubTopics([]);
         setAllSubTopics(res);
       }
     });
@@ -67,6 +65,7 @@ export default function NewsManagement() {
       if (res.error) {
         alert(res.error);
       } else {
+        setAllNews([]);
         setAllNews(res);
       }
     });
@@ -83,11 +82,10 @@ export default function NewsManagement() {
 
   return (
     <Base>
-    {JSON.stringify(allSubTopics)}
       <div className="row container-fluid m-0 p-0 justify-content-center p-4 align-items-center">
         <div className="border p-4 rounded shadow col-9">
           <h1 className="text-center display-4">News Management</h1>
-          {/* cate subcate */}
+          {/* topic */}
           <div className="row container-fluid m-0 p-0">
             <div className="input-group col-6 mb-4">
               <label>Topic</label>
@@ -122,7 +120,7 @@ export default function NewsManagement() {
                     });
                     setAllNews([]);
                     loadNewsByTopic(e.target.value);
-                    loadSubTopics(e.target.value);;;
+                    loadSubTopics(e.target.value);
                   }}
                 >
                   <option disabled selected>
@@ -487,17 +485,27 @@ export default function NewsManagement() {
                           });
                         }}
                       >
-                        <option value="null" selected>
-                          None
-                        </option>
+                        <option value="null">None</option>
 
-                        {allSubTopics.map((c, i) => {
-                          return (
-                            <option key={i} value={c._id} className="">
-                              {c.name}
-                            </option>
-                          );
-                        })}
+                        {news &&
+                          allSubTopics &&
+                          allSubTopics.map((c, i) => {
+                            var selected =
+                              news.subTopic &&
+                              news.subTopic.find((st) => st._id == c._id)
+
+                              
+                            return (
+                              <option
+                                key={i}
+                                value={c._id}
+                                selected={selected}
+                                className=""
+                              >
+                                {c.name}
+                              </option>
+                            );
+                          })}
                       </select>
                     </div>
                   </div>

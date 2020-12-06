@@ -61,7 +61,6 @@ export const addResource = (data) => {
     })
     .catch((err) => console.log(err));
 };
-
 export const addNews = (data) => {
   const { id, token } = isAuthenticated();
 
