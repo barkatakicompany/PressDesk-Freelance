@@ -110,11 +110,11 @@ export default function Topic() {
       {" "}
       {isLoaded ? (
         <div className="my-container">
-          <div className="row mt-4 h-100 m-0">
-            <div className="col-lg-8 col-md-12 col-sm-1 h-100">
+          <div className="row mt-3 h-100 m-0">
+            <div className="col-lg-8 col-sm-12 h-100 mb-2">
               <Cards newsList={firstNews} single={true} />
             </div>
-            <div className="col-lg-4 col-md-12 col-sm-1 h-100">
+            <div className="col-lg-4 col-sm-12 h-100 mb-2">
               <div className="text-center w-100">
                 <a
                   className="inline-nav-link w-75 pr-5"
@@ -150,7 +150,7 @@ export default function Topic() {
               </div>
             </div>
           </div>
-          <div className="row mt-4 m-0">
+          <div className="row mt-2 m-0">
             <Cards newsList={remainingNews} horizontal={false} />
           </div>
         </div>
