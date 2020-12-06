@@ -126,9 +126,7 @@ const Menu = ({ history }) => {
                 </a>
                 <div className="dropdown-menu">
                   <Link
-                    className={
-                      "dropdown-item" + currentTab(history, "/newsManagement")
-                    }
+                    className={"" + currentTab(history, "/newsManagement")}
                     to="/newsManagement"
                   >
                     News Management

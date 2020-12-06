@@ -7,6 +7,7 @@ import {
   uploadFile,
   addNews,
   updateNews,
+  getSubTopicsByTopicId,
 } from "./helper/helper";
 import Base from "../Base";
 
@@ -17,6 +18,7 @@ export default function NewsManagement() {
   });
   const [topics, setTopics] = useState([]);
   const [allNews, setAllNews] = useState([]);
+  const [allSubTopics, setAllSubTopics] = useState([]);
   const [news, setNews] = useState({
     _id: undefined,
     topic: "",
@@ -48,12 +50,22 @@ export default function NewsManagement() {
       }
     });
   };
-
+  const loadSubTopics = (tId) => {
+    getSubTopicsByTopicId(tId).then((res) => {
+      if (res.error) {
+        alert(res.error);
+      } else {
+        setAllSubTopics([]);
+        setAllSubTopics(res);
+      }
+    });
+  };
   const loadNewsByTopic = (topicId) => {
     getNewsByTopic(topicId).then((res) => {
       if (res.error) {
         alert(res.error);
       } else {
+        setAllNews([]);
         setAllNews(res);
       }
     });
@@ -73,7 +85,7 @@ export default function NewsManagement() {
       <div className="row container-fluid m-0 p-0 justify-content-center p-4 align-items-center">
         <div className="border p-4 rounded shadow col-9">
           <h1 className="text-center display-4">News Management</h1>
-          {/* cate subcate */}
+          {/* topic */}
           <div className="row container-fluid m-0 p-0">
             <div className="input-group col-6 mb-4">
               <label>Topic</label>
@@ -108,6 +120,7 @@ export default function NewsManagement() {
                     });
                     setAllNews([]);
                     loadNewsByTopic(e.target.value);
+                    loadSubTopics(e.target.value);
                   }}
                 >
                   <option disabled selected>
@@ -124,7 +137,6 @@ export default function NewsManagement() {
                 </select>
               </div>
             </div>
-            <div className="input-group col-6 mb-4">{/* //subcategory */}</div>
           </div>
           {/* news add */}
           {pageView.topic && (
@@ -460,6 +472,43 @@ export default function NewsManagement() {
                   </div>
                 </div>
                 <div className="col p-0 pl-1">
+                  {/* subcategory */}
+                  <div className="input-group mb-4">
+                    <label>Sub Topic</label>
+                    <div className="input-group">
+                      <select
+                        className="custom-select"
+                        onChange={(e) => {
+                          setNews({
+                            ...news,
+                            subTopic: e.target.value,
+                          });
+                        }}
+                      >
+                        <option value="null">None</option>
+
+                        {news &&
+                          allSubTopics &&
+                          allSubTopics.map((c, i) => {
+                            var selected =
+                              news.subTopic &&
+                              news.subTopic.find((st) => st._id == c._id)
+
+                              
+                            return (
+                              <option
+                                key={i}
+                                value={c._id}
+                                selected={selected}
+                                className=""
+                              >
+                                {c.name}
+                              </option>
+                            );
+                          })}
+                      </select>
+                    </div>
+                  </div>
                   {/* editor */}
                   <div className="input-group mb-4">
                     <label>Editor</label>
@@ -519,6 +568,21 @@ export default function NewsManagement() {
                   if (news.heading.trim() === "") {
                     alert("Please enter a heading.");
                     return;
+                  }
+                  if (!news.topic) {
+                    alert("Please select a topic.");
+                  }
+                  if (!new Date(news.dateOfNews)) {
+                    alert("Please enter a valid date.");
+                  }
+                  if (!news.editor) {
+                    alert("Please enter a valid date.");
+                  }
+                  if (!news.body) {
+                    alert("Please enter a valid date.");
+                  }
+                  if (news.tags.length === 0) {
+                    alert("Please add some tags.");
                   }
                   if (!news._id) {
                     delete news._id;

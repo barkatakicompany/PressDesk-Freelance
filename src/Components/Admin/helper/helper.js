@@ -61,7 +61,6 @@ export const addResource = (data) => {
     })
     .catch((err) => console.log(err));
 };
-
 export const addNews = (data) => {
   const { id, token } = isAuthenticated();
 
@@ -90,6 +89,15 @@ export const updateNews = (data) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+export const getSubTopicsByTopicId = (topicId) => {
+  return fetch(`${API}/subtopics/${topicId}`, {
+    method: "GET",
   })
     .then((response) => {
       return response.json();
