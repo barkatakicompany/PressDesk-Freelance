@@ -8,7 +8,12 @@ const VerticalCard = (newsList) => {
         <div className="col mb-3" key={i}>
           <div className="card h-100">
             <img
-              src={require("../../static/images/news.png")}
+              src={
+                news.resources &&
+                news.resources.find((n) => n.resType == "image")
+                  ? news.resources.find((n) => n.resType == "image").link
+                  : require("../../static/images/news.png")
+              }
               className="card-img-top"
               alt="..."
             />
@@ -17,7 +22,10 @@ const VerticalCard = (newsList) => {
                 {calculateElapsedTime(news.createdAt)}
                 ago
               </p>
-              <a href="#" className="card-title text-bold-small m-0 truncate-text">
+              <a
+                href="#"
+                className="card-title text-bold-small m-0 truncate-text"
+              >
                 {news.heading}
               </a>
             </div>
@@ -34,7 +42,11 @@ const HorizontalCard = (newsList) => {
       {newsList.map((news, i) => (
         <li className="media py-2" key={i}>
           <img
-            src={require("../../static/images/news.png")}
+            src={
+              news.resources && news.resources.find((n) => n.resType == "image")
+                ? news.resources.find((n) => n.resType == "image").link
+                : require("../../static/images/news.png")
+            }
             className="mr-3 px-2"
             height="100px"
           />
@@ -52,10 +64,20 @@ const HorizontalCard = (newsList) => {
 const SingleCard = (news) => {
   return (
     <div className="card bg-darken-1 text-bold">
-      <img src={require("../../static/images/news.png")} className="card-img" />
+      <img
+        src={
+          news.resources && news.resources.find((n) => n.resType == "image")
+            ? news.resources.find((n) => n.resType == "image").link
+            : require("../../static/images/news.png")
+        }
+        className="card-img"
+      />
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
-          <a href="#" className="card-title text-white text-bold-big m-0 truncate-text">
+          <a
+            href="#"
+            className="card-title text-white text-bold-big m-0 truncate-text"
+          >
             {news.heading}
           </a>
         </div>
