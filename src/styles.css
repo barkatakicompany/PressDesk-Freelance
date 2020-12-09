@@ -61,9 +61,20 @@
   font-size: 1.1rem;
 }
 
+.text-italic-small {
+  color: #464646;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 11px;
+}
+
 .text-selected {
   color: #d30101 !important;
   font-weight: 600 !important;
+}
+
+.text-red {
+  color: #d10014;
 }
 
 .nav-link {
