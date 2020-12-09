@@ -2,33 +2,46 @@ import { API } from "../../../backend";
 import { isAuthenticated } from "../../Auth/helper/authApis";
 
 export const getTopics = () => {
+  document.getElementById("loading").classList.remove("d-none");
   return fetch(`${API}/alltopics`, {
     method: "GET",
   })
     .then((response) => {
+        document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const getNewsByTopic = (topicId) => {
+  document.getElementById("loading").classList.remove("d-none");
+
   return fetch(`${API}/getnewsbytopic/${topicId}`, {
     method: "GET",
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const getNews = (newsId) => {
+  document.getElementById("loading").classList.remove("d-none");
+
   return fetch(`${API}/news/${newsId}`, {
     method: "GET",
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const uploadFile = (data) => {
+  document.getElementById("loading").classList.remove("d-none");
+
   const { id, token } = isAuthenticated();
 
   return fetch(`${API}/upload/${id}`, {
@@ -40,12 +53,15 @@ export const uploadFile = (data) => {
     body: data,
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const addResource = (data) => {
   const { id, token } = isAuthenticated();
+  document.getElementById("loading").classList.remove("d-none");
 
   return fetch(`${API}/resource/${id}`, {
     method: "POST",
@@ -57,12 +73,15 @@ export const addResource = (data) => {
     body: JSON.stringify(data),
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const addNews = (data) => {
   const { id, token } = isAuthenticated();
+  document.getElementById("loading").classList.remove("d-none");
 
   return fetch(`${API}/news/${id}`, {
     method: "POST",
@@ -74,12 +93,15 @@ export const addNews = (data) => {
     body: JSON.stringify(data),
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const updateNews = (data) => {
   const { id, token } = isAuthenticated();
+  document.getElementById("loading").classList.remove("d-none");
 
   return fetch(`${API}/news/${id}`, {
     method: "PUT",
@@ -91,15 +113,21 @@ export const updateNews = (data) => {
     body: JSON.stringify(data),
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
 };
 export const getSubTopicsByTopicId = (topicId) => {
+  document.getElementById("loading").classList.remove("d-none");
+
   return fetch(`${API}/subtopics/${topicId}`, {
     method: "GET",
   })
     .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
       return response.json();
     })
     .catch((err) => console.log(err));
