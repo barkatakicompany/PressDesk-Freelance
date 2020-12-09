@@ -113,7 +113,6 @@ a {
     text-align:     center;
     vertical-align: middle;
 }
-.loading-screen{}
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
