@@ -102,12 +102,15 @@ export default function News() {
     });
   };
 
+  var date = String(news.updatedAt)
+  date = String(new Date(date))
+
   return (
     <Base>
       <div className="my-container">
         <div className="row">
           <div className="border p-4 col-8">
-            <p>Last Updated: {news.updatedAt}</p>
+            <p className="text-muted">Last Updated: {date}</p>
             <h3>{news.heading}</h3>
             <p>{news.shortDsc}</p>
             <p className="">
