@@ -1,0 +1,17 @@
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center
+}
+
+.covid-dashboard {
+  display: inline-flex;
+  width: 75%;
+  /* height: 120px; */
+  padding: 8px;
+}
+
+.covid-dashboard > div {
+  margin: 8px;
+  width: 180px;
+  padding: 8px;
+}

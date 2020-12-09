@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import ReactDOM from "react-dom";
 import Base from "../Base";
-import { getNewsByTopicName, getCovidCases } from "../helper/coreapicalls";
+import { getNewsByTopicName } from "../helper/coreapicalls";
 import { arrayRemove, sortTime } from "../helper/utilities";
 import Cards from "../Cards/Cards";
 
@@ -23,18 +23,7 @@ export default function Topic() {
 
   useEffect(() => {
     loadNews();
-    loadCovidCases();
   }, [topicName]);
-
-  const loadCovidCases = () => {
-    getCovidCases().then((res) => {
-      if (res.error) {
-        // TODO
-      } else {
-        setCovidCases(res);
-      }
-    });
-  };
 
   const loadNews = () => {
     getNewsByTopicName(topicName).then((res) => {
