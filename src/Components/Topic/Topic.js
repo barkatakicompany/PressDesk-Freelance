@@ -82,16 +82,16 @@ export default function Topic() {
   if (isLoaded) {
     allNews = sortTime(news);
     firstNews = allNews[0];
-    remainingNews = arrayRemove(allNews, firstNews);
+    // remainingNews = arrayRemove(allNews, firstNews);
+    remainingNews = allNews.slice(1, allNews.length)
 
     topNews = getSpecifiedNews(remainingNews, "top");
     trendingNews = getSpecifiedNews(remainingNews, "trending");
     latestNews = getSpecifiedNews(remainingNews, "latest");
-    console.log("top", topNews);
 
-    remainingNews = arrayRemove(remainingNews, topNews, true);
-    remainingNews = arrayRemove(remainingNews, trendingNews, true);
-    remainingNews = arrayRemove(remainingNews, latestNews, true);
+    // remainingNews = arrayRemove(remainingNews, topNews, true);
+    // remainingNews = arrayRemove(remainingNews, trendingNews, true);
+    // remainingNews = arrayRemove(remainingNews, latestNews, true);
   }
 
   return (
