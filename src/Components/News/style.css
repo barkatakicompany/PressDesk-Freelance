@@ -1,0 +1,15 @@
+.Demo__some-network__share-button {
+  cursor: pointer;
+}
+
+.Demo__some-network__share-button:hover:not(:active) {
+  opacity: 0.75;
+}
+
+.share-widget {
+  /* padding: 16px; */
+}
+
+.share-widget button {
+  padding: 2px !important;
+}

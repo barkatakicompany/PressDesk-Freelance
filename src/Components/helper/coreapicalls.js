@@ -15,3 +15,11 @@ export const getCovidCases = () => {
   })
   .catch((err) => console.log(err))
 }
+
+export const getNewsById = (id) => {
+  return fetch(`${API}/news/${id}`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+}

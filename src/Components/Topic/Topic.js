@@ -84,6 +84,7 @@ export default function Topic() {
     firstNews = allNews[0];
     // remainingNews = arrayRemove(allNews, firstNews);
     remainingNews = allNews.slice(1, allNews.length)
+    console.log('news', remainingNews)
 
     topNews = getSpecifiedNews(remainingNews, "top");
     trendingNews = getSpecifiedNews(remainingNews, "trending");
@@ -101,7 +102,7 @@ export default function Topic() {
         <div className="my-container">
           <div className="row mt-3 h-100 m-0">
             <div className="col-lg-8 col-sm-12 h-100 mb-2">
-              <Cards newsList={firstNews} single={true} />
+              <Cards newsList={firstNews} single={true} topicName={topicName}/>
             </div>
             <div className="col-lg-4 col-sm-12 h-100 mb-2">
               <div className="text-center w-100">

@@ -67,7 +67,8 @@ const HorizontalCard = (newsList) => {
   );
 };
 
-const SingleCard = (news) => {
+const SingleCard = (news, topicName) => {
+  console.log(news)
   return (
     <div className="card bg-darken-1 text-bold">
       <div className="img-wrapper">
@@ -83,7 +84,7 @@ const SingleCard = (news) => {
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
           <a
-            href="#"
+            href={`${topicName}/${news._id}`}
             className="card-title text-white text-bold-big m-0 truncate-text"
           >
             {news.heading}
@@ -96,9 +97,10 @@ const SingleCard = (news) => {
 
 export default function Cards({
   newsList,
+  topicName,
   horizontal = false,
   single = false, // card type can be single or multi(for multi it will be false)
 }) {
-  if (single) return SingleCard(newsList);
+  if (single) return SingleCard(newsList, topicName);
   else return horizontal ? HorizontalCard(newsList) : VerticalCard(newsList);
 }

@@ -12,8 +12,12 @@
   /* font-size: 1.2rem; */
 }
 
+.covid-dashboard > div:first-child {
+  width: 300px;
+}
+
 .covid-dashboard > div {
   margin: 8px;
-  width: 240px;
+  width: 230px;
   padding: 8px;
 }

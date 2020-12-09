@@ -17,7 +17,7 @@ const Menu = ({ history }) => {
     <div className="col p-0 ">
       <nav className="navbar navbar-expand-lg my-container">
         <Link className="navbar-brand mr-5" to="/">
-          <img src="./logo.png" alt="LOGO" style={{ width: "70px" }} />
+          <img src={require("./static/images/logo.png")} alt="LOGO" style={{ width: "70px" }} />
         </Link>
         <button
           className="navbar-toggler ml-auto"
