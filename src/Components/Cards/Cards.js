@@ -7,16 +7,18 @@ const VerticalCard = (newsList) => {
       {newsList.map((news, i) => (
         <div className="col mb-3" key={i}>
           <div className="card h-100">
-            <img
-              src={
-                news.resources &&
-                news.resources.find((n) => n.resType == "image")
-                  ? news.resources.find((n) => n.resType == "image").link
-                  : require("../../static/images/news.png")
-              }
-              className="card-img-top"
-              alt="..."
-            />
+            <div className="img-wrapper">
+              <img
+                src={
+                  news.resources &&
+                  news.resources.find((n) => n.resType == "image")
+                    ? news.resources.find((n) => n.resType == "image").link
+                    : require("../../static/images/news.png")
+                }
+                className="card-img-top"
+                alt="..."
+              />
+            </div>
             <div className="card-body p-2">
               <p className="text-muted mb-0 font-weight-bold">
                 {calculateElapsedTime(news.createdAt)}
@@ -40,18 +42,22 @@ const HorizontalCard = (newsList) => {
   return (
     <ul className="list-unstyled align-content-between m-0">
       {newsList.map((news, i) => (
-        <li className="media py-2" key={i}>
+        <li className="media py-2" key={i} style={{height: "120px"}}>
           <img
             src={
               news.resources && news.resources.find((n) => n.resType == "image")
                 ? news.resources.find((n) => n.resType == "image").link
                 : require("../../static/images/news.png")
             }
-            className="mr-3 px-2"
+            className="px-2"
             height="100px"
+            style={{
+              objectFit: "cover",
+              width: "45%",
+            }}
           />
           <div className="media-body align-self-center">
-            <a href="#" className="mt-0 mb-1 text-bold-small truncate-text">
+            <a href="#" className="mt-0 mb-1 text-bold-small truncate-text-2">
               {news.heading}
             </a>
           </div>
@@ -64,14 +70,16 @@ const HorizontalCard = (newsList) => {
 const SingleCard = (news) => {
   return (
     <div className="card bg-darken-1 text-bold">
-      <img
-        src={
-          news.resources && news.resources.find((n) => n.resType == "image")
-            ? news.resources.find((n) => n.resType == "image").link
-            : require("../../static/images/news.png")
-        }
-        className="card-img"
-      />
+      <div className="img-wrapper">
+        <img
+          src={
+            news.resources && news.resources.find((n) => n.resType == "image")
+              ? news.resources.find((n) => n.resType == "image").link
+              : require("../../static/images/news.png")
+          }
+          className="card-img"
+        />
+      </div>
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
           <a

@@ -106,7 +106,7 @@ export default function Topic() {
             <div className="col-lg-4 col-sm-12 h-100 mb-2">
               <div className="text-center w-100">
                 <a
-                  className="inline-nav-link w-75 pr-5"
+                  className="inline-nav-link w-75 pr-4"
                   onClick={handleClick}
                   id="top"
                   href="#"
@@ -114,7 +114,7 @@ export default function Topic() {
                   Top
                 </a>
                 <a
-                  className="inline-nav-link w-75 pr-5"
+                  className="inline-nav-link w-75 pr-4"
                   onClick={handleClick}
                   id="latest"
                   href="#"

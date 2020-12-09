@@ -53,12 +53,13 @@
 
 .text-bold-big {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .text-bold-small {
   font-weight: 600;
   font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 .text-italic-small {
@@ -81,13 +82,26 @@
   font-size: 1.2rem;
 }
 
-/* .nav-link:hover {
-  text-decoration: underline solid 3px #d30101 !important;
-} */
+.a {
+  background-color: coral;
+  padding-left: 56.2%;
+}
+
+.img-wrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+}
+
+.img-wrapper img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 
 .inline-nav-link {
-  font-weight: 600;
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1.6rem;
 }
 
 a {
@@ -104,12 +118,21 @@ a {
   -webkit-box-orient: vertical;
 }
 
+.truncate-text-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 .gradient-overlay {
-  background: rgb(234, 5, 5);
+  background: rgb(200, 166, 10);
   background: linear-gradient(
     60deg,
-    rgba(234, 5, 5, 0.3252100156468838) 0%,
-    rgba(4, 132, 4, 0.5689074946384804) 100%
+    rgba(200, 166, 10, 0.7) 0%,
+    rgba(207, 5, 14, 0.7) 41%,
+    rgba(40, 5, 95, 0.7) 100%
   );
 }
 .loader {
@@ -121,26 +144,34 @@ a {
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 
-    text-align:     center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.loading-screen{
+.loading-screen {
   background-color: #ffffff;
-    position:       fixed;
-    top:            0;
-    left:           0;
-    width:          100%;
-    height:         100%;
-    z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
 }
