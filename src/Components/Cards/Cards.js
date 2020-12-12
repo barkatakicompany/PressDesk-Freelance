@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { calculateElapsedTime } from "../helper/utilities";
 
-const VerticalCard = (newsList) => {
+const VerticalCard = (newsList, topicName) => {
+  console.log(topicName)
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (
@@ -24,12 +26,12 @@ const VerticalCard = (newsList) => {
                 {calculateElapsedTime(news.createdAt)}
                 ago
               </p>
-              <a
-                href="#"
+              <Link
+                to={`${topicName}/${news._id}`}
                 className="card-title text-bold-small m-0 truncate-text"
               >
                 {news.heading}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -38,11 +40,11 @@ const VerticalCard = (newsList) => {
   );
 };
 
-const HorizontalCard = (newsList) => {
+const HorizontalCard = (newsList, topicName) => {
   return (
     <ul className="list-unstyled align-content-between m-0">
       {newsList.map((news, i) => (
-        <li className="media py-2" key={i} style={{height: "120px"}}>
+        <li className="media py-2" key={i} style={{ height: "120px" }}>
           <img
             src={
               news.resources && news.resources.find((n) => n.resType == "image")
@@ -57,9 +59,12 @@ const HorizontalCard = (newsList) => {
             }}
           />
           <div className="media-body align-self-center">
-            <a href="#" className="mt-0 mb-1 text-bold-small truncate-text-2">
+            <Link
+              to={`${topicName}/${news._id}`}
+              className="mt-0 mb-1 text-bold-small truncate-text-2"
+            >
               {news.heading}
-            </a>
+            </Link>
           </div>
         </li>
       ))}
@@ -68,7 +73,7 @@ const HorizontalCard = (newsList) => {
 };
 
 const SingleCard = (news, topicName) => {
-  console.log(news)
+  console.log(news);
   return (
     <div className="card bg-darken-1 text-bold">
       <div className="img-wrapper">
@@ -83,12 +88,12 @@ const SingleCard = (news, topicName) => {
       </div>
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
-          <a
-            href={`${topicName}/${news._id}`}
+          <Link
+            to={`${topicName}/${news._id}`}
             className="card-title text-white text-bold-big m-0 truncate-text"
           >
             {news.heading}
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -101,6 +106,7 @@ export default function Cards({
   horizontal = false,
   single = false, // card type can be single or multi(for multi it will be false)
 }) {
+  console.log(topicName)
   if (single) return SingleCard(newsList, topicName);
-  else return horizontal ? HorizontalCard(newsList) : VerticalCard(newsList);
+  else return horizontal ? HorizontalCard(newsList, topicName) : VerticalCard(newsList, topicName);
 }

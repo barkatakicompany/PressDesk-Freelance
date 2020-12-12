@@ -74,7 +74,7 @@ export default function Topic() {
   const showSpecifiedNews = (specifiedNews) => {
     return (
       <>
-        <Cards newsList={specifiedNews} horizontal={true} className="card" />
+        <Cards newsList={specifiedNews} horizontal={true} className="card" topicName={topicName}/>
       </>
     );
   };
@@ -141,7 +141,7 @@ export default function Topic() {
             </div>
           </div>
           <div className="row mt-2 m-0">
-            <Cards newsList={remainingNews} horizontal={false} />
+            <Cards newsList={remainingNews} horizontal={false} topicName={topicName}/>
           </div>
         </div>
       ) : null}

@@ -8,6 +8,14 @@ export const getNewsByTopicName = (topicName) => {
     .catch((err) => console.log(err));
 };
 
+export const getNewsBySubTopicName = (subTopicName) => {
+  return fetch(`${API}/newsbysubtopic/${subTopicName}`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 export const getCovidCases = () => {
   return fetch(COVIDAPI)
   .then((res) => {

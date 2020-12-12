@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import Base from "../Base";
-import { getNewsById } from "../helper/coreapicalls";
+import { getNewsById, getNewsByTopicName } from "../helper/coreapicalls";
 
 import {
   EmailShareButton,
@@ -23,6 +23,8 @@ import {
 } from "react-share";
 
 import "./style.css";
+import { arrayRemove, sortTime } from "../helper/utilities";
+import Cards from "../Cards/Cards";
 
 const ShareWidget = ({ url }) => {
   return (
@@ -85,11 +87,13 @@ export default function News() {
     params: { topicName, newsId },
   } = useRouteMatch();
   const [news, setNews] = useState([]);
+  const [topicNews, setTopicNews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     loadNews();
-  }, [newsId]);
+    loadTopicNews(topicName);
+  }, [newsId, topicName]);
 
   const loadNews = () => {
     getNewsById(newsId).then((res) => {
@@ -102,14 +106,38 @@ export default function News() {
     });
   };
 
+  const loadTopicNews = (topicName) => {
+    getNewsByTopicName(topicName).then((res) => {
+      if (res.error || res.length == 0) {
+        setIsLoaded(false);
+      } else {
+        setTopicNews(res);
+        setIsLoaded(true);
+      }
+    });
+  };
+
   var date = String(news.updatedAt)
   date = String(new Date(date))
+
+  var allNews, remainingNews = []
+  if(isLoaded) {
+    allNews = sortTime(topicNews);
+    allNews.forEach((item) => {
+      if(item._id !== news._id) {
+        remainingNews.push(item)
+      }
+    })
+    remainingNews = remainingNews.slice(0,4)
+  }
+
+  console.log(topicName)
 
   return (
     <Base>
       <div className="my-container">
         <div className="row">
-          <div className="border p-4 col-8">
+          <div className="border p-4 col-8 m-3">
             <p className="text-muted">Last Updated: {date}</p>
             <h3>{news.heading}</h3>
             <p>{news.shortDsc}</p>
@@ -131,12 +159,16 @@ export default function News() {
               alt="...."
             />
             <div
-              className=""
+              className="text-justify"
               dangerouslySetInnerHTML={{
                 __html: news.body,
               }}
             ></div>
           </div>
+        </div>
+        <div className="row">
+          <h2 className="text-red text-bold-big m-3">Related News</h2>
+        <Cards newsList={remainingNews} horizontal={false} />
         </div>
       </div>
     </Base>
