@@ -26,12 +26,12 @@ const VerticalCard = (newsList, topicName) => {
                 {calculateElapsedTime(news.createdAt)}
                 ago
               </p>
-              <Link
-                to={`${topicName}/${news._id}`}
+              <a
+                href={`${topicName}/${news._id}`}
                 className="card-title text-bold-small m-0 truncate-text"
               >
                 {news.heading}
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -59,12 +59,12 @@ const HorizontalCard = (newsList, topicName) => {
             }}
           />
           <div className="media-body align-self-center">
-            <Link
-              to={`${topicName}/${news._id}`}
+            <a
+              href={`${topicName}/${news._id}`}
               className="mt-0 mb-1 text-bold-small truncate-text-2"
             >
               {news.heading}
-            </Link>
+            </a>
           </div>
         </li>
       ))}
@@ -88,12 +88,12 @@ const SingleCard = (news, topicName) => {
       </div>
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
-          <Link
-            to={`${topicName}/${news._id}`}
+          <a
+            href={`${topicName}/${news._id}`}
             className="card-title text-white text-bold-big m-0 truncate-text"
           >
             {news.heading}
-          </Link>
+          </a>
         </div>
       </div>
     </div>
