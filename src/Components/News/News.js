@@ -82,7 +82,7 @@ const ShareWidget = ({ url }) => {
   );
 };
 
-export default function News() {
+export default function News(props ) {
   const {
     params: { topicName, newsId },
   } = useRouteMatch();
@@ -105,7 +105,7 @@ export default function News() {
       }
     });
   };
-console.log(news)
+  console.log(news);
   const loadTopicNews = (topicName) => {
     getNewsByTopicName(topicName).then((res) => {
       if (res.error || res.length == 0) {
@@ -117,21 +117,22 @@ console.log(news)
     });
   };
 
-  var date = String(news.updatedAt)
-  date = String(new Date(date))
+  var date = String(news.updatedAt);
+  date = String(new Date(date));
 
-  var allNews, remainingNews = []
-  if(isLoaded) {
+  var allNews,
+    remainingNews = [];
+  if (isLoaded) {
     allNews = sortTime(topicNews);
     allNews.forEach((item) => {
-      if(item._id !== news._id) {
-        remainingNews.push(item)
+      if (item._id !== news._id) {
+        remainingNews.push(item);
       }
-    })
-    remainingNews = remainingNews.slice(0,4)
+    });
+    remainingNews = remainingNews.slice(0, 4);
   }
 
-  console.log(topicName)
+  console.log(props.location);
 
   return (
     <Base>
@@ -167,7 +168,7 @@ console.log(news)
         </div>
         <div className="row">
           <h2 className="text-red text-bold-big m-3">Related News</h2>
-        <Cards newsList={remainingNews} horizontal={false} />
+          <Cards newsList={remainingNews} horizontal={false} topicName={topicName}/>
         </div>
       </div>
     </Base>

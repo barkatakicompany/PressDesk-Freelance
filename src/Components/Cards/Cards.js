@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { calculateElapsedTime } from "../helper/utilities";
 
-const VerticalCard = (newsList, topicName) => {
-  console.log(topicName)
+const VerticalCard = (newsList, topicName, props) => {
+  console.log(props);
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (
@@ -27,7 +27,8 @@ const VerticalCard = (newsList, topicName) => {
                 ago
               </p>
               <a
-                href={`${topicName}/${news._id}`}
+                href={`../${topicName}/${news._id}`}
+                // currentPath="/"
                 className="card-title text-bold-small m-0 truncate-text"
               >
                 {news.heading}
@@ -60,7 +61,7 @@ const HorizontalCard = (newsList, topicName) => {
           />
           <div className="media-body align-self-center">
             <a
-              href={`${topicName}/${news._id}`}
+              href={`../${topicName}/${news._id}`}
               className="mt-0 mb-1 text-bold-small truncate-text-2"
             >
               {news.heading}
@@ -89,7 +90,7 @@ const SingleCard = (news, topicName) => {
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
           <a
-            href={`${topicName}/${news._id}`}
+            href={`../${topicName}/${news._id}`}
             className="card-title text-white text-bold-big m-0 truncate-text"
           >
             {news.heading}
@@ -106,7 +107,10 @@ export default function Cards({
   horizontal = false,
   single = false, // card type can be single or multi(for multi it will be false)
 }) {
-  console.log(topicName)
+  console.log(topicName);
   if (single) return SingleCard(newsList, topicName);
-  else return horizontal ? HorizontalCard(newsList, topicName) : VerticalCard(newsList, topicName);
+  else
+    return horizontal
+      ? HorizontalCard(newsList, topicName)
+      : VerticalCard(newsList, topicName);
 }
