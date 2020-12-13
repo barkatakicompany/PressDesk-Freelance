@@ -135,6 +135,17 @@ a {
     rgba(40, 5, 95, 0.7) 100%
   );
 }
+
+.gradient-overlay-2 {
+  background: rgb(200, 166, 10);
+  background: linear-gradient(
+    60deg,
+    rgba(223, 207, 138) 0%,
+    rgba(207, 5, 14) 20%,
+    rgba(40, 5, 95) 100%
+  );
+}
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -174,4 +185,22 @@ a {
   width: 100%;
   height: 100%;
   z-index: 100;
+}
+
+a[href^="mailto:"] {
+  color: #1b7cbd !important;
+  text-decoration: underline solid 1px !important;
+}
+
+a[href^="mailto"]:hover:after {
+  content: " > " attr(title);
+}
+
+.footer-link {
+  color: #1b7cbd !important;
+  text-decoration: underline solid 1px !important;
+}
+
+.footer-list:hover {
+  color: #d10014 !important;
 }
