@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="" style={{ height: "20vh" }}>
+    <div className="border-top" style={{ height: "20vh" }}>
       <br />
       <div className="my-container">
         <div className=" row pt-5 text-black-75">
