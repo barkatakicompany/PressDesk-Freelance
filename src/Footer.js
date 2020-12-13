@@ -20,6 +20,33 @@ export default function Footer() {
           <div className="col-md-3">
             <p>
               <span className="text-red text-bold-small">
+                Editorial Office:{" "}
+              </span>
+              <br />
+              House No. 10, <br />
+              Purbanchal Path, <br />
+              Near Sun Valley Hospital, <br />
+              Bormotoria, <br />
+              Guwahati-781006 <br />
+              Website –
+              <a href="#" className="footer-link">
+                www.pressdesk.in <br />
+              </a>
+              Email id-{" "}
+              <a
+                href="mailto:editor@pressdesk.in"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                editor@nenow.in
+              </a>{" "}
+              <br />
+              Contact No- 0361-3561270
+            </p>
+          </div>
+          <div className="col-md-3">
+            <p>
+              <span className="text-red text-bold-small">
                 Editorial &amp; Syndication issues
               </span>{" "}
               <br /> In case of any issues regarding the content on the site
@@ -43,33 +70,6 @@ export default function Footer() {
               >
                 info@pressdesk.in
               </a>
-            </p>
-          </div>
-          <div className="col-md-3">
-            <p>
-              <span className="text-red text-bold-small">
-                Editorial Office:{" "}
-              </span>
-              <br />
-              House No. 10, <br />
-              Purbanchal Path, <br />
-              Near Sun Valley Hospital, <br />
-              Bormotoria, <br />
-              Guwahati-781006 <br />
-              Website –
-              <a href="#" className="footer-link">
-                www.pressdesk.in <br />
-              </a>
-              Email id-{" "}
-              <a
-                href="mailto:editor@pressdesk.in"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                editor@nenow.in
-              </a>{" "}
-              <br />
-              Contact No- 0361-3561270
             </p>
           </div>
           <div className="col-md-3">
