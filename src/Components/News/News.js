@@ -105,7 +105,7 @@ export default function News() {
       }
     });
   };
-
+console.log(news)
   const loadTopicNews = (topicName) => {
     getNewsByTopicName(topicName).then((res) => {
       if (res.error || res.length == 0) {
@@ -139,10 +139,9 @@ export default function News() {
         <div className="row">
           <div className="border p-4 col-8 m-3">
             <p className="text-muted">Last Updated: {date}</p>
-            <h3>{news.heading}</h3>
-            <p>{news.shortDsc}</p>
+            <h3 className="text-bold">{news.heading}</h3>
             <p className="">
-              Written <span className="news-editor">{news.editor}</span>
+              Written <span className="text-red">{news.editor}</span>
             </p>
             <div className="">
               <ShareWidget url={window.location.href} />

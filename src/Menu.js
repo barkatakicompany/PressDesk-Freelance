@@ -96,7 +96,7 @@ const Menu = ({ history }) => {
                 Sports
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 className={"navbar-nav" + currentTab(history, "/Gallery")}
                 to="/Gallery"
@@ -111,15 +111,15 @@ const Menu = ({ history }) => {
               >
                 Archives
               </Link>
-            </li>
+            </li> */}
             {isAuthenticated() && (
               <li className="dropdown nav-link ">
-                <a
+                <Link
                   className="dropdown-toggle nav-link text-dark"
                   data-toggle="dropdown"
                 >
                   Admin
-                </a>
+                </Link>
                 <div className="dropdown-menu">
                   <Link
                     className={"" + currentTab(history, "/newsManagement")}
