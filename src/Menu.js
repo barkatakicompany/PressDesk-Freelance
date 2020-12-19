@@ -81,7 +81,7 @@ const Menu = ({ history }) => {
                 className={"navbar-nav" + currentTab(history, "/Business")}
                 to="/Business"
               >
-                Business/Economy
+                Business
               </Link>
             </li>
             <li className="nav-item">
@@ -107,7 +107,7 @@ const Menu = ({ history }) => {
               >
                 Gallery
               </Link>
-            </li>
+  </li>*/}
             <li className="nav-item">
               <Link
                 className={"navbar-nav" + currentTab(history, "/Archives")}
@@ -115,7 +115,7 @@ const Menu = ({ history }) => {
               >
                 Archives
               </Link>
-            </li> */}
+            </li>
             {isAuthenticated() && (
               <li className="dropdown nav-link ">
                 <Link
