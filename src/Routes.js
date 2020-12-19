@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import AlbumManagement from "./Components/Admin/AlbumManagement";
 import NewsManagement from "./Components/Admin/NewsManagement";
 import PrivateRoute from "./Components/Auth/PrivateRoute";
 import SignIn from "./Components/Auth/SignIn";
@@ -15,10 +16,11 @@ export default function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/signIn" exact component={SignIn} />
         <Route path="/:topicName/:newsId" exact component={News} />
+        <PrivateRoute path="/newsManagement" exact component={NewsManagement} />
         <PrivateRoute
-          path="/newsManagement"
+          path="/galleryManagement"
           exact
-          component={NewsManagement}
+          component={AlbumManagement}
         />
         <Route path="/:topicName" exact component={Topic} />
       </Switch>

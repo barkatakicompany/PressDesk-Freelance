@@ -620,6 +620,7 @@ export default function NewsManagement() {
                       } else {
                         setNews(res);
                         alert("News updated successfully");
+                        document.location.reload();
                       }
                     });
                   }

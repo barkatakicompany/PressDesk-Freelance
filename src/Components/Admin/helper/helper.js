@@ -132,3 +132,56 @@ export const getSubTopicsByTopicId = (topicId) => {
     })
     .catch((err) => console.log(err));
 };
+export const getAllAlbums = () => {
+  document.getElementById("loading").classList.remove("d-none");
+
+  return fetch(`${API}/allalbums`, {
+    method: "GET",
+  })
+    .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+export const addAlbum = (data) => {
+  const { id, token } = isAuthenticated();
+  document.getElementById("loading").classList.remove("d-none");
+
+  return fetch(`${API}/album/${id}`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+export const updateAlbum = (data) => {
+  const { id, token } = isAuthenticated();
+  document.getElementById("loading").classList.remove("d-none");
+
+  return fetch(`${API}/album/${id}`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      document.getElementById("loading").classList.add("d-none");
+
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
