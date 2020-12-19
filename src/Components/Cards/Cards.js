@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { calculateElapsedTime } from "../helper/utilities";
 
 const VerticalCard = (newsList, topicName) => {
-  console.log('cardNews', newsList)
+  // console.log('cardNews', newsList)
+  var n = newsList[0];
+  console.log(n);
+
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (
@@ -106,7 +109,6 @@ export default function Cards({
   horizontal = false,
   single = false, // card type can be single or multi(for multi it will be false)
 }) {
-  console.log(topicName);
   if (single) return SingleCard(newsList, topicName);
   else
     return horizontal

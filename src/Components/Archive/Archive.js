@@ -163,16 +163,19 @@ export default function Archive() {
             {topics.map((topic) => (
               <div key={topic._id}>
                 {getSpecifiedNews(news, topic._id).length > 0 ? (
-                  <h3 className="text-bold">{topic.name}</h3>
+                  <>
+                    <h3 className="text-bold">{topic.name}</h3>
+                    <hr
+                      style={{
+                        height: "1px",
+                        borderWidth: "0",
+                        color: "gray",
+                        backgroundColor: "gray",
+                      }}
+                    />
+                  </>
                 ) : null}
-                <hr
-                  style={{
-                    height: "1px",
-                    borderWidth: "0",
-                    color: "gray",
-                    backgroundColor: "gray",
-                  }}
-                />
+
                 <Cards
                   newsList={getSpecifiedNews(news, topic._id).slice(0, 8)}
                   horizontal={false}
