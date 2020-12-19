@@ -4,10 +4,10 @@ export default function Footer() {
   return (
     <div className="" style={{ height: "20vh" }}>
       <br />
-      <div className="my-container">
+      <div className="my-container p-4">
         <div className=" row pt-5 text-black-75">
           <div className="col-md-3">
-            <h2 className="text-red text-bold-big">PressDesk.in</h2>
+            {/* <h2 className="text-red text-bold-big">PressDesk.in</h2> */}
             <p>
               <span className="text-red text-bold-small">
                 Corporate Office:
@@ -38,7 +38,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                editor@nenow.in
+                editor@pressdesk.in
               </a>{" "}
               <br />
               Contact No- 0361-3561270

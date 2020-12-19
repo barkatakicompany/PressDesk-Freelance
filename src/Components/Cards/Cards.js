@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { calculateElapsedTime } from "../helper/utilities";
 
-const VerticalCard = (newsList, topicName, props) => {
-  console.log(props);
+const VerticalCard = (newsList, topicName) => {
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (
@@ -74,7 +73,6 @@ const HorizontalCard = (newsList, topicName) => {
 };
 
 const SingleCard = (news, topicName) => {
-  console.log(news);
   return (
     <div className="card bg-darken-1 text-bold">
       <div className="img-wrapper">

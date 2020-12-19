@@ -17,7 +17,11 @@ const Menu = ({ history }) => {
     <div className="col p-0 ">
       <nav className="navbar navbar-expand-lg my-container">
         <Link className="navbar-brand mr-5" to="/">
-          <img src={require("./static/images/logo.png")} alt="LOGO" style={{ width: "70px" }} />
+          <img
+            src={require("./static/images/logo.png")}
+            alt="LOGO"
+            style={{ width: "70px" }}
+          />
         </Link>
         <button
           className="navbar-toggler ml-auto"
@@ -77,7 +81,7 @@ const Menu = ({ history }) => {
                 className={"navbar-nav" + currentTab(history, "/Business")}
                 to="/Business"
               >
-                Business/Economy
+                Business
               </Link>
             </li>
             <li className="nav-item">
@@ -103,7 +107,7 @@ const Menu = ({ history }) => {
               >
                 Gallery
               </Link>
-            </li>
+  </li>*/}
             <li className="nav-item">
               <Link
                 className={"navbar-nav" + currentTab(history, "/Archives")}
@@ -111,7 +115,7 @@ const Menu = ({ history }) => {
               >
                 Archives
               </Link>
-            </li> */}
+            </li>
             {isAuthenticated() && (
               <li className="dropdown nav-link ">
                 <Link
