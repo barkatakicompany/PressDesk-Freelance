@@ -18,11 +18,11 @@ export const getNewsBySubTopicName = (subTopicName) => {
 
 export const getCovidCases = () => {
   return fetch(COVIDAPI)
-  .then((res) => {
-    return res.json();
-  })
-  .catch((err) => console.log(err))
-}
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+};
 
 export const getNewsById = (id) => {
   return fetch(`${API}/news/${id}`)
@@ -30,4 +30,20 @@ export const getNewsById = (id) => {
       return res.json();
     })
     .catch((err) => console.log(err));
-}
+};
+
+export const getNewsByDateRange = (from, to) => {
+  return fetch(`${API}/archives?from=${from}&to=${to}`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const getAllTopics = () => {
+  return fetch(`${API}/alltopics`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+};

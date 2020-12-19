@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { calculateElapsedTime } from "../helper/utilities";
 
 const VerticalCard = (newsList, topicName) => {
+  console.log('cardNews', newsList)
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (

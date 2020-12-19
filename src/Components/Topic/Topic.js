@@ -90,6 +90,8 @@ export default function Topic() {
     trendingNews = getSpecifiedNews(remainingNews, "trending");
     latestNews = getSpecifiedNews(remainingNews, "latest");
 
+    console.log(trendingNews)
+
     // remainingNews = arrayRemove(remainingNews, topNews, true);
     // remainingNews = arrayRemove(remainingNews, trendingNews, true);
     // remainingNews = arrayRemove(remainingNews, latestNews, true);
