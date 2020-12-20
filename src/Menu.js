@@ -118,12 +118,12 @@ const Menu = ({ history }) => {
             </li>
             {isAuthenticated() && (
               <li className="dropdown nav-link ">
-                <Link
+                <div
                   className="dropdown-toggle nav-link text-dark"
                   data-toggle="dropdown"
                 >
                   Admin
-                </Link>
+                </div>
                 <div className="dropdown-menu">
                   <Link
                     className={"" + currentTab(history, "/newsManagement")}
@@ -131,12 +131,12 @@ const Menu = ({ history }) => {
                   >
                     News Management
                   </Link>
-                  <Link
+                  {/* <Link
                     className={"" + currentTab(history, "/galleryManagement")}
                     to="/galleryManagement"
                   >
                     Gallery Management
-                  </Link>
+                  </Link> */}
                   <div
                     onClick={() => {
                       signout(() => {

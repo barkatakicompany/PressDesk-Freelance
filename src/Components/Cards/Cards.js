@@ -5,7 +5,6 @@ import { calculateElapsedTime } from "../helper/utilities";
 const VerticalCard = (newsList, topicName) => {
   // console.log('cardNews', newsList)
   var n = newsList[0];
-  console.log(n);
 
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">

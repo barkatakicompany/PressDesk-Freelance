@@ -11,9 +11,9 @@ export default function Footer() {
             <p>
               <span className="text-red text-bold-small">
                 Corporate Office:
-              </span>{" "}
+              </span>
               <br />
-              Barkataki Company Barkataki Market, <br />
+              Barkataki Company, Barkataki Market, <br />
               A. T. Road, Jorhat <br /> Jorhat-785001 Assam, India
             </p>
           </div>

@@ -83,9 +83,7 @@ export default function Topic() {
     allNews = sortTime(news);
     firstNews = allNews[0];
     // remainingNews = arrayRemove(allNews, firstNews);
-    remainingNews = allNews.slice(1, allNews.length)
-    console.log('news', remainingNews)
-
+    remainingNews = allNews.slice(1, allNews.length);
     topNews = getSpecifiedNews(remainingNews, "top");
     trendingNews = getSpecifiedNews(remainingNews, "trending");
     latestNews = getSpecifiedNews(remainingNews, "latest");
