@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
+import { getNewsHeadings } from "./Components/helper/coreapicalls";
 
 const Menu = ({ history }) => {
   const currentTab = (history, path) => {
@@ -10,9 +11,23 @@ const Menu = ({ history }) => {
       return " nav-link";
     }
   };
-  const marqueeText =
-    "All girls’ bike rally in Guwahati to mark World AIDS Day 2020 | Sukapha Divas celebrated across the State | RSS chief Mohan Bhagwat in Guwahati, likely to meet Assam Chief Minister | Cinema Halls Begin to Reopen Partially in Guwahati | Gauhati High Court Directs Assam Govt to Take Action Against Sale of Pan Masala";
 
+  const [marqueeText, setMarqueeText] = useState("");
+  useEffect(() => {
+    getNewsHeadings().then((res) => {
+      if (res.error) {
+        alert(res.error);
+      } else {
+        setMarqueeText(
+          res
+            .map((e) => {
+              return e.heading;
+            })
+            .join("   |   ")
+        );
+      }
+    });
+  }, []);
   return (
     <div className="col p-0 ">
       <nav className="navbar navbar-expand-lg my-container">

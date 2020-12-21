@@ -246,6 +246,7 @@ export default function NewsManagement() {
                 <label>Body</label>
                 <div className="input-group">
                   <textarea
+                    style={{ minHeight: "30rem" }}
                     name="body"
                     id="body"
                     type="text"
@@ -487,7 +488,7 @@ export default function NewsManagement() {
                 </div>
                 <div className="col p-0 pl-1">
                   {/* subcategory */}
-                  <div className="input-group mb-4">
+                  {allSubTopics.length>0 && <div className="input-group mb-4">
                     <label>Sub Topic</label>
                     <div className="input-group">
                       <select
@@ -504,10 +505,10 @@ export default function NewsManagement() {
                         {news &&
                           allSubTopics &&
                           allSubTopics.map((c, i) => {
-                            var selected =
-                              news.subTopic &&
-                              news.subTopic.find((st) => st._id == c._id);
-
+                            var selected = false;
+                            if(news.subTopic)   {
+                            selected = c._id === news.subTopic[0]._id;
+                            }
                             return (
                               <option
                                 key={i}
@@ -521,7 +522,7 @@ export default function NewsManagement() {
                           })}
                       </select>
                     </div>
-                  </div>
+                  </div>}
                   {/* editor */}
                   <div className="input-group mb-4">
                     <label>Editor</label>
