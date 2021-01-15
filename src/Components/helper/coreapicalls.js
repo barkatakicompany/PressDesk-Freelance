@@ -47,3 +47,10 @@ export const getAllTopics = () => {
     })
     .catch((err) => console.log(err));
 };
+export const getNewsHeadings = () => {
+  return fetch(`${API}/newsheadings`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+};

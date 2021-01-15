@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="" style={{ height: "20vh" }}>
+    <div className="border-top" style={{ height: "20vh" }}>
       <br />
       <div className="my-container p-4">
         <div className=" row pt-5 text-black-75">
@@ -11,10 +11,11 @@ export default function Footer() {
             <p>
               <span className="text-red text-bold-small">
                 Corporate Office:
-              </span>{" "}
+              </span>
               <br />
-              Barkataki Company Barkataki Market, <br />
-              A. T. Road, Jorhat <br /> Jorhat-785001 Assam, India
+              Barkataki Company
+              <br /> Barkataki Market, A. T. Road
+              <br /> Jorhat-785001 Assam, India
             </p>
           </div>
           <div className="col-md-3">

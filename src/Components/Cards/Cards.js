@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { calculateElapsedTime } from "../helper/utilities";
 
 const VerticalCard = (newsList, topicName) => {
+  // console.log('cardNews', newsList)
+  var n = newsList[0];
+
   return (
     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
       {newsList.map((news, i) => (
@@ -75,16 +78,45 @@ const HorizontalCard = (newsList, topicName) => {
 const SingleCard = (news, topicName) => {
   return (
     <div className="card bg-darken-1 text-bold">
-      <div className="img-wrapper">
-        <img
-          src={
-            news.resources && news.resources.find((n) => n.resType == "image")
-              ? news.resources.find((n) => n.resType == "image").link
-              : require("../../static/images/news.png")
-          }
-          className="card-img"
-        />
-      </div>
+      {news &&
+        news.resources &&
+        news.resources.find((r) => r.resType === "youtube_video") && (
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe
+              style={{ zIndex: 1 }}
+              className="embed-responsive-item"
+              src={
+                "https://www.youtube.com/embed/" +
+                news.resources.find((r) => r.resType === "youtube_video").link +
+                "?controls=0"
+              }
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+          </div>
+        )}
+      {news &&
+        news.resources &&
+        !news.resources.find((r) => r.resType === "youtube_video") &&
+        news.resources.find((r) => r.resType === "image") && (
+          <div className="img-wrapper">
+            <img
+              src={news.resources.find((n) => n.resType == "image").link}
+              className="card-img"
+            />
+          </div>
+        )}
+      {news &&
+        news.resources &&
+        !news.resources.find((r) => r.resType === "image") &&
+        !news.resources.find((r) => r.resType === "youtube_video") && (
+          <div className="img-wrapper">
+            <img
+              src={require("../../static/images/news.png")}
+              className="card-img"
+            />
+          </div>
+        )}
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
           <a
