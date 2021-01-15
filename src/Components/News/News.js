@@ -138,7 +138,7 @@ export default function News(props ) {
     <Base>
       <div className="my-container">
         <div className="row">
-          <div className="border p-4 col-8 m-3">
+          <div className="border p-4 col-md-8 col-sm-1 m-3">
             <p className="text-muted">Last Updated: {date}</p>
             <h3 className="text-bold">{news.heading}</h3>
             <p className="">

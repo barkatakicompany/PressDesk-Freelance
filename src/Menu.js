@@ -15,7 +15,7 @@ const Menu = ({ history }) => {
 
   return (
     <div className="col p-0 ">
-      <nav className="navbar navbar-expand-lg my-container">
+      <nav className="navbar navbar-expand-lg my-container navbar-light">
         <Link className="navbar-brand mr-5" to="/">
           <img
             src={require("./static/images/logo.png")}
@@ -35,7 +35,7 @@ const Menu = ({ history }) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="nav row m-0 p-0 align-items-center">
+          <ul className="navbar-nav row m-0 p-0 align-items-right">
             <li className="nav-item">
               <Link
                 className={"navbar-nav" + currentTab(history, "/Assam")}
@@ -117,9 +117,9 @@ const Menu = ({ history }) => {
               </Link>
             </li>
             {isAuthenticated() && (
-              <li className="dropdown nav-link ">
+              <li className="nav-item dropdown nav-link ">
                 <Link
-                  className="dropdown-toggle nav-link text-dark"
+                  className="dropdown-toggle nav-link text-dark p-0"
                   data-toggle="dropdown"
                 >
                   Admin

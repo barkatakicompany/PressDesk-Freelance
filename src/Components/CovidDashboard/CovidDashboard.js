@@ -83,12 +83,12 @@ export default function CovidDashboard() {
 
   return isLoaded ? (
     <div className="m-3 dashboard-wrapper">
-      <div className="border covid-dashboard">
-        <div className="mr-auto mt-auto mb-auto">
+      <div className="border covid-dashboard row">
+        <div className="mr-auto mt-auto mb-auto col">
           <div className="text-bold-big text-red">Covid-19 in India</div>
           <div className="text-italic-small mt-2">Source: MoHFW</div>
         </div>
-        <div style={{ backgroundColor: "#dadada" }} className="text-bold">
+        <div style={{ backgroundColor: "#dadada" }} className="text-bold col-sm-6 col-md-2">
           <div style={{ color: "" }}>Total Cases</div>
           <div className="text-bold-big">{covidCases.total_cases}</div>
           <div className="text-red">
@@ -112,7 +112,7 @@ export default function CovidDashboard() {
             {covidCases.cases_diff}
           </div>
         </div>
-        <div style={{ backgroundColor: "#cde6fd" }} className="text-bold">
+        <div style={{ backgroundColor: "#cde6fd" }} className="text-bold col-sm-6 col-md-2">
           <div style={{ color: "#005ebb" }}>Total Active</div>
           <div className="text-bold-big">{covidCases.total_active}</div>
           <div className="text-red">
@@ -136,7 +136,7 @@ export default function CovidDashboard() {
             {covidCases.active_diff}
           </div>
         </div>
-        <div style={{ backgroundColor: "#cdeadb" }} className="text-bold">
+        <div style={{ backgroundColor: "#cdeadb" }} className="text-bold col-sm-6 col-md-2">
           <div style={{ color: "#03592e" }}>Total Recovered</div>
           <div className="text-bold-big">{covidCases.total_recovered}</div>
           <div style={{ color: "#03592e" }}>
@@ -160,7 +160,7 @@ export default function CovidDashboard() {
             {covidCases.recovered_diff}
           </div>
         </div>
-        <div style={{ backgroundColor: "#f6ccd0" }} className="text-bold">
+        <div style={{ backgroundColor: "#f6ccd0" }} className="text-bold col-sm-6 col-md-2">
           <div className="text-red">Total Deaths</div>
           <div className="text-bold-big">{covidCases.total_deaths}</div>
           <div className="text-red">
