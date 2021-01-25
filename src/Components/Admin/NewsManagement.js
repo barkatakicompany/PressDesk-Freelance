@@ -10,6 +10,7 @@ import {
   getSubTopicsByTopicId,
 } from "./helper/helper";
 import Base from "../Base";
+import { API } from "../../backend";
 
 export default function NewsManagement() {
   const [pageView, setPageView] = useState({
@@ -731,10 +732,7 @@ export default function NewsManagement() {
                                   "fileStatus"
                                 ).innerText = "File Uploaded Successfully";
                                 document.getElementById("resLink").value =
-                                  "http://" +
-                                  window.location.hostname.trim() +
-                                  ":8006/api/filesync?fileId=" +
-                                  res._id;
+                                  API + "filesync?fileId=" + res._id;
                                 document
                                   .getElementById("resLink")
                                   .classList.add("d-none");
