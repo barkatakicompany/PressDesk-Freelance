@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import Base from "../Base";
-import { getNewsBySlug, getNewsByTopicName } from "../helper/coreapicalls";
+import { getNewsById, getNewsByTopicName } from "../helper/coreapicalls";
 
 import {
   EmailShareButton,
@@ -23,7 +23,7 @@ import {
 } from "react-share";
 
 import "./style.css";
-import { arrayRemove, sortTime } from "../helper/utilities";
+import { arrayRemove, correctImageUrl, sortTime } from "../helper/utilities";
 import Cards from "../Cards/Cards";
 
 const ShareWidget = ({ url }) => {
@@ -84,7 +84,7 @@ const ShareWidget = ({ url }) => {
 
 export default function News(props ) {
   const {
-    params: { topicName, newsSlug },
+    params: { topicName, newsId },
   } = useRouteMatch();
   const [news, setNews] = useState([]);
   const [topicNews, setTopicNews] = useState([]);
@@ -93,10 +93,10 @@ export default function News(props ) {
   useEffect(() => {
     loadNews();
     loadTopicNews(topicName);
-  }, [newsSlug, topicName]);
+  }, [newsId, topicName]);
 
   const loadNews = () => {
-    getNewsBySlug(newsSlug).then((res) => {
+    getNewsById(newsId).then((res) => {
       if (res.error || res.length == 0) {
         setIsLoaded(false);
       } else {
@@ -152,7 +152,7 @@ export default function News(props ) {
               src={
                 news.resources &&
                 news.resources.find((n) => n.resType == "image")
-                  ? news.resources.find((n) => n.resType == "image").link
+                  ? correctImageUrl(news.resources.find((n) => n.resType == "image").link)
                   : require("../../static/images/news.png")
               }
               className="img-fluid rounded w-100 mb-5"

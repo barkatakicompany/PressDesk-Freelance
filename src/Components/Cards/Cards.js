@@ -29,7 +29,7 @@ const VerticalCard = (newsList, topicName) => {
                 ago
               </p>
               <a
-                href={`../${topicName}/${news.slug}`}
+                href={`../${topicName}/${news._id}`}
                 // currentPath="/"
                 className="card-title text-bold-small m-0 truncate-text"
               >
@@ -63,7 +63,7 @@ const HorizontalCard = (newsList, topicName) => {
           />
           <div className="media-body align-self-center">
             <a
-              href={`../${topicName}/${news.slug}`}
+              href={`../${topicName}/${news._id}`}
               className="mt-0 mb-1 text-bold-small truncate-text-2"
             >
               {news.heading}
@@ -120,7 +120,7 @@ const SingleCard = (news, topicName) => {
       <div className="card-img-overlay d-flex align-items-end p-0">
         <div className="w-100 px-3 py-2 gradient-overlay">
           <a
-            href={`../${topicName}/${news.slug}`}
+            href={`../${topicName}/${news._id}`}
             className="card-title text-white text-bold-big m-0 truncate-text"
           >
             {news.heading}
