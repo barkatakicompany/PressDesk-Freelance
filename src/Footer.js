@@ -227,6 +227,9 @@ export default function Footer() {
           </a>
         </div>
         <hr />
+        <div className="text-center text-muted" style={{fontSize: "0.9rem"}}>
+        &copy; 2021 PressDesk. All rights reserved.
+        </div>
       </div>
     </div>
   );
