@@ -278,10 +278,6 @@ export default function NewsManagement() {
                 </div>
               </div>
 
-
-
-
-
               {/* Resources */}
               <div className="p-0 mb-4 col">
                 <label>Resources</label>

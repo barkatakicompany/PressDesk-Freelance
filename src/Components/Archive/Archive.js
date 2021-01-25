@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Base from "../Base";
+
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
+import Base from "../Base";
 import { getNewsByDateRange } from "../helper/coreapicalls";
 import Cards from "../Cards/Cards";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Archive() {
   const today = new Date();
@@ -19,6 +21,7 @@ export default function Archive() {
   );
 
   const [news, setNews] = useState([]);
+  const [modalState, setModalState] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const topics = [
@@ -56,15 +59,16 @@ export default function Archive() {
     },
   ];
 
-  useEffect(() => {
-    loadNews(startDate, endDate);
-  }, [startDate, endDate]);
+  // useEffect(() => {
+  //   loadNews(startDate, endDate);
+  // }, [startDate, endDate]);
 
   const loadNews = (startDate, endDate) => {
     getNewsByDateRange(startDate, endDate).then((res) => {
       if (res.error || res.length == 0) {
         setIsLoaded(false);
       } else {
+        console.error(res);
         setNews(res);
         setIsLoaded(true);
       }
@@ -82,34 +86,45 @@ export default function Archive() {
     return specifiedNews;
   };
 
+  const handleShow = () => {
+    setModalState(false);
+    loadNews(startDate, endDate);
+    // setShowArchive(true)
+  };
+
   return (
     <Base>
       <div className="my-container p-3">
         <div>
-          <p className="text-bold-small">
-            Showing News From: {startDate.toDateString()}, To:{" "}
-            {endDate.toDateString()}
-            {"   "}
-            <button
-              type="button"
-              className="btn btn-danger btn-sm"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-            >
-              Change Date Range
-            </button>
-          </p>
+          {isLoaded ? (
+            <p className="text-bold-small">
+              Showing News From: {startDate.toDateString()}, To:{" "}
+              {endDate.toDateString()}
+              {"   "}
+              <button
+                type="button"
+                className="btn btn-danger btn-sm"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                Change Date Range
+              </button>
+            </p>
+          ) : null}
 
           {/* <!-- Modal --> */}
           <div
-            className="modal fade"
-            id="exampleModalCenter"
+            className={"modal fade" + (modalState ? "show d-block" : "d-none")}
+            id="myModal"
             tabindex="-1"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
           >
-            <div className="modal-dialog modal-lg" role="document">
+            <div
+              className="modal-dialog modal-dialog-centered"
+              role="document"
+            >
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLongTitle">
@@ -120,6 +135,7 @@ export default function Archive() {
                     className="close"
                     data-dismiss="modal"
                     aria-label="Close"
+                    onClick={handleShow}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -150,6 +166,7 @@ export default function Archive() {
                     type="button"
                     className="btn btn-secondary"
                     data-dismiss="modal"
+                    onClick={handleShow}
                   >
                     Close
                   </button>

@@ -123,14 +123,6 @@ const Menu = ({ history }) => {
                 Gallery
               </Link>
   </li>*/}
-            <li className="nav-item">
-              <Link
-                className={"navbar-nav" + currentTab(history, "/Archives")}
-                to="/Archives"
-              >
-                Archives
-              </Link>
-            </li>
             {isAuthenticated() && (
               <li className="nav-item dropdown nav-link ">
                 <div
