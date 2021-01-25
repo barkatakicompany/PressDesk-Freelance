@@ -10,6 +10,11 @@ export const arrayRemove = (arr, value, list = false) => {
   }
 };
 
+export const correctImageUrl = (imageUrl) => {
+  var url = imageUrl.replace("http://qa.pressdesk.in", "https://3.133.84.12")
+  return url
+}
+
 export const sortTime = (arr) => {
   return arr.sort(function (a, b) {
     return new Date(b.dateOfNews) - new Date(a.dateOfNews); 

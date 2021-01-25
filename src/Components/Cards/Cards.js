@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { calculateElapsedTime } from "../helper/utilities";
+import { calculateElapsedTime, correctImageUrl } from "../helper/utilities";
 
 const VerticalCard = (newsList, topicName) => {
   // console.log('cardNews', newsList)
@@ -16,7 +16,7 @@ const VerticalCard = (newsList, topicName) => {
                 src={
                   news.resources &&
                   news.resources.find((n) => n.resType == "image")
-                    ? news.resources.find((n) => n.resType == "image").link
+                    ? correctImageUrl(news.resources.find((n) => n.resType == "image").link)
                     : require("../../static/images/news.png")
                 }
                 className="card-img-top"
@@ -51,7 +51,7 @@ const HorizontalCard = (newsList, topicName) => {
           <img
             src={
               news.resources && news.resources.find((n) => n.resType == "image")
-                ? news.resources.find((n) => n.resType == "image").link
+                ? correctImageUrl(news.resources.find((n) => n.resType == "image").link)
                 : require("../../static/images/news.png")
             }
             className="px-2"
@@ -101,7 +101,7 @@ const SingleCard = (news, topicName) => {
         news.resources.find((r) => r.resType === "image") && (
           <div className="img-wrapper">
             <img
-              src={news.resources.find((n) => n.resType == "image").link}
+              src={correctImageUrl(news.resources.find((n) => n.resType == "image").link)}
               className="card-img"
             />
           </div>
