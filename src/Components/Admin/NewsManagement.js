@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 import {
   addResource,
   getNews,
@@ -242,11 +246,24 @@ export default function NewsManagement() {
                   />
                 </div>
               </div>
+
+
+
               {/* body */}
               <div className="input-group mb-4">
                 <label>Body</label>
                 <div className="input-group">
-                  <textarea
+
+                    <CKEditor 
+                    editor={ClassicEditor}
+                    data={news.body}
+                    onChange={(event, editor) => {
+                      const data = editor.getData()
+                      setNews({...news, body: data})
+                    }}
+                    />
+
+                  {/* <textarea
                     style={{ minHeight: "30rem" }}
                     name="body"
                     id="body"
@@ -257,9 +274,14 @@ export default function NewsManagement() {
                     onChange={(e) => {
                       setNews({ ...news, body: e.target.value });
                     }}
-                  ></textarea>
+                  ></textarea> */}
                 </div>
               </div>
+
+
+
+
+
               {/* Resources */}
               <div className="p-0 mb-4 col">
                 <label>Resources</label>
