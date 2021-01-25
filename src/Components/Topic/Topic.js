@@ -38,6 +38,8 @@ export default function Topic() {
     });
   };
 
+  console.log(news[0])
+
   const getSpecifiedNews = (allNews, specifiedTag) => {
     var specifiedNews = [];
     allNews.forEach((item) => {

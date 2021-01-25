@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch } from "react-router";
 import Base from "../Base";
-import { getNewsById, getNewsByTopicName } from "../helper/coreapicalls";
+import { getNewsBySlug, getNewsByTopicName } from "../helper/coreapicalls";
 
 import {
   EmailShareButton,
@@ -84,7 +84,7 @@ const ShareWidget = ({ url }) => {
 
 export default function News(props ) {
   const {
-    params: { topicName, newsId },
+    params: { topicName, newsSlug },
   } = useRouteMatch();
   const [news, setNews] = useState([]);
   const [topicNews, setTopicNews] = useState([]);
@@ -93,10 +93,10 @@ export default function News(props ) {
   useEffect(() => {
     loadNews();
     loadTopicNews(topicName);
-  }, [newsId, topicName]);
+  }, [newsSlug, topicName]);
 
   const loadNews = () => {
-    getNewsById(newsId).then((res) => {
+    getNewsBySlug(newsSlug).then((res) => {
       if (res.error || res.length == 0) {
         setIsLoaded(false);
       } else {

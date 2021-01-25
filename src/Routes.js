@@ -17,7 +17,7 @@ export default function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/Archives" exact component={Archive} />
         <Route path="/signIn" exact component={SignIn} />
-        <Route path="/:topicName/:newsId" exact component={News} />
+        <Route path="/:topicName/:newsSlug" exact component={News} />
         <PrivateRoute path="/newsManagement" exact component={NewsManagement} />
         <PrivateRoute
           path="/galleryManagement"
