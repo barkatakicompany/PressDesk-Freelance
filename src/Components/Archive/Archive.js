@@ -99,7 +99,7 @@ export default function Archive() {
               maxDate={today}
             />{" "}
           </div>
-          <div className="col">
+          <div className="col text-center">
             To:{" "}
             <DatePicker
               selected={endDate}
@@ -110,13 +110,13 @@ export default function Archive() {
             />
             {"   "}
           </div>
-          <div className="col">
+          <div className="col ">
             <button
               type="button"
-              className="btn btn-danger btn-sm"
+              className="btn btn-danger btn-sm float-right px-3 py-2"
               onClick={loadNews}
             >
-              Show
+              Show News
             </button>
           </div>
         </div>
