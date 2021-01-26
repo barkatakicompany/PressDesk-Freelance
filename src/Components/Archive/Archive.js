@@ -21,7 +21,6 @@ export default function Archive() {
   );
 
   const [news, setNews] = useState([]);
-  const [modalState, setModalState] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const topics = [
@@ -59,18 +58,19 @@ export default function Archive() {
     },
   ];
 
-  // useEffect(() => {
-  //   loadNews(startDate, endDate);
-  // }, [startDate, endDate]);
+  const [showSpinner, setShowSpinner] = useState(false);
 
-  const loadNews = (startDate, endDate) => {
+  const loadNews = () => {
+    setIsLoaded(false);
+    setShowSpinner(true);
     getNewsByDateRange(startDate, endDate).then((res) => {
       if (res.error || res.length == 0) {
         setIsLoaded(false);
-      } else {
         console.error(res);
+      } else {
         setNews(res);
         setIsLoaded(true);
+        setShowSpinner(false)
       }
     });
   };
@@ -86,93 +86,38 @@ export default function Archive() {
     return specifiedNews;
   };
 
-  const handleShow = () => {
-    setModalState(false);
-    loadNews(startDate, endDate);
-    // setShowArchive(true)
-  };
-
   return (
     <Base>
       <div className="my-container p-3">
-        <div>
-          {isLoaded ? (
-            <p className="text-bold-small">
-              Showing News From: {startDate.toDateString()}, To:{" "}
-              {endDate.toDateString()}
-              {"   "}
-              <button
-                type="button"
-                className="btn btn-danger btn-sm"
-                data-toggle="modal"
-                data-target="#myModal"
-              >
-                Change Date Range
-              </button>
-            </p>
-          ) : null}
-
-          {/* <!-- Modal --> */}
-          <div
-            className={"modal fade" + (modalState ? "show d-block" : "d-none")}
-            id="myModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div
-              className="modal-dialog modal-dialog-centered"
-              role="document"
+        <div className="text-bold row">
+          <div className="col">
+            Showing News From:{" "}
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              customInput={<ExampleCustomInput />}
+              maxDate={today}
+            />{" "}
+          </div>
+          <div className="col">
+            To:{" "}
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              customInput={<ExampleCustomInput />}
+              minDate={startDate}
+              maxDate={today}
+            />
+            {"   "}
+          </div>
+          <div className="col">
+            <button
+              type="button"
+              className="btn btn-danger btn-sm"
+              onClick={loadNews}
             >
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">
-                    Choose Range of Dates
-                  </h5>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                    onClick={handleShow}
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body row">
-                  <div className="col">
-                    From{" "}
-                    <DatePicker
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                      customInput={<ExampleCustomInput />}
-                      maxDate={today}
-                    />
-                  </div>
-                  <div className="col">
-                    To{" "}
-                    <DatePicker
-                      selected={endDate}
-                      onChange={(date) => setEndDate(date)}
-                      customInput={<ExampleCustomInput />}
-                      minDate={startDate}
-                      maxDate={today}
-                    />
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-dismiss="modal"
-                    onClick={handleShow}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
+              Show
+            </button>
           </div>
         </div>
 
@@ -202,7 +147,17 @@ export default function Archive() {
               </div>
             ))}
           </div>
-        ) : null}
+        ) : (
+          <div class="text-center" style={{marginTop: "10%", display: showSpinner ? "" : "none"}}>
+            <div
+              class="spinner-border text-danger"
+              role="status"
+              style={{ width: "7rem", height: "7rem" }}
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
       </div>
     </Base>
   );
