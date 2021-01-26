@@ -4,6 +4,43 @@ import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
 import { getNewsHeadings } from "./Components/helper/coreapicalls";
 
 const Menu = ({ history }) => {
+
+  const topics = [
+    {
+      _id: "5f53b8655f93960f3df852b1",
+      name: "Assam",
+    },
+    {
+      _id: "5f53b9035f93960f3df852b8",
+      name: "National",
+    },
+    {
+      _id: "5f53b94f5f93960f3df852bd",
+      name: "International",
+    },
+    {
+      _id: "5f53b9d95f93960f3df852c7",
+      name: "Sports",
+    },
+    {
+      _id: "5fc89a79f2a72f067186b3fe",
+      name: "Northeast",
+    },
+    {
+      _id: "5fcde94b0835bb064a0094f7",
+      name: "Opinion",
+    },
+    {
+      _id: "5fcde9750835bb064a0094f8",
+      name: "Business",
+    },
+    {
+      _id: "5fcde97c0835bb064a0094f9",
+      name: "Politics",
+    },
+  ];
+
+
   const currentTab = (history, path) => {
     if (history.location.pathname === path) {
       return " nav-link active text-selected";
@@ -28,6 +65,7 @@ const Menu = ({ history }) => {
       }
     });
   }, []);
+
   return (
     <div className="col p-0 ">
       <nav className="navbar navbar-expand-lg my-container navbar-light">

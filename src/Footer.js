@@ -87,7 +87,7 @@ export default function Footer() {
 
       <br />
       <div className="my-container p-4">
-        <div className="row text-black-75" style={{ fontSize: "1.4rem" }}>
+        <div className="row text-bold" style={{ fontSize: "1.4rem" }}>
           <div className="col-md-3">
             <a
               href="#"
@@ -188,27 +188,6 @@ export default function Footer() {
               </a>
             </p>
           </div>
-          {/* <div className="col-md-3">
-            <a href="#" className="footer-list">
-              About Us
-            </a>{" "}
-            <br />
-            <a href="#" className="footer-list">
-              Adveritse
-            </a>{" "}
-            <br />
-            <a href="#" className="footer-list">
-              Careers
-            </a>{" "}
-            <br />
-            <a href="#" className="footer-list">
-              Intern With Us
-            </a>{" "}
-            <br />
-            <a href="#" className="footer-list">
-              Contact Us
-            </a>
-          </div> */}
         </div>
         <br />
         <div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import {
   addResource,
@@ -42,6 +42,7 @@ export default function NewsManagement() {
     images: [],
     videos: [],
   });
+  const [newsData, setNewsData] = useState("");
 
   useEffect(() => {
     loadTopics();
@@ -247,21 +248,21 @@ export default function NewsManagement() {
                 </div>
               </div>
 
-
-
               {/* body */}
               <div className="input-group mb-4">
                 <label>Body</label>
                 <div className="input-group">
-
-                    <CKEditor 
+                  <CKEditor
                     editor={ClassicEditor}
                     data={news.body}
                     onChange={(event, editor) => {
-                      const data = editor.getData()
-                      setNews({...news, body: data})
+                      const data = editor.getData();
+                      setNewsData(data);
+                      // console.log("news", news);
+                      // console.log("data", data);
+                      // setNews({...news, body: data})
                     }}
-                    />
+                  />
 
                   {/* <textarea
                     style={{ minHeight: "30rem" }}
@@ -507,41 +508,43 @@ export default function NewsManagement() {
                 </div>
                 <div className="col p-0 pl-1">
                   {/* subcategory */}
-                  {allSubTopics.length>0 && <div className="input-group mb-4">
-                    <label>Sub Topic</label>
-                    <div className="input-group">
-                      <select
-                        className="custom-select"
-                        onChange={(e) => {
-                          setNews({
-                            ...news,
-                            subTopic: e.target.value,
-                          });
-                        }}
-                      >
-                        <option value="null">None</option>
+                  {allSubTopics.length > 0 && (
+                    <div className="input-group mb-4">
+                      <label>Sub Topic</label>
+                      <div className="input-group">
+                        <select
+                          className="custom-select"
+                          onChange={(e) => {
+                            setNews({
+                              ...news,
+                              subTopic: e.target.value,
+                            });
+                          }}
+                        >
+                          <option value="null">None</option>
 
-                        {news &&
-                          allSubTopics &&
-                          allSubTopics.map((c, i) => {
-                            var selected = false;
-                            if(news.subTopic)   {
-                            selected = c._id === news.subTopic[0]._id;
-                            }
-                            return (
-                              <option
-                                key={i}
-                                value={c._id}
-                                selected={selected}
-                                className=""
-                              >
-                                {c.name}
-                              </option>
-                            );
-                          })}
-                      </select>
+                          {news &&
+                            allSubTopics &&
+                            allSubTopics.map((c, i) => {
+                              var selected = false;
+                              if (news.subTopic) {
+                                selected = c._id === news.subTopic[0]._id;
+                              }
+                              return (
+                                <option
+                                  key={i}
+                                  value={c._id}
+                                  selected={selected}
+                                  className=""
+                                >
+                                  {c.name}
+                                </option>
+                              );
+                            })}
+                        </select>
+                      </div>
                     </div>
-                  </div>}
+                  )}
                   {/* editor */}
                   <div className="input-group mb-4">
                     <label>Editor</label>
@@ -784,6 +787,7 @@ export default function NewsManagement() {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => {
+                    setNews({ ...news, body: newsData });
                     var resource = {
                       link: document.getElementById("resLink").value,
                       resType: document.getElementById("resType").value.trim(),
