@@ -807,9 +807,25 @@ export default function NewsManagement() {
                   className="btn btn-primary"
                   onClick={(e) => {
                     setNews({ ...news, body: newsData });
+
+                    var resYoutubeLink = "";
+                    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+                    var match = document
+                      .getElementById("resLink")
+                      .value.match(regExp);
+                    if (!document.getElementById("resLink").value) {
+                      alert("Link cannot be empty.");
+                      return;
+                    }
+                    if (match && match[2].length == 11) {
+                      resYoutubeLink = match[2];
+                    } else {
+                      alert("Enter valid youtube url.");
+                      return;
+                    }
                     var resource = {
-                      link: document.getElementById("resLink").value,
-                      resType: document.getElementById("resType").value.trim(),
+                      link: resYoutubeLink,
+                      resType: document.getElementById("resType").value,
                     };
                     if (resource.link === "") {
                       alert("Enter Valid Resource");
