@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   addResource,
   getNews,
@@ -21,6 +22,15 @@ export default function NewsManagement() {
     topic: false,
     news: false,
   });
+  const DateCustomInput = ({ value, onClick }) => (
+    <input
+      type="text"
+      className="form-control"
+      placeholder="Select date"
+      onClick={onClick}
+      value={value}
+    />
+  );
   const [topics, setTopics] = useState([]);
   const [allNews, setAllNews] = useState([]);
   const [allSubTopics, setAllSubTopics] = useState([]);
@@ -301,44 +311,36 @@ export default function NewsManagement() {
                     />
                   </svg>
                 </div>
-                <div className="mx-4 ">
+                <div className="mx-4 p-2 row">
                   {news.resources &&
                     news.resources.map((t, i) => {
                       return (
-                        <div
-                          className="row align-items-center m-1 p-1 px-2 border-bottom border-light"
-                          key={i}
-                        >
-                          <div
-                            className="col-4 p-0 "
-                            style={{
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                          >
-                            {t._id}
-                          </div>
-                          <div
-                            className="col-4 p-0 "
-                            style={{
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                          >
-                            {t.link}
-                          </div>
-                          <div
-                            className="col-3 p-0 "
-                            style={{
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            }}
-                          >
-                            {t.resType}
-                          </div>
+                        <div className="border rounded m-2" key={i}>
+                          {t.resType === "youtube_video" && (
+                            <div
+                              class="embed-responsive embed-responsive-16by9"
+                              style={{ width: "20rem" }}
+                            >
+                              <iframe
+                                className="embed-responsive-item"
+                                src={
+                                  "https://www.youtube.com/embed/" +
+                                  news.resources.find(
+                                    (r) => r.resType === "youtube_video"
+                                  ).link +
+                                  "?controls=0"
+                                }
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              ></iframe>
+                            </div>
+                          )}
+                          {t.resType === "image" && (
+                            <div style={{ maxWidth: "20rem" }}>
+                              <img className="w-100" src={t.link} alt="" />
+                            </div>
+                          )}
+
                           <div
                             className="col btn text-center p-0 m-0"
                             style={{ height: "2rem" }}
@@ -375,10 +377,8 @@ export default function NewsManagement() {
                   {/* date */}
                   <div className="input-group mb-4">
                     <label>Date</label>
-                    <div className="input-group">
+                    {/* <div className="input-group">
                       <input
-                        name="date"
-                        id="date"
                         type="text"
                         className="form-control"
                         placeholder="Date"
@@ -388,6 +388,25 @@ export default function NewsManagement() {
                         onChange={(e) => {
                           setNews({ ...news, dateOfNews: e.target.value });
                         }}
+                      />
+                    </div> */}
+                    <div className="input-group">
+                      <DatePicker
+                        name="date"
+                        id="date"
+                        // timeInputLabel="Time (24-hrs):"
+                        dateFormat="dd/MM/yyyy"
+                        // showTimeInput
+                        isClearable
+                        shouldCloseOnSelect={false}
+                        closeOnScroll={true}
+                        selected={
+                          news.dateOfNews ? new Date(news.dateOfNews) : null
+                        }
+                        onChange={(date) => {
+                          setNews({ ...news, dateOfNews: date });
+                        }}
+                        customInput={<DateCustomInput />}
                       />
                     </div>
                   </div>
@@ -614,11 +633,11 @@ export default function NewsManagement() {
                     return;
                   }
                   if (!news.editor) {
-                    alert("Please enter a valid date.");
+                    alert("Please enter a editor.");
                     return;
                   }
                   if (!news.body) {
-                    alert("Please enter a valid date.");
+                    alert("Please enter a body.");
                     return;
                   }
                   if (news.tags.length === 0) {
