@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useRouteMatch } from "react-router";
 import ReactDOM from "react-dom";
 import Base from "../Base";
-import { getNewsByTopicName } from "../helper/coreapicalls";
-import { arrayRemove, sortTime } from "../helper/utilities";
+import {
+  getNewsByTopicName,
+  getNewsBySubTopicId,
+} from "../helper/coreapicalls";
+import { arrayRemove, sortTime, getSubtopicId } from "../helper/utilities";
 import Cards from "../Cards/Cards";
 
-export default function Topic() {
+export default function Subtopic() {
   const {
-    params: { topicName },
+    params: { topicName, subTopicName },
   } = useRouteMatch();
   const [news, setNews] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [covidCases, setCovidCases] = useState({});
   let query = new URLSearchParams(useLocation().search);
   var allNews = [],
     firstNews = {},
@@ -21,13 +23,18 @@ export default function Topic() {
     trendingNews = [],
     remainingNews = [];
 
+  const subtopicId = getSubtopicId(topicName, subTopicName);
+  
+
   useEffect(() => {
     setNews([]);
     loadNews();
-  }, [topicName]);
+  }, [subTopicName]);
+
+  console.log(news)
 
   const loadNews = () => {
-    getNewsByTopicName(topicName).then((res) => {
+    getNewsBySubTopicId(subtopicId).then((res) => {
       if (res.error || res.length == 0) {
         setIsLoaded(false);
       } else {

@@ -150,6 +150,7 @@ export const getSubtopicSlug = (topic, subtopic) => {
 };
 
 export const getSubtopicId = (topic, subtopic) => {
+  const subtopicN = subtopic.replace("-", " ");
   const subtopicObj = topicsWithSubtopics[topic].subtopic;
-  return subtopicObj[subtopic]["_id"]
+  return subtopicObj[subtopicN]["_id"]
 };

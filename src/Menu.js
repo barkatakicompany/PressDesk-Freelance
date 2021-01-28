@@ -73,7 +73,7 @@ const Menu = ({ history }) => {
                 {getSubtopics("Assam").map((item, i) => (
                   <Link
                     className="dropdown-item"
-                    to={"/" + getSubtopicSlug("Assam", item)}
+                    to={"/Assam/" + getSubtopicSlug("Assam", item)}
                     key={i}
                   >
                     {item}
@@ -97,7 +97,7 @@ const Menu = ({ history }) => {
                 {getSubtopics("Northeast").map((item, i) => (
                   <Link
                     className="dropdown-item"
-                    to={"/" + getSubtopicSlug("Northeast", item)}
+                    to={"/Northeast/" + getSubtopicSlug("Northeast", item)}
                     key={i}
                   >
                     {item}
@@ -131,7 +131,7 @@ const Menu = ({ history }) => {
                   {getSubtopics("National").map((item, i) => (
                     <Link
                       className="dropdown-item"
-                      to={"/" + getSubtopicSlug("National", item)}
+                      to={"/National/" + getSubtopicSlug("National", item)}
                       key={i}
                     >
                       {item}
@@ -203,7 +203,7 @@ const Menu = ({ history }) => {
                   {getSubtopics("Opinion").map((item, i) => (
                     <Link
                       className="dropdown-item"
-                      to={"/" + getSubtopicSlug("Opinion", item)}
+                      to={"/Opinion/" + getSubtopicSlug("Opinion", item)}
                       key={i}
                     >
                       {item}
@@ -238,7 +238,7 @@ const Menu = ({ history }) => {
                   {getSubtopics("Business").map((item, i) => (
                     <Link
                       className="dropdown-item"
-                      to={"/" + getSubtopicSlug("Business", item)}
+                      to={"/Business/" + getSubtopicSlug("Business", item)}
                       key={i}
                     >
                       {item}
@@ -273,7 +273,7 @@ const Menu = ({ history }) => {
                   {getSubtopics("Politics").map((item, i) => (
                     <Link
                       className="dropdown-item"
-                      to={"/" + getSubtopicSlug("Politics", item)}
+                      to={"/Politics/" + getSubtopicSlug("Politics", item)}
                       key={i}
                     >
                       {item}
@@ -308,7 +308,7 @@ const Menu = ({ history }) => {
                   {getSubtopics("Sports").map((item, i) => (
                     <Link
                       className="dropdown-item"
-                      to={"/" + getSubtopicSlug("Sports", item)}
+                      to={"/Sports/" + getSubtopicSlug("Sports", item)}
                       key={i}
                     >
                       {item}

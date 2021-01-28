@@ -8,6 +8,7 @@ import SignIn from "./Components/Auth/SignIn";
 import Home from "./Components/Home/Home";
 import News from "./Components/News/News";
 import ProductManagement from "./Components/ProductManagement/ProductManagement";
+import Subtopic from "./Components/Subtopic/Subtopic";
 import Topic from "./Components/Topic/Topic";
 
 export default function Routes() {
@@ -17,6 +18,7 @@ export default function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/Archives" exact component={Archive} />
         <Route path="/signIn" exact component={SignIn} />
+        <Route path="/:topicName/:subTopicName" exact component={Subtopic} />
         <Route path="/:topicName/:newsId" exact component={News} />
         <PrivateRoute path="/newsManagement" exact component={NewsManagement} />
         <PrivateRoute

@@ -252,12 +252,15 @@ export default function NewsManagement() {
               <div className="input-group mb-4">
                 <label>Body</label>
                 <div className="input-group">
+                  {/* TODO Check Update News */}
                   <CKEditor
                     editor={ClassicEditor}
                     data={news.body}
                     onChange={(event, editor) => {
                       const data = editor.getData();
                       setNewsData(data);
+                      // console.log(data)
+                      console.log(newsData)
                       // console.log("news", news);
                       // console.log("data", data);
                       // setNews({...news, body: data})
@@ -601,6 +604,7 @@ export default function NewsManagement() {
               <div
                 className="btn col-4 border"
                 onClick={(e) => {
+                  setNews({ ...news, body: newsData });
                   if (news.heading.trim() === "") {
                     alert("Please enter a heading.");
                     return;
@@ -787,7 +791,6 @@ export default function NewsManagement() {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => {
-                    setNews({ ...news, body: newsData });
                     var resource = {
                       link: document.getElementById("resLink").value,
                       resType: document.getElementById("resType").value.trim(),

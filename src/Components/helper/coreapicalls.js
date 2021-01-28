@@ -8,9 +8,10 @@ export const getNewsByTopicName = (topicName) => {
     .catch((err) => console.log(err));
 };
 
-export const getNewsBySubTopicName = (subTopicName) => {
-  return fetch(`${API}/newsbysubtopic/${subTopicName}`)
+export const getNewsBySubTopicId = (subTopicId) => {
+  return fetch(`${API}/newsbysubtopic/${subTopicId}`)
     .then((res) => {
+      console.log(subTopicId)
       return res.json();
     })
     .catch((err) => console.log(err));
