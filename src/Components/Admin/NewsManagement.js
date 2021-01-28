@@ -810,8 +810,6 @@ export default function NewsManagement() {
                   type="button"
                   className="btn btn-primary"
                   onClick={(e) => {
-<<<<<<< HEAD
-=======
                     setNews({ ...news, body: newsData });
 
                     var resYoutubeLink = "";
@@ -829,7 +827,6 @@ export default function NewsManagement() {
                       alert("Enter valid youtube url.");
                       return;
                     }
->>>>>>> 901e3f1457a73906b017ddf976bd070e60899cb2
                     var resource = {
                       link: resYoutubeLink,
                       resType: document.getElementById("resType").value,
