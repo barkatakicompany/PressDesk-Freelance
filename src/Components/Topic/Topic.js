@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useRouteMatch } from "react-router";
 import ReactDOM from "react-dom";
 import Base from "../Base";
-import { getNewsByTopicName } from "../helper/coreapicalls";
-import { arrayRemove, sortTime } from "../helper/utilities";
+import {
+  getNewsBySubTopicId,
+  getNewsByTopicName,
+} from "../helper/coreapicalls";
+import { arrayRemove, getSubtopicId, sortTime } from "../helper/utilities";
 import Cards from "../Cards/Cards";
 
 export default function Topic() {
@@ -21,21 +24,39 @@ export default function Topic() {
     trendingNews = [],
     remainingNews = [];
 
+  let subtopicId = "";
+
+  if (query.get("subtopic") !== null) {
+    subtopicId = getSubtopicId(topicName, query.get("subtopic"));
+  }
+
   useEffect(() => {
     setNews([]);
     loadNews();
-  }, [topicName]);
+  }, [topicName, query.get("subtopic")]);
 
   const loadNews = () => {
-    getNewsByTopicName(topicName).then((res) => {
-      if (res.error || res.length == 0) {
-        setIsLoaded(false);
-      } else {
-        console.log(query.get("showOnly"));
-        setNews(res);
-        setIsLoaded(true);
-      }
-    });
+    if (query.get("subtopic") !== null) {
+      getNewsBySubTopicId(subtopicId).then((res) => {
+        if (res.error || res.length == 0) {
+          setIsLoaded(false);
+        } else {
+          console.log(query.get("showOnly"));
+          setNews(res);
+          setIsLoaded(true);
+        }
+      });
+    } else {
+      getNewsByTopicName(topicName).then((res) => {
+        if (res.error || res.length == 0) {
+          setIsLoaded(false);
+        } else {
+          console.log(query.get("showOnly"));
+          setNews(res);
+          setIsLoaded(true);
+        }
+      });
+    }
   };
 
   const getSpecifiedNews = (allNews, specifiedTag) => {
