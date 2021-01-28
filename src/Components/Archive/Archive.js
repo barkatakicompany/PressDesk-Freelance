@@ -15,7 +15,7 @@ export default function Archive() {
   );
   const [endDate, setEndDate] = useState(today);
   const ExampleCustomInput = ({ value, onClick }) => (
-    <button className="btn-primary btn" onClick={onClick}>
+    <button className="border border-danger btn" onClick={onClick}>
       {value}
     </button>
   );
@@ -70,7 +70,7 @@ export default function Archive() {
       } else {
         setNews(res);
         setIsLoaded(true);
-        setShowSpinner(false)
+        setShowSpinner(false);
       }
     });
   };
@@ -89,36 +89,40 @@ export default function Archive() {
   return (
     <Base>
       <div className="my-container p-3">
-        <div className="text-bold row">
-          <div className="col">
-            Showing News From:{" "}
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              customInput={<ExampleCustomInput />}
-              maxDate={today}
-            />{" "}
+        <div className="text-bold row text-center">
+          <div className="col-2"></div>
+          <div className="col d-flex justify-content-around">
+            <div>
+              Showing News From:{" "}
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                customInput={<ExampleCustomInput />}
+                maxDate={today}
+              />{" "}
+            </div>
+            <div>
+              To:{" "}
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                customInput={<ExampleCustomInput />}
+                minDate={startDate}
+                maxDate={today}
+              />
+              {"   "}
+            </div>
+            <div>
+              <button
+                type="button"
+                className="btn btn-danger btn-sm px-3 py-2"
+                onClick={loadNews}
+              >
+                Show News
+              </button>
+            </div>
           </div>
-          <div className="col text-center">
-            To:{" "}
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              customInput={<ExampleCustomInput />}
-              minDate={startDate}
-              maxDate={today}
-            />
-            {"   "}
-          </div>
-          <div className="col ">
-            <button
-              type="button"
-              className="btn btn-danger btn-sm float-right px-3 py-2"
-              onClick={loadNews}
-            >
-              Show News
-            </button>
-          </div>
+          <div className="col-2"></div>
         </div>
 
         {isLoaded ? (
@@ -139,16 +143,27 @@ export default function Archive() {
                   </>
                 ) : null}
 
+                {/* <a
+                  href={`../${topic.name}/${news._id}`}
+                  // currentPath="/"
+                  className="card-title text-bold-small m-0 truncate-text"
+                >
+                  {news.heading}
+                </a> */}
+
                 <Cards
-                  newsList={getSpecifiedNews(news, topic._id).slice(0, 8)}
-                  horizontal={false}
+                  newsList={getSpecifiedNews(news, topic._id)}
+                  showImage={false}
                   topicName={topic.name}
                 />
               </div>
             ))}
           </div>
         ) : (
-          <div class="text-center" style={{marginTop: "10%", display: showSpinner ? "" : "none"}}>
+          <div
+            class="text-center"
+            style={{ marginTop: "10%", display: showSpinner ? "" : "none" }}
+          >
             <div
               class="spinner-border text-danger"
               role="status"

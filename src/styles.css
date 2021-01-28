@@ -46,6 +46,15 @@
   font-family: "Poppins", sans-serif;
 }
 
+.blue-link {
+  color: #1b7cbd !important;
+  text-decoration: underline solid 1px !important;
+}
+
+.blue-link:hover {
+  color: #d10014 !important;
+}
+
 .text-bold {
   color: #000000;
   font-weight: 600;

@@ -16,7 +16,9 @@ const VerticalCard = (newsList, topicName) => {
                 src={
                   news.resources &&
                   news.resources.find((n) => n.resType == "image")
-                    ? correctImageUrl(news.resources.find((n) => n.resType == "image").link)
+                    ? correctImageUrl(
+                        news.resources.find((n) => n.resType == "image").link
+                      )
                     : require("../../static/images/news.png")
                 }
                 className="card-img-top"
@@ -51,7 +53,9 @@ const HorizontalCard = (newsList, topicName) => {
           <img
             src={
               news.resources && news.resources.find((n) => n.resType == "image")
-                ? correctImageUrl(news.resources.find((n) => n.resType == "image").link)
+                ? correctImageUrl(
+                    news.resources.find((n) => n.resType == "image").link
+                  )
                 : require("../../static/images/news.png")
             }
             className="px-2"
@@ -101,7 +105,9 @@ const SingleCard = (news, topicName) => {
         news.resources.find((r) => r.resType === "image") && (
           <div className="img-wrapper">
             <img
-              src={correctImageUrl(news.resources.find((n) => n.resType == "image").link)}
+              src={correctImageUrl(
+                news.resources.find((n) => n.resType == "image").link
+              )}
               className="card-img"
             />
           </div>
@@ -131,13 +137,33 @@ const SingleCard = (news, topicName) => {
   );
 };
 
+const WithoutImage = (news, topicName) => {
+  return (
+    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 m-0">
+      {news.map((news, i) => (
+        <div className="col mb-3" key={i}>
+          <a
+            href={`../${topicName}/${news._id}`}
+            // currentPath="/"
+            className="card-title m-0 truncate-text blue-link"
+          >
+            {news.heading}
+          </a>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export default function Cards({
   newsList,
   topicName,
+  showImage = true,
   horizontal = false,
   single = false, // card type can be single or multi(for multi it will be false)
 }) {
   if (single) return SingleCard(newsList, topicName);
+  else if (!showImage) return WithoutImage(newsList, topicName);
   else
     return horizontal
       ? HorizontalCard(newsList, topicName)
