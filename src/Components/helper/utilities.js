@@ -59,6 +59,7 @@ export const calculateElapsedTime = (time) => {
 export const topicsWithSubtopics = {
   Assam: {
     _id: "5f53b8655f93960f3df852b1",
+    slug: "Assam",
     subtopic: {
       Guwahati: {
         _id: "5fc89b93f2a72f067186b3ff",
@@ -78,21 +79,9 @@ export const topicsWithSubtopics = {
       },
     },
   },
-
-  National: {
-    _id: "5f53b9035f93960f3df852b8",
-    subtopic: {},
-  },
-  International: {
-    _id: "5f53b94f5f93960f3df852bd",
-    subtopic: {},
-  },
-  Sports: {
-    _id: "5f53b9d95f93960f3df852c7",
-    subtopic: {},
-  },
   Northeast: {
     _id: "5fc89a79f2a72f067186b3fe",
+    slug: "Northeast",
     subtopic: {
       "Arunachal Pradesh": {
         _id: "5fc8a286f2a72f067186b408",
@@ -124,18 +113,64 @@ export const topicsWithSubtopics = {
       },
     },
   },
-  Opinion: {
-    _id: "5fcde94b0835bb064a0094f7",
+  National: {
+    _id: "5f53b9035f93960f3df852b8",
+    slug: "National",
+    subtopic: {},
+  },
+  International: {
+    _id: "5f53b94f5f93960f3df852bd",
+    slug: "International",
     subtopic: {},
   },
   Business: {
     _id: "5fcde9750835bb064a0094f8",
+    slug: "Business",
     subtopic: {},
   },
   Politics: {
     _id: "5fcde97c0835bb064a0094f9",
+    slug: "Politics",
     subtopic: {},
   },
+  Sports: {
+    _id: "5f53b9d95f93960f3df852c7",
+    slug: "Sports",
+    subtopic: {},
+  },
+  Sports: {
+    _id: "5f53b9d95f93960f3df852c7",
+    slug: "Sports",
+    subtopic: {},
+  },
+  Opinion: {
+    _id: "5fcde94b0835bb064a0094f7",
+    slug: "Opinion",
+    subtopic: {},
+  },
+  Opinion: {
+    _id: "5fcde94b0835bb064a0094f7",
+    slug: "Opinion",
+    subtopic: {},
+  },
+  "Life style": {
+    _id: "6012ec6fb0556804eca40ae4",
+    slug: "Life-style",
+    subtopic: {},
+  },
+  Entertainment: {
+    _id: "6012ec7bb0556804eca40ae5",
+    slug: "Entertainment",
+    subtopic: {},
+  },
+};
+
+export const getTopic = () => {
+  return Object.keys(topicsWithSubtopics);
+};
+
+export const getTopicSlug = (topic) => {
+  return topicsWithSubtopics[topic].slug;
 };
 
 export const getSubtopics = (topicName) => {
@@ -146,11 +181,11 @@ export const getSubtopics = (topicName) => {
 
 export const getSubtopicSlug = (topic, subtopic) => {
   const subtopicObj = topicsWithSubtopics[topic].subtopic;
-  return subtopicObj[subtopic]["slug"]
+  return subtopicObj[subtopic]["slug"];
 };
 
 export const getSubtopicId = (topic, subtopic) => {
   const subtopicN = subtopic.replace("-", " ");
   const subtopicObj = topicsWithSubtopics[topic].subtopic;
-  return subtopicObj[subtopicN]["_id"]
+  return subtopicObj[subtopicN]["_id"];
 };

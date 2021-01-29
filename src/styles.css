@@ -83,6 +83,10 @@
   font-weight: 600 !important;
 }
 
+.text-selected:hover{
+  color:  #d30101 !important;
+}
+
 .text-red {
   color: #d10014;
 }

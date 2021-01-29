@@ -3,7 +3,12 @@ import { withRouter, Link } from "react-router-dom";
 import { isAuthenticated, signout } from "./Components/Auth/helper/authApis";
 import { getNewsHeadings } from "./Components/helper/coreapicalls";
 
-import { getSubtopics, getSubtopicSlug } from "./Components/helper/utilities";
+import {
+  getSubtopics,
+  getSubtopicSlug,
+  getTopic,
+  getTopicSlug,
+} from "./Components/helper/utilities";
 
 const Menu = ({ history }) => {
   const currentTab = (history, path) => {
@@ -15,6 +20,11 @@ const Menu = ({ history }) => {
   };
 
   const [marqueeText, setMarqueeText] = useState("");
+
+  const topics = getTopic();
+
+  // console.log(getTopic())
+  // console.log(getTopicSlug("Life style"))
 
   useEffect(() => {
     getNewsHeadings().then((res) => {
@@ -36,13 +46,16 @@ const Menu = ({ history }) => {
 
   return (
     <div className="col p-0 ">
-      <nav className="navbar navbar-expand-lg my-container navbar-light">
-        <Link className="navbar-brand mr-5" to="/">
+      <nav className="navbar navbar-expand-lg mx-2 navbar-light d-flex justify-content-center">
+        <Link className="navbar-brand ml-5" to="/">
           <img
             src={require("./static/images/logo.png")}
             alt="LOGO"
             style={{ width: "70px" }}
           />
+          <span className="text-bold-big mt-4" style={{ fontSize: "1.5rem" }}>
+            PressDesk.in
+          </span>
         </Link>
         <button
           className="navbar-toggler ml-auto"
@@ -57,274 +70,54 @@ const Menu = ({ history }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav row m-0 p-0 align-items-right">
-            <li className="nav-item dropdown mr-3">
-              <a
-                className="nav-link dropdown-toggle p-0"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Assam
-              </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                {getSubtopics("Assam").map((item, i) => (
+            {topics.map((topic, i) =>
+              getSubtopics(topic).length === 0 ? (
+                <li className="nav-item mr-3">
                   <Link
-                    className="dropdown-item"
-                    to={"/Assam?subtopic=" + getSubtopicSlug("Assam", item)}
-                    key={i}
+                    className={
+                      "text-dark p-0" +
+                      currentTab(history, "/" + getTopicSlug(topic))
+                    }
+                    to={"/" + getTopicSlug(topic)}
                   >
-                    {item}
+                    {topic}
                   </Link>
-                ))}
-              </div>
-            </li>
-            <li className="nav-item dropdown mr-3">
-              <a
-                className="nav-link dropdown-toggle p-0"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Northeast
-              </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                {getSubtopics("Northeast").map((item, i) => (
-                  <Link
-                    className="dropdown-item"
-                    to={"/Northeast?subtopic=" + getSubtopicSlug("Northeast", item)}
-                    key={i}
+                </li>
+              ) : (
+                <li className="nav-item dropdown mr-3" key={i}>
+                  <a
+                    className="nav-link dropdown-toggle p-0"
+                    href={"/" + getTopicSlug(topic)}
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
-                    {item}
-                  </Link>
-                ))}
-              </div>
-            </li>
-            {getSubtopics("National").length === 0 ? (
-              <li className="nav-item mr-3">
-                <Link
-                  className={"text-dark p-0" + currentTab(history, "/National")}
-                  to="/National"
-                >
-                  National
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item dropdown mr-3">
-                <a
-                  className="nav-link dropdown-toggle p-0"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  National
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {getSubtopics("National").map((item, i) => (
-                    <Link
-                      className="dropdown-item"
-                      to={"/National?subtopic=" + getSubtopicSlug("National", item)}
-                      key={i}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              </li>
+                    {topic}
+                  </a>
+                  <div
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    {getSubtopics(topic).map((item, i) => (
+                      <Link
+                        className="dropdown-item"
+                        to={
+                          "/" +
+                          getTopicSlug(topic) +
+                          "?subtopic=" +
+                          getSubtopicSlug(topic, item)
+                        }
+                        key={i}
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+                </li>
+              )
             )}
-            {getSubtopics("International").length === 0 ? (
-              <li className="nav-item mr-3">
-                <Link
-                  className={
-                    "text-dark p-0" + currentTab(history, "/International")
-                  }
-                  to="/International"
-                >
-                  International
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item dropdown mr-3">
-                <a
-                  className="nav-link dropdown-toggle p-0"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  International
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {getSubtopics("International").map((item, i) => (
-                    <Link
-                      className="dropdown-item"
-                      to={"/International?subtopic=" + getSubtopicSlug("International", item)}
-                      key={i}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              </li>
-            )}
-            {getSubtopics("Opinion").length === 0 ? (
-              <li className="nav-item mr-3">
-                <Link
-                  className={"text-dark p-0" + currentTab(history, "/Opinion")}
-                  to="/Opinion"
-                >
-                  Opinion
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item dropdown mr-3">
-                <a
-                  className="nav-link dropdown-toggle p-0"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Opinion
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {getSubtopics("Opinion").map((item, i) => (
-                    <Link
-                      className="dropdown-item"
-                      to={"/Opinion?subtopic=" + getSubtopicSlug("Opinion", item)}
-                      key={i}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              </li>
-            )}
-            {getSubtopics("Business").length === 0 ? (
-              <li className="nav-item mr-3">
-                <Link
-                  className={"text-dark p-0" + currentTab(history, "/Business")}
-                  to="/Business"
-                >
-                  Business
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item dropdown mr-3">
-                <a
-                  className="nav-link dropdown-toggle p-0"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Business
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {getSubtopics("Business").map((item, i) => (
-                    <Link
-                      className="dropdown-item"
-                      to={"/Business?subtopic=" + getSubtopicSlug("Business", item)}
-                      key={i}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              </li>
-            )}
-            {getSubtopics("Politics").length === 0 ? (
-              <li className="nav-item mr-3">
-                <Link
-                  className={"text-dark p-0" + currentTab(history, "/Politics")}
-                  to="/Politics"
-                >
-                  Politics
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item dropdown mr-3">
-                <a
-                  className="nav-link dropdown-toggle p-0"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Politics
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {getSubtopics("Politics").map((item, i) => (
-                    <Link
-                      className="dropdown-item"
-                      to={"/Politics?subtopic=" + getSubtopicSlug("Politics", item)}
-                      key={i}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              </li>
-            )}
-            {getSubtopics("Sports").length === 0 ? (
-              <li className="nav-item mr-3">
-                <Link
-                  className={"text-dark p-0" + currentTab(history, "/Sports")}
-                  to="/Sports"
-                >
-                  Sports
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item dropdown mr-3">
-                <a
-                  className="nav-link dropdown-toggle p-0"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Sports
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {getSubtopics("Sports").map((item, i) => (
-                    <Link
-                      className="dropdown-item"
-                      to={"/Sports?subtopic=" + getSubtopicSlug("Sports", item)}
-                      key={i}
-                    >
-                      {item}
-                    </Link>
-                  ))}
-                </div>
-              </li>
-            )}
-            {/* <li className="nav-item">
-              <Link
-                className={"navbar-nav" + currentTab(history, "/Gallery")}
-                to="/Gallery"
-              >
-                Gallery
-              </Link>
-  </li>*/}
             {isAuthenticated() && (
               <li className="nav-item dropdown">
                 <a
@@ -338,32 +131,22 @@ const Menu = ({ history }) => {
                 >
                   Admin
                 </a>
-                {/* <div
-                  className="dropdown-toggle nav-link text-dark p-0"
-                  data-toggle="dropdown"
-                >
-                  Admin
-                </div> */}
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link
-                    className={"" + currentTab(history, "/newsManagement")}
+                    className={
+                      "dropdown-item" + currentTab(history, "/newsManagement")
+                    }
                     to="/newsManagement"
                   >
                     News Management
                   </Link>
-                  {/* <Link
-                    className={"" + currentTab(history, "/galleryManagement")}
-                    to="/galleryManagement"
-                  >
-                    Gallery Management
-                  </Link> */}
                   <div
                     onClick={() => {
                       signout(() => {
                         window.location.href = "/";
                       });
                     }}
-                    className="nav-link"
+                    className="nav-link dropdown-item"
                   >
                     Sign Out
                   </div>
