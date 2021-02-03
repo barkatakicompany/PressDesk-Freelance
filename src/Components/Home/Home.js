@@ -5,6 +5,11 @@ import CovidDashboard from "../CovidDashboard/CovidDashboard";
 import { getNewsByTopicName } from "../helper/coreapicalls";
 import { calculateElapsedTime, correctImageUrl } from "../helper/utilities";
 
+// TODO Designing and responsive
+// TODO Correcting Politics, Business, Sports
+// TODO Correcting LifeStyleNews
+// TODO Correcting EntertainmentNews
+
 export default function Home() {
   var showCovidDashboard = true;
 
@@ -32,108 +37,119 @@ export default function Home() {
     loadEntertainmentNews();
   }, []);
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isAssamLoaded, setIsAssamLoaded] = useState(false);
+  const [isNortheastLoaded, setIsNortheastLoaded] = useState(false);
+  const [isNationalLoaded, setIsNationalLoaded] = useState(false);
+  const [isInternationalLoaded, setIsInternationalLoaded] = useState(false);
+  const [isBusinessLoaded, setIsBusinessLoaded] = useState(false);
+  const [isPoliticsLoaded, setIsPoliticsLoaded] = useState(false);
+  const [isSportsLoaded, setIsSportsLoaded] = useState(false);
+  const [isOpinionLoaded, setIsOpinionLoaded] = useState(false);
+  const [isLifeStyleLoaded, setIsLifeStyleLoaded] = useState(false);
+  const [isEntertainmentLoaded, setIsEntertainmentLoaded] = useState(false);
 
   const loadAssamNews = () => {
     getNewsByTopicName("Assam").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsAssamLoaded(false);
       } else {
         setAssamNews(res);
-        setIsLoaded(true);
+        setIsAssamLoaded(true);
       }
     });
   };
   const loadNortheastNews = () => {
     getNewsByTopicName("Northeast").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsNortheastLoaded(false);
       } else {
         setNortheastNews(res);
-        setIsLoaded(true);
+        setIsNortheastLoaded(true);
       }
     });
   };
   const loadNationalNews = () => {
     getNewsByTopicName("National").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsNationalLoaded(false);
       } else {
         setNationalNews(res);
-        setIsLoaded(true);
+        setIsNationalLoaded(true);
       }
     });
   };
   const loadInternationalNews = () => {
     getNewsByTopicName("Interntaional").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsInternationalLoaded(false);
       } else {
         setInternationalNews(res);
-        setIsLoaded(true);
+        setIsInternationalLoaded(true);
       }
     });
   };
   const loadBusinessNews = () => {
     getNewsByTopicName("Business").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsBusinessLoaded(false);
       } else {
         setBusinessNews(res);
-        setIsLoaded(true);
+        setIsBusinessLoaded(true);
       }
     });
   };
   const loadPoliticsNews = () => {
     getNewsByTopicName("Politics").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsPoliticsLoaded(false);
       } else {
         setPoliticsNews(res);
-        setIsLoaded(true);
+        setIsPoliticsLoaded(true);
       }
     });
   };
   const loadSportsNews = () => {
     getNewsByTopicName("Sports").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsSportsLoaded(false);
       } else {
         setSportsNews(res);
-        setIsLoaded(true);
+        setIsSportsLoaded(true);
       }
     });
   };
   const loadOpinionNews = () => {
     getNewsByTopicName("Opinion").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsOpinionLoaded(false);
       } else {
         setOpinionNews(res);
-        setIsLoaded(true);
+        setIsOpinionLoaded(true);
       }
     });
   };
   const loadLifeStyleNews = () => {
     getNewsByTopicName("Life-Style").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsLifeStyleLoaded(false);
       } else {
         setLifeStyleNews(res);
-        setIsLoaded(true);
+        setIsLifeStyleLoaded(true);
       }
     });
   };
   const loadEntertainmentNews = () => {
     getNewsByTopicName("Entertainment").then((res) => {
       if (res.error || res.length == 0) {
-        setIsLoaded(false);
+        setIsEntertainmentLoaded(false);
       } else {
         setEntertainmentNews(res);
-        setIsLoaded(true);
+        setIsEntertainmentLoaded(true);
       }
     });
   };
+
+  // console.log(nationalNews);
 
   return (
     <Base>
@@ -152,13 +168,11 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="row mt-2 m-0">
-            <Cards
-              newsList={assamNews.slice(0, 8)}
-              horizontal={false}
-              topicName={"Assam"}
-            />
-          </div>
+          <Cards
+            newsList={assamNews.slice(0, 8)}
+            horizontal={false}
+            topicName={"Assam"}
+          />
         </div>
         {/* Northeast */}
         <div className="">
@@ -172,16 +186,17 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="row mt-2 m-0">
-            <Cards
-              newsList={northeastNews.slice(0, 8)}
-              horizontal={false}
-              topicName={"Northeast"}
-            />
-          </div>
+          {/* <div className="mt-m-0"> */}
+          <Cards
+            newsList={northeastNews.slice(0, 8)}
+            horizontal={false}
+            topicName={"Northeast"}
+          />
+          {/* </div> */}
         </div>
         {/* National / International */}
         <div className="row">
+          {/* National */}
           <div className="col">
             <div className="p-3">
               <h3 className="text-bold text-red">National</h3>
@@ -195,13 +210,14 @@ export default function Home() {
               <>
                 <Cards
                   newsList={nationalNews.slice(0, 4)}
-                  horizontal={true}
+                  singleWithList={true}
                   className="card"
                   topicName={"National"}
                 />
               </>
             </div>
           </div>
+          {/* International */}
           <div className="col">
             <div className="p-3">
               <h3 className="text-bold text-red">International</h3>
@@ -215,11 +231,151 @@ export default function Home() {
               <>
                 <Cards
                   newsList={internationalNews.slice(0, 4)}
-                  horizontal={true}
+                  singleWithList={true}
                   className="card"
                   topicName={"International"}
                 />
               </>
+            </div>
+          </div>
+        </div>
+        {/* Politics / Business / Sports */}
+        {/* TODO Correct news */}
+        <div className="row">
+          {/* Politics */}
+          <div className="col-sm-12 col-lg-4">
+            <div className="p-3">
+              <h3 className="text-bold text-red">Politics</h3>
+              <hr
+                style={{
+                  height: "1px",
+                  borderWidth: "0",
+                  backgroundColor: "gray",
+                }}
+              />
+              <Cards
+                newsList={assamNews[0]}
+                single={true}
+                video={false}
+                topicName={"Politics"}
+              />
+              <Cards
+                newsList={assamNews[1]}
+                single={true}
+                video={false}
+                topicName={"Politics"}
+              />
+            </div>
+          </div>
+          {/* Business */}
+          <div className="col-sm-12 col-lg-4">
+            <div className="p-3">
+              <h3 className="text-bold text-red">Business</h3>
+              <hr
+                style={{
+                  height: "1px",
+                  borderWidth: "0",
+                  backgroundColor: "gray",
+                }}
+              />
+              <Cards
+                newsList={northeastNews.slice(0, 5)}
+                horizontal={true}
+                className="card"
+                topicName={"Business"}
+              />
+            </div>
+          </div>
+          {/* Sports */}
+          <div className="col-sm-12 col-lg-4">
+            <div className="p-3">
+              <h3 className="text-bold text-red">Sports</h3>
+              <hr
+                style={{
+                  height: "1px",
+                  borderWidth: "0",
+                  backgroundColor: "gray",
+                }}
+              />
+              <Cards
+                newsList={assamNews[0]}
+                single={true}
+                video={false}
+                topicName={"Politics"}
+              />
+              <Cards
+                newsList={assamNews[1]}
+                single={true}
+                video={false}
+                topicName={"Politics"}
+              />
+            </div>
+          </div>
+        </div>
+        {/* Life Style  */}
+        {/* TODO Correct News */}
+        <div className="">
+          <div className="p-3">
+            <h3 className="text-bold text-red">Life Style</h3>
+            <hr
+              style={{
+                height: "1px",
+                borderWidth: "0",
+                backgroundColor: "gray",
+              }}
+            />
+          </div>
+          <div className="mt-2 m-0">
+            <Cards
+              newsList={assamNews.slice(0, 4)}
+              horizontal={false}
+              topicName={"Assam"}
+            />
+          </div>
+        </div>
+        {/* Opinion / Entertainment */}
+        <div className="row">
+          {/* Entertainment */}
+        {/* TODO Correct News */}
+          <div className="col-lg-7 col-sm-12">
+            <div className="p-3">
+              <h3 className="text-bold text-red">Entertainment</h3>
+              <hr
+                style={{
+                  height: "1px",
+                  borderWidth: "0",
+                  backgroundColor: "gray",
+                }}
+              />
+              <div className="row row-cols-2 row-cols-md-2 row-cols-sm-1 px-3">
+                {assamNews.slice(0, 4).map((news, i) => (
+                  <Cards
+                    newsList={news}
+                    single={true}
+                    video={false}
+                    topicName={"Entertainment"}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Opinion */}
+          <div className="col-lg-5 col-sm-12">
+            <div className="p-3">
+              <h3 className="text-bold text-red">Opinion</h3>
+              <hr
+                style={{
+                  height: "1px",
+                  borderWidth: "0",
+                  backgroundColor: "gray",
+                }}
+              />
+              <Cards
+                newsList={opinionNews.slice(0, 5)}
+                horizontal={true}
+                className="card"
+                topicName={"Opinion"}
+              />
             </div>
           </div>
         </div>

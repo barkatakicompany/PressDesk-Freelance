@@ -155,16 +155,111 @@ const WithoutImage = (news, topicName) => {
   );
 };
 
+const SingleCardWithoutVideo = (news, topicName) => {
+  return (
+    <div className="card h-100">
+      <div className="img-wrapper">
+        <img
+          src={
+            news.resources && news.resources.find((n) => n.resType == "image")
+              ? correctImageUrl(
+                  news.resources.find((n) => n.resType == "image").link
+                )
+              : require("../../static/images/news.png")
+          }
+          className="card-img-top"
+          alt="..."
+        />
+      </div>
+      <div className="card-body p-2">
+        <p className="text-muted mb-0 font-weight-bold">
+          {calculateElapsedTime(news.createdAt)}
+          ago
+        </p>
+        <a
+          href={`../${topicName}/${news._id}`}
+          // currentPath="/"
+          className="card-title text-bold-small m-0 truncate-text"
+        >
+          {news.heading}
+        </a>
+      </div>
+    </div>
+  );
+};
+
+const SingleCardWithList = (news, topicName) => {
+  return (
+    <div className="border border-gray">
+      {/* single news */}
+      <div className="card bg-darken-1 text-bold">
+        <div className="img-wrapper">
+          {/* TODO not overlay image */}
+          <img
+            src={
+              news[0].resources &&
+              news[0].resources.find((n) => n.resType == "image")
+                ? correctImageUrl(
+                    news[0].resources.find((n) => n.resType == "image").link
+                  )
+                : require("../../static/images/news.png")
+            }
+            className="card-img-top"
+            alt="..."
+          />
+        </div>
+        <div className="card-img-overlay d-flex align-items-end p-0">
+          <div className="w-100 px-3 py-2 gradient-overlay">
+            <a
+              href={`../${topicName}/${news[0]._id}`}
+              className="card-title text-white text-bold-big m-0 truncate-text"
+            >
+              {news[0].heading}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* list news */}
+
+      {/* <WithoutImage news={(news.slice(1, 4), (topicName = { topicName }))} /> */}
+
+      <div className="m-3">
+        {news.slice(1, 4).map((news, i) => (
+          <div className={"row mb-2 pt-2 border-top border-grey"} key={i}>
+            <a
+              href={`../${topicName}/${news._id}`}
+              className="card-title m-0 px-2 truncate-text text-bold-small"
+            >
+              {news.heading}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const rowNews = (news, topicName) => {};
+
 export default function Cards({
   newsList,
   topicName,
+  video,
   showImage = true,
   horizontal = false,
+  singleWithList = false,
   single = false, // card type can be single or multi(for multi it will be false)
 }) {
-  if (single) return SingleCard(newsList, topicName);
-  else if (!showImage) return WithoutImage(newsList, topicName);
-  else
+  // console.log(newsList)
+  if (newsList === undefined || newsList.length === 0) return null;
+  if (single) {
+    if (!video) return SingleCardWithoutVideo(newsList, topicName);
+    else return SingleCard(newsList, topicName);
+  } else if (!showImage) return WithoutImage(newsList, topicName);
+  else if (singleWithList) {
+    return SingleCardWithList(newsList, topicName);
+  } else
     return horizontal
       ? HorizontalCard(newsList, topicName)
       : VerticalCard(newsList, topicName);

@@ -123,19 +123,14 @@ export const topicsWithSubtopics = {
     slug: "International",
     subtopic: {},
   },
-  Business: {
-    _id: "5fcde9750835bb064a0094f8",
-    slug: "Business",
-    subtopic: {},
-  },
   Politics: {
     _id: "5fcde97c0835bb064a0094f9",
     slug: "Politics",
     subtopic: {},
   },
-  Sports: {
-    _id: "5f53b9d95f93960f3df852c7",
-    slug: "Sports",
+  Business: {
+    _id: "5fcde9750835bb064a0094f8",
+    slug: "Business",
     subtopic: {},
   },
   Sports: {
@@ -143,14 +138,9 @@ export const topicsWithSubtopics = {
     slug: "Sports",
     subtopic: {},
   },
-  Opinion: {
-    _id: "5fcde94b0835bb064a0094f7",
-    slug: "Opinion",
-    subtopic: {},
-  },
-  Opinion: {
-    _id: "5fcde94b0835bb064a0094f7",
-    slug: "Opinion",
+  Sports: {
+    _id: "5f53b9d95f93960f3df852c7",
+    slug: "Sports",
     subtopic: {},
   },
   "Life style": {
@@ -161,6 +151,11 @@ export const topicsWithSubtopics = {
   Entertainment: {
     _id: "6012ec7bb0556804eca40ae5",
     slug: "Entertainment",
+    subtopic: {},
+  },
+  Opinion: {
+    _id: "5fcde94b0835bb064a0094f7",
+    slug: "Opinion",
     subtopic: {},
   },
 };

@@ -45,7 +45,7 @@ const Menu = ({ history }) => {
   // getSubtopicSlug("Assam", "Upper Assam");
 
   return (
-    <div className="col p-0 ">
+    <div className="col p-0 sticky-top bg-white shadow-sm">
       <nav className="navbar navbar-expand-lg mx-2 navbar-light d-flex justify-content-center">
         <Link className="navbar-brand ml-5" to="/">
           <img
