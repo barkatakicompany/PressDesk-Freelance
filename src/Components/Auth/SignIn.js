@@ -6,7 +6,7 @@ const SignIn = () => {
   const [user, setUser] = useState({
     mobile: "",
     email: "",
-    password: "11111111",
+    password: "",
   });
   const [redirect, setRedirect] = useState(false);
 
@@ -50,7 +50,6 @@ const SignIn = () => {
     <Base>
       <div className="">
         {doRedirect()}
-        <div>{JSON.stringify(user)}</div>
         <div className="m-4 row justify-content-center">
           <form className=" col-6">
             <div className="form-group">

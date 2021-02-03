@@ -134,11 +134,19 @@ const Menu = ({ history }) => {
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link
                     className={
-                      "dropdown-item" + currentTab(history, "/newsManagement")
+                      "dropdown-item" + currentTab(history, "/admin/news")
                     }
-                    to="/newsManagement"
+                    to="/admin/news"
                   >
-                    News Management
+                    Manage News
+                  </Link>
+                  <Link
+                    className={
+                      "dropdown-item" + currentTab(history, "/admin/gallery")
+                    }
+                    to="/admin/gallery"
+                  >
+                    Manage Gallery
                   </Link>
                   <div
                     onClick={() => {

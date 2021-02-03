@@ -17,13 +17,9 @@ export default function Routes() {
         <Route path="/" exact component={Home} />
         <Route path="/Archives" exact component={Archive} />
         <Route path="/signIn" exact component={SignIn} />
+        <PrivateRoute path="/admin/news" exact component={NewsManagement} />
+        <PrivateRoute path="/admin/gallery" exact component={AlbumManagement} />
         <Route path="/:topicName/:newsId" exact component={News} />
-        <PrivateRoute path="/newsManagement" exact component={NewsManagement} />
-        <PrivateRoute
-          path="/galleryManagement"
-          exact
-          component={AlbumManagement}
-        />
         <Route path="/:topicName" exact component={Topic} />
       </Switch>
     </BrowserRouter>
